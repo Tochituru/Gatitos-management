@@ -1,7 +1,7 @@
 const api = 'http://localhost:3000/api/kittens';
 let kittenTable = document.getElementById('kittenTable')
 
-//crear las filas
+
 //crear celdas
 const createCell = (fieldClass, fieldValue) => {
     let newCell = document.createElement('td');
@@ -11,7 +11,14 @@ const createCell = (fieldClass, fieldValue) => {
     return newCell 
 }
 //crear botones editar borrar
-
+const createBtn = (idValue, text)=> {
+    const newBtn = document.createElement('button');
+    newBtn.setAttribute('id', idValue)
+    newBtn.innerText = text
+    console.log('btn created')
+    return newBtn
+}
+//crear las filas
 const createTable = element => {
 element.forEach(element=>{
     let newRow= document.createElement('tr');
@@ -19,7 +26,8 @@ element.forEach(element=>{
     newRow.appendChild(createCell('color', element.color));
     newRow.appendChild(createCell('favoriteToy', element.favoriteToy));
     newRow.appendChild(createCell('email', element.email));
-
+    newRow.appendChild(createBtn(element.id, 'edit'));
+    newRow.appendChild(createBtn(element.id, 'delete'))
     console.log(newRow);
     
     return kittenTable.appendChild(newRow);
