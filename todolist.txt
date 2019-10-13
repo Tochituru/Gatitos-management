@@ -1,10 +1,14 @@
-inicializar server
-crear router
-crear api
-hacer funciones de metodos desde el servidor
+x inicializar server
+x crear router
+x crear api
+x hacer funciones de metodos desde el servidor
 get: trae a los gatitos  
 post: publica a un gatito nuevo desde el modal
 patch: edita al gatito desde un modal 
 delete: tomamos la decision de matar al gatito(yami nos pega)
 filter: buscar gatitos MAGICAMENTE
 html: maquetar como campeonas ... 
+
+
+validacion de cliente 
+validaciones de server
