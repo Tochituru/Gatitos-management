@@ -1,9 +1,9 @@
 let kittens = [
-    {id:'1',name:'Benjamonja', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com'},
-    {id:'2',name:'Benja', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com'},
-    {id:'3',name:'Benja', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com'},
-    {id:'4',name:'Benja', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com'},
-    {id:'5',name:'Benja', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com'}
+    { id: '1', name: 'Benjamonja', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
+    { id: '2', name: 'Benja', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
+    { id: '3', name: 'Benja', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
+    { id: '4', name: 'Benja', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
+    { id: '5', name: 'Benja', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' }
 ]
 
 const getKittens = (req, res, next) => {
@@ -13,17 +13,18 @@ const getKittens = (req, res, next) => {
 };
 
 const getKittenId = (req, res, next) => {
-    const reqId= req.params.id;
-    const onlyKitten = kittens.filter(kitten => {
-        return kitten.id === reqId
-    })[0]
-    res.status(200).json(onlyKitten);
+    let resKitten = kittens.find(e => e.id === req.params.id);
+    if (resKitten) {
+        res.status(200).json(resKitten)
+    } else {
+        res.status(404).send('that is not your cat')
+    }
     console.log('llamamos un gatito por id')
     next();
 }
-    
+
 const postKitten = (req, res, next) => {
-    
+
     let data = req.body;
     const name = data.name;
     const adoptionDate = data.adoptionDate;
@@ -32,40 +33,52 @@ const postKitten = (req, res, next) => {
     const email = data.email;
 
     let newKitten = {
-            id: kittens.length + 1,
-            name: name,
-            adoptionDate: adoptionDate,
-            color: color,
-            favoriteToy: favoriteToy,
-            email: email,
-            
-        }
-        kittens.push(newKitten);
-        console.log(newKitten);
-        res.json({kittens})
-        //res.send(`recibido con la id ${data.id} and ${newKitten.id} y ${kittens}`);
-        console.log('adding kitten');
-    
+        id: kittens.length + 1,
+        name: name,
+        adoptionDate: adoptionDate,
+        color: color,
+        favoriteToy: favoriteToy,
+        email: email,
+
+    }
+    kittens.push(newKitten);
+    console.log(newKitten);
+    res.json({ kittens })
+    //res.send(`recibido con la id ${data.id} and ${newKitten.id} y ${kittens}`);
+    console.log('adding kitten');
+
     next();
 };
 
 
 const patchKitten = (req, res, next) => {
-    const reqId= req.params.id;
-    const filteredKitten = kittens.filter(kitten => {
-        return kitten.id === reqId
-    })[0]
-    res.status(200).json(filteredKitten);
+    let data = req.body;
+    let index = '';
+    let resKitten = kittens.find((e, i) => {
+        index = i;
+        return e.id === req.params.id
+    })
+
+    if (resKitten) {
+        let editedKitten = {...resKitten, ...data};
+        kittens.splice(1, index);
+        kittens.push(editedKitten);
+        res.status(200).json(editedKitten);
+    } else {
+        res.status(404).send('Le pifiaste al gatito')
+    }
     next();
-    console.log('se trata de hacer un patch con : ' , filteredKitten)
+    console.log('se trata de hacer un patch con : ', filteredKitten)
 }
+
 const deleteKitten = (req, res, next) => {
-    const reqId= req.params.id;
+    const reqId = req.params.id;
     const nonDeletedKittens = kittens.filter(kitten => {
         return kitten.id !== reqId
     })
     kittens = nonDeletedKittens
     res.status(200).json(kittens);
     next();
-    console.log('delete  : ' , kittens)}
-module.exports = {getKittens, getKittenId, postKitten, patchKitten, deleteKitten};
+    console.log('delete  : ', kittens)
+}
+module.exports = { getKittens, getKittenId, postKitten, patchKitten, deleteKitten };

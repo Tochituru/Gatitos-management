@@ -37,7 +37,9 @@ element.forEach(element=>{
 const initialize = () => {
     fetch(api)
         .then(res => res.json())
-        .then(kittens => createTable(kittens.kittens))
+        .then(kittens => {
+            kittenTable.innerHTML = '';
+            createTable(kittens.kittens)})
 
         };
 
@@ -81,17 +83,21 @@ const createKitten = () => {
 
 //hacer el fetch de edit 
 const getKittenId= ()=> {
-    
-    fetch(`${api}/2`) 
+    let id = event.target.id;
+    console.log(id)
+    fetch(`${api}/${id}`) 
     .then(res => res.json())
     .then(eachKitten => {
-        let editId = document.getElementById('kittenId');
+        let editId = document.querySelector('.editCat');
+        
         let editCatName= document.getElementById('editCatName');
         let editCatAdoptionDate = document.getElementById('editCatAdoptionDate');
         let editCatColor= document.getElementById('editCatColor');
         let editCatFavoriteToy= document.getElementById('editCatFavoriteToy');
         let editCatEmail = document.getElementById('editCatEmail');
-        editId.value = eachKitten.id;
+        editId.setAttribute('id', `${eachKitten.id}`);
+        console.log(editId);
+
         editCatName.value = eachKitten.name;
         editCatAdoptionDate.value = eachKitten.adoptionDate;
         editCatColor.value = eachKitten.color;
@@ -105,6 +111,7 @@ const getKittenId= ()=> {
 
 const editKitten = () => {
     event.preventDefault();
+    let id = event.target.id;
     let editCatName= document.getElementById('editCatName');
     let editCatAdoptionDate = document.getElementById('editCatAdoptionDate');
     let editCatColor= document.getElementById('editCatColor');
@@ -112,14 +119,16 @@ const editKitten = () => {
     let editCatEmail = document.getElementById('editCatEmail');
 
     let editCat = {
+        id: id,
         name: editCatName.value,
         adoptionDate: editCatAdoptionDate.value,
         color: editCatColor.value,
         favoriteToy: editCatFavoriteToy.value,
         email: editCatEmail.value
     }
+    console.log(editCat);
     console.log('edited kitten');
-    fetch(api, {
+    fetch(`${api}/${id}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
