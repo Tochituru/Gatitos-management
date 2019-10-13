@@ -7,7 +7,7 @@ const createCell = (fieldClass, fieldValue) => {
     let newCell = document.createElement('td');
     newCell.innerHTML = fieldValue;
     newCell.classList.add(fieldClass); 
-    console.log('cell', newCell)
+//    console.log('cell', newCell)
     return newCell 
 }
 //crear botones editar borrar
@@ -15,7 +15,7 @@ const createBtn = (idValue, text)=> {
     const newBtn = document.createElement('button');
     newBtn.setAttribute('id', idValue)
     newBtn.innerText = text
-    console.log('btn created')
+//    console.log('btn created')
     return newBtn
 }
 //crear las filas
@@ -28,7 +28,7 @@ element.forEach(element=>{
     newRow.appendChild(createCell('email', element.email));
     newRow.appendChild(createBtn(element.id, 'edit'));
     newRow.appendChild(createBtn(element.id, 'delete'))
-    console.log(newRow);
+//    console.log(newRow);
     
     return kittenTable.appendChild(newRow);
 })
@@ -45,7 +45,41 @@ const initialize = () => {
 
 //hacer modal para el post 
 //hacer el post
-//hacer modal para el patch
+const createKitten = () => {
+    event.preventDefault();
+    let newCatName= document.getElementById('newCatName');
+    let newCatAdoptionDate = document.getElementById('newCatAdoptionDate');
+    let newCatColor= document.getElementById('newCatColor');
+    let newCatFavoriteToy= document.getElementById('newCatFavoriteToy');
+    let newCatEmail = document.getElementById('newCatEmail');
+
+    let newCat = {
+        name: newCatName.value,
+        adoptionDate: newCatAdoptionDate.value,
+        color: newCatColor.value,
+        favoriteToy: newCatFavoriteToy.value,
+        email: newCatEmail.value
+    }
+    console.log('created kitten');
+    fetch(api, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newCat)
+    })
+        .then(res => res.json())
+        .then(() => {
+            newCatName.value = '';
+            newCatAdoptionDate.value = '';
+            newCatColor.value = '';
+            newCatFavoriteToy.value = '';
+            newCatEmail.value = '';
+            initialize();
+        })
+        .catch(error => console.log(`You have an error ${error}`));
+}
+
 //hacer el patch 
 //hacer modal de delete
 //hacer delete 
