@@ -8,9 +8,19 @@ let kittens = [
 
 const getKittens = (req, res, next) => {
     res.status(200).json({ kittens });
-    next();
     console.log('se hizo el get kittens')
+    next();
 };
+
+const getKittenId = (req, res, next) => {
+    const reqId= req.params.id;
+    const onlyKitten = kittens.filter(kitten => {
+        return kitten.id === reqId
+    })[0]
+    res.status(200).json(onlyKitten);
+    console.log('llamamos un gatito por id')
+    next();
+}
     
 const postKitten = (req, res, next) => {
     
@@ -58,4 +68,4 @@ const deleteKitten = (req, res, next) => {
     res.status(200).json(kittens);
     next();
     console.log('delete  : ' , kittens)}
-module.exports = {getKittens, postKitten, patchKitten, deleteKitten};
+module.exports = {getKittens, getKittenId, postKitten, patchKitten, deleteKitten};

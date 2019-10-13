@@ -12,9 +12,8 @@ const createCell = (fieldClass, fieldValue) => {
 }
 //crear botones editar borrar
 const createBtn = (idValue, text)=> {
-    const newBtn = document.createElement('button');
-    newBtn.setAttribute('id', idValue)
-    newBtn.innerText = text
+    const newBtn = document.createElement('span');
+    newBtn.innerHTML = `<button id="${idValue}" onclick="getKittenId()">${text}</button>`
 //    console.log('btn created')
     return newBtn
 }
@@ -80,7 +79,66 @@ const createKitten = () => {
         .catch(error => console.log(`You have an error ${error}`));
 }
 
+//hacer el fetch de edit 
+const getKittenId= ()=> {
+    
+    fetch(`${api}/2`) 
+    .then(res => res.json())
+    .then(eachKitten => {
+        let editId = document.getElementById('kittenId');
+        let editCatName= document.getElementById('editCatName');
+        let editCatAdoptionDate = document.getElementById('editCatAdoptionDate');
+        let editCatColor= document.getElementById('editCatColor');
+        let editCatFavoriteToy= document.getElementById('editCatFavoriteToy');
+        let editCatEmail = document.getElementById('editCatEmail');
+        editId.value = eachKitten.id;
+        editCatName.value = eachKitten.name;
+        editCatAdoptionDate.value = eachKitten.adoptionDate;
+        editCatColor.value = eachKitten.color;
+        editCatFavoriteToy.value = eachKitten.favoriteToy;
+        editCatEmail.value = eachKitten.email;
+    }
+        )
+    console.log('open edit modal ')
+}
 //hacer el patch 
+
+const editKitten = () => {
+    event.preventDefault();
+    let editCatName= document.getElementById('editCatName');
+    let editCatAdoptionDate = document.getElementById('editCatAdoptionDate');
+    let editCatColor= document.getElementById('editCatColor');
+    let editCatFavoriteToy= document.getElementById('editCatFavoriteToy');
+    let editCatEmail = document.getElementById('editCatEmail');
+
+    let editCat = {
+        name: editCatName.value,
+        adoptionDate: editCatAdoptionDate.value,
+        color: editCatColor.value,
+        favoriteToy: editCatFavoriteToy.value,
+        email: editCatEmail.value
+    }
+    console.log('edited kitten');
+    fetch(api, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(editCat)
+    })
+        .then(res => res.json())
+        .then(() => {
+            editCatName.value = '';
+            editCatAdoptionDate.value = '';
+            editCatColor.value = '';
+            editCatFavoriteToy.value = '';
+            editCatEmail.value = '';
+            initialize();
+        })
+        .catch(error => console.log(`You have an error ${error}`));
+}
+
+
 //hacer modal de delete
 //hacer delete 
 //hacer el campo de busqueda
