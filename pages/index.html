@@ -5,34 +5,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Gatites</title>
+    <title>Gatites Management</title>
 </head>
 
 <body onload="initialize()">
-    <h1>Gatites</h1>
-    <table>
-        <thead>
-        </thead>
-        <tbody id='kittenTable'>
-        </tbody>
-    </table>
+    <header>
+        <h1>Gatites Management</h1>
+        <button class="button" id='addBtn' onclick="openAddModal()">
+            <div class="addBtnText">Tengo otro gatito
+            </div>
+        </button>
+    </header>
+    <main>
+        <section class="filter">
+            <input type=" text" name="" id="" placeholder="Filtrar gatitos..." onkeyup="filterKittens()">
+        </section>
+
+        <table>
+            <thead>
+            </thead>
+            <tbody id='kittenTable'>
+            </tbody>
+        </table>
+    </main>
     <aside id="addModalBackground">
         <section>
             <header>
-                <div>add new Cat</div>
+                <div>¡Otro gato más!</div>
             </header>
             <main>
                 <form action="#" method='post'>
-                    <input type="text" id="newCatName" placeholder="Name for the kitten" value="">
-                    <input type="text" id="newCatAdoptionDate" placeholder="What day you adopted the kitten" value="">
-                    <input type="text" id="newCatColor" placeholder="What color is your cat?" value="">
-                    <input type="text" id="newCatFavoriteToy" placeholder="What is their favorite toy?" value="">
-                    <input type="text" id="newCatEmail" placeholder="We know the cat has an e-mail" value="">
+                    <input type="text" id="newCatName" placeholder="Nombre del gatito" value="">
+                    <input type="text" id="newCatAdoptionDate" placeholder="¿Cuándo adoptaste al gatito?" value="">
+                    <input type="text" id="newCatColor" placeholder="¿De qué color es?" value="">
+                    <input type="text" id="newCatFavoriteToy" placeholder="¿Cuál es su juguete favorito?" value="">
+                    <input type="text" id="newCatEmail" placeholder="Sabemos que le hiciste un e-mail. Escribilo."
+                        value="">
                 </form>
             </main>
             <footer>
-                <button id="addCat" onclick="createKitten()">Add Cat</button>
-                <button id="cancel">Cancel</button>
+                <button id="addCat" onclick="createKitten()">Agregar gatito</button>
+                <button id="cancel">Cancelar</button>
             </footer>
 
         </section>
@@ -40,32 +53,33 @@
     <aside id="editModalBackground">
         <section>
             <header>
-                <div>Edit Cat</div>
+                <div>Editar gatito</div>
             </header>
             <main>
                 <form action="#" method='post'>
                     <div id="kittenId">id</div>
-                    <input type="text" id="editCatName" placeholder="Name for the kitten" value="">
-                    <input type="text" id="editCatAdoptionDate" placeholder="What day you adopted the kitten" value="">
-                    <input type="text" id="editCatColor" placeholder="What color is your cat?" value="">
-                    <input type="text" id="editCatFavoriteToy" placeholder="What is their favorite toy?" value="">
-                    <input type="text" id="editCatEmail" placeholder="We know the cat has an e-mail" value="">
+                    <input type="text" id="editCatName" placeholder="Nombre del gatito" value="">
+                    <input type="text" id="editCatAdoptionDate" placeholder="¿Cuándo adoptaste al gatito?" value="">
+                    <input type="text" id="editCatColor" placeholder="¿De qué color es?" value="">
+                    <input type="text" id="editCatFavoriteToy" placeholder="¿Cuál es su juguete favorito?" value="">
+                    <input type="text" id="editCatEmail" placeholder="Sabemos que le hiciste un e-mail. Escribilo." value="">
                 </form>
             </main>
             <footer>
-                <button id="" class="editCat" onclick="editKitten()">Edit Cat</button>
-                <button id="cancel">Cancel</button>
+                <button id="" class="editCat" onclick="editKitten()">Editar gatito</button>
+                <button id="cancel">Cancelar</button>
             </footer>
 
         </section>
     </aside>
     <aside id="deleteModalBackground">
         <section>
-            <header>Bye Kittie Cat</header>
-            <main>If you delete the cat, you will loose all the information. Are you sure?</main>
+            <header>Chau, gatito</header>
+            <main>Mi gato ascendió a estado de Dios entre los egipcios. O consiguió una familia nueva.<br />
+            Quiero borrarlo.</main>
             <footer>
-                <button id="" class="deleteCat" onclick="deleteKitten()">Delete Cat</button>
-                <button id="cancel">Cancel</button>
+                <button id="" class="deleteCat" onclick="deleteKitten()">Borrar gato</button>
+                <button id="cancel">Cancelar</button>
             </footer>
         </section>
     </aside>
