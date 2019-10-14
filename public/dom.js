@@ -6,31 +6,31 @@ let kittenTable = document.getElementById('kittenTable')
 const createCell = (fieldClass, fieldValue) => {
     let newCell = document.createElement('td');
     newCell.innerHTML = fieldValue;
-    newCell.classList.add(fieldClass); 
-//    console.log('cell', newCell)
-    return newCell 
+    newCell.classList.add(fieldClass);
+    //    console.log('cell', newCell)
+    return newCell
 }
 //crear botones editar borrar
-const createBtn = (idValue, text)=> {
+const createBtn = (idValue, text, todo) => {
     const newBtn = document.createElement('span');
-    newBtn.innerHTML = `<button id="${idValue}" onclick="getKittenId()">${text}</button>`
-//    console.log('btn created')
+    newBtn.innerHTML = `<button id="${idValue}" onclick="${todo}">${text}</button>`
+    //    console.log('btn created')
     return newBtn
 }
 //crear las filas
 const createTable = element => {
-element.forEach(element=>{
-    let newRow= document.createElement('tr');
-    newRow.appendChild(createCell('name', element.name));    newRow.appendChild(createCell('adoptionDate', element.adoptionDate));
-    newRow.appendChild(createCell('color', element.color));
-    newRow.appendChild(createCell('favoriteToy', element.favoriteToy));
-    newRow.appendChild(createCell('email', element.email));
-    newRow.appendChild(createBtn(element.id, 'edit'));
-    newRow.appendChild(createBtn(element.id, 'delete'))
-//    console.log(newRow);
-    
-    return kittenTable.appendChild(newRow);
-})
+    element.forEach(element => {
+        let newRow = document.createElement('tr');
+        newRow.appendChild(createCell('name', element.name)); newRow.appendChild(createCell('adoptionDate', element.adoptionDate));
+        newRow.appendChild(createCell('color', element.color));
+        newRow.appendChild(createCell('favoriteToy', element.favoriteToy));
+        newRow.appendChild(createCell('email', element.email));
+        newRow.appendChild(createBtn(element.id, 'edit', 'getKittenId()'));
+        newRow.appendChild(createBtn(element.id, 'delete', 'getKittenForDelete()'))
+        //    console.log(newRow);
+
+        return kittenTable.appendChild(newRow);
+    })
 }
 //hacer el fetch de get 
 
@@ -39,19 +39,20 @@ const initialize = () => {
         .then(res => res.json())
         .then(kittens => {
             kittenTable.innerHTML = '';
-            createTable(kittens.kittens)})
+            createTable(kittens.kittens)
+        })
 
-        };
+};
 
 
 //hacer modal para el post 
 //hacer el post
 const createKitten = () => {
     event.preventDefault();
-    let newCatName= document.getElementById('newCatName');
+    let newCatName = document.getElementById('newCatName');
     let newCatAdoptionDate = document.getElementById('newCatAdoptionDate');
-    let newCatColor= document.getElementById('newCatColor');
-    let newCatFavoriteToy= document.getElementById('newCatFavoriteToy');
+    let newCatColor = document.getElementById('newCatColor');
+    let newCatFavoriteToy = document.getElementById('newCatFavoriteToy');
     let newCatEmail = document.getElementById('newCatEmail');
 
     let newCat = {
@@ -82,28 +83,28 @@ const createKitten = () => {
 }
 
 //hacer el fetch de edit 
-const getKittenId= ()=> {
+const getKittenId = () => {
     let id = event.target.id;
     console.log(id)
-    fetch(`${api}/${id}`) 
-    .then(res => res.json())
-    .then(eachKitten => {
-        let editId = document.querySelector('.editCat');
-        
-        let editCatName= document.getElementById('editCatName');
-        let editCatAdoptionDate = document.getElementById('editCatAdoptionDate');
-        let editCatColor= document.getElementById('editCatColor');
-        let editCatFavoriteToy= document.getElementById('editCatFavoriteToy');
-        let editCatEmail = document.getElementById('editCatEmail');
-        editId.setAttribute('id', `${eachKitten.id}`);
-        console.log(editId);
+    fetch(`${api}/${id}`)
+        .then(res => res.json())
+        .then(eachKitten => {
+            let editId = document.querySelector('.editCat');
 
-        editCatName.value = eachKitten.name;
-        editCatAdoptionDate.value = eachKitten.adoptionDate;
-        editCatColor.value = eachKitten.color;
-        editCatFavoriteToy.value = eachKitten.favoriteToy;
-        editCatEmail.value = eachKitten.email;
-    }
+            let editCatName = document.getElementById('editCatName');
+            let editCatAdoptionDate = document.getElementById('editCatAdoptionDate');
+            let editCatColor = document.getElementById('editCatColor');
+            let editCatFavoriteToy = document.getElementById('editCatFavoriteToy');
+            let editCatEmail = document.getElementById('editCatEmail');
+            editId.setAttribute('id', `${eachKitten.id}`);
+            console.log(editId);
+
+            editCatName.value = eachKitten.name;
+            editCatAdoptionDate.value = eachKitten.adoptionDate;
+            editCatColor.value = eachKitten.color;
+            editCatFavoriteToy.value = eachKitten.favoriteToy;
+            editCatEmail.value = eachKitten.email;
+        }
         )
     console.log('open edit modal ')
 }
@@ -112,10 +113,10 @@ const getKittenId= ()=> {
 const editKitten = () => {
     event.preventDefault();
     let id = event.target.id;
-    let editCatName= document.getElementById('editCatName');
+    let editCatName = document.getElementById('editCatName');
     let editCatAdoptionDate = document.getElementById('editCatAdoptionDate');
-    let editCatColor= document.getElementById('editCatColor');
-    let editCatFavoriteToy= document.getElementById('editCatFavoriteToy');
+    let editCatColor = document.getElementById('editCatColor');
+    let editCatFavoriteToy = document.getElementById('editCatFavoriteToy');
     let editCatEmail = document.getElementById('editCatEmail');
 
     let editCat = {
@@ -147,9 +148,24 @@ const editKitten = () => {
         .catch(error => console.log(`You have an error ${error}`));
 }
 
-
 //hacer modal de delete
+const getKittenForDelete = () => {
+    id = event.target.id;
+    console.log("open modal for delete for ", id);
+    let deleteAction = document.querySelector('.deleteCat');
+    deleteAction.setAttribute('id', id)
+}
 //hacer delete 
+const deleteKitten = () => {
+    event.preventDefault();
+    id = event.target.id
+    fetch(`${api}/${id}`, {
+        method: 'DELETE',
+    })
+        .then(res => res.json())
+        .then(() => initialize())
+    console.log('kitten deleted')
+}
 //hacer el campo de busqueda
 // hacer el filter
 // hacer las validaciones 

@@ -4,8 +4,8 @@ x crear api
 x hacer funciones de metodos desde el servidor
 x get: trae a los gatitos  
 x post: publica a un gatito nuevo desde el modal (FUNCIONA)
-patch: edita al gatito desde un modal 
-delete: tomamos la decision de matar al gatito(yami nos pega)
+x patch: edita al gatito desde un modal 
+x delete: tomamos la decision de matar al gatito(yami nos pega)
 filter: buscar gatitos MAGICAMENTE
 html: maquetar como campeonas ... 
 

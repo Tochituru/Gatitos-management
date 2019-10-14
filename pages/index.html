@@ -16,34 +16,34 @@
         <tbody id='kittenTable'>
         </tbody>
     </table>
-<aside id="addModalBackground">
-    <section>
-        <header>
-        <div>add new Cat</div>
-        </header>
-        <main>
-            <form action="#"method='post'>
-                <input type="text" id="newCatName" placeholder="Name for the kitten" value="">
-                <input type="text" id="newCatAdoptionDate" placeholder="What day you adopted the kitten" value="">
-                <input type="text" id="newCatColor" placeholder="What color is your cat?" value="">
-                <input type="text" id="newCatFavoriteToy" placeholder="What is their favorite toy?" value="">
-                <input type="text" id="newCatEmail" placeholder="We know the cat has an e-mail" value="">
-            </form>
-        </main>
-        <footer>
-            <button id="addCat" onclick="createKitten()">Add Cat</button>
-            <button id="cancel">Cancel</button>
-        </footer>
-
-    </section>
-</aside>
-<aside id="editModalBackground">
+    <aside id="addModalBackground">
         <section>
             <header>
-            <div>Edit Cat</div>
+                <div>add new Cat</div>
             </header>
             <main>
-                <form action="#"method='post'>
+                <form action="#" method='post'>
+                    <input type="text" id="newCatName" placeholder="Name for the kitten" value="">
+                    <input type="text" id="newCatAdoptionDate" placeholder="What day you adopted the kitten" value="">
+                    <input type="text" id="newCatColor" placeholder="What color is your cat?" value="">
+                    <input type="text" id="newCatFavoriteToy" placeholder="What is their favorite toy?" value="">
+                    <input type="text" id="newCatEmail" placeholder="We know the cat has an e-mail" value="">
+                </form>
+            </main>
+            <footer>
+                <button id="addCat" onclick="createKitten()">Add Cat</button>
+                <button id="cancel">Cancel</button>
+            </footer>
+
+        </section>
+    </aside>
+    <aside id="editModalBackground">
+        <section>
+            <header>
+                <div>Edit Cat</div>
+            </header>
+            <main>
+                <form action="#" method='post'>
                     <div id="kittenId">id</div>
                     <input type="text" id="editCatName" placeholder="Name for the kitten" value="">
                     <input type="text" id="editCatAdoptionDate" placeholder="What day you adopted the kitten" value="">
@@ -56,7 +56,17 @@
                 <button id="" class="editCat" onclick="editKitten()">Edit Cat</button>
                 <button id="cancel">Cancel</button>
             </footer>
-    
+
+        </section>
+    </aside>
+    <aside id="deleteModalBackground">
+        <section>
+            <header>Bye Kittie Cat</header>
+            <main>If you delete the cat, you will loose all the information. Are you sure?</main>
+            <footer>
+                <button id="" class="deleteCat" onclick="deleteKitten()">Delete Cat</button>
+                <button id="cancel">Cancel</button>
+            </footer>
         </section>
     </aside>
 
