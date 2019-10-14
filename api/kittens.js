@@ -1,9 +1,9 @@
 let kittens = [
-    { id: '1', name: 'Benjamonja', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
-    { id: '2', name: 'Benja', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
-    { id: '3', name: 'Benja', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
-    { id: '4', name: 'Benja', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
-    { id: '5', name: 'Benja', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' }
+    { id: '1', name: 'Benja', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
+    { id: '2', name: 'Honsho', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
+    { id: '3', name: 'Bert', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
+    { id: '4', name: 'Isabella', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
+    { id: '5', name: 'Groucho', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' }
 ]
 
 const getKittens = (req, res, next) => {
