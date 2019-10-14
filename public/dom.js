@@ -171,18 +171,18 @@ const deleteKitten = () => {
 //hacer el campo de busqueda
 // hacer el filter
 const filterKittens = () => {
-    const reqName = event.target.value;
+    const searchField = event.target.value;
     console.log(searchField);
-    fetch(`${api}/search/${reqName}`)
+    fetch(`${api}/search/?name=${searchField}`)
         .then(res => res.json())
         .then(kittens => {
             kittenTable.innerHTML = '';
-            let allKittens = kittens.kittens
-            let filteredKittens = allKittens.filter(kitten => {
-            return kitten.name.includes(searchField);
-            })
-            createTable(filteredKittens);
-            console.log(filteredKittens)
+            // let allKittens = kittens.kittens
+            // let filteredKittens = allKittens.filter(kitten => {
+            // return kitten.name.includes(searchField);
+            // })
+            createTable(kittens);
+            // console.log(filteredKittens)
         })
 }
 // hacer las validaciones
