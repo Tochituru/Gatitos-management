@@ -9,6 +9,9 @@ x delete: tomamos la decision de matar al gatito(yami nos pega)
 filter: buscar gatitos MAGICAMENTE
 html: maquetar como campeonas ... 
 
-
 validacion de cliente 
 validaciones de server
+
+ordernar por table headings (orden ascendente y descendente)
+formatear fechas (cleave.js) --> ¿adoption date podría ser una fecha?
+mensajes de error con tooltips?
