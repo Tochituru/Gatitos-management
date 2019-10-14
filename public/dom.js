@@ -25,8 +25,8 @@ const createTable = element => {
         newRow.appendChild(createCell('color', element.color));
         newRow.appendChild(createCell('favoriteToy', element.favoriteToy));
         newRow.appendChild(createCell('email', element.email));
-        newRow.appendChild(createBtn(element.id, 'edit', 'getKittenId()'));
-        newRow.appendChild(createBtn(element.id, 'delete', 'getKittenForDelete()'))
+        newRow.appendChild(createBtn(element.id, 'Editar', 'getKittenId()'));
+        newRow.appendChild(createBtn(element.id, 'Eliminar', 'getKittenForDelete()'))
         //    console.log(newRow);
 
         return kittenTable.appendChild(newRow);
@@ -44,8 +44,10 @@ const initialize = () => {
 
 };
 
-
 //hacer modal para el post 
+const openAddModal = () => {
+    console.log('Modal to add has been opened')
+}
 //hacer el post
 const createKitten = () => {
     event.preventDefault();
@@ -168,4 +170,19 @@ const deleteKitten = () => {
 }
 //hacer el campo de busqueda
 // hacer el filter
-// hacer las validaciones 
+const filterKittens = () => {
+    const searchField = event.target.value;
+    console.log(searchField);
+    fetch(api)
+        .then(res => res.json())
+        .then(kittens => {
+            kittenTable.innerHTML = '';
+            let allKittens = kittens.kittens
+            let filteredKittens = allKittens.filter(kitten => {
+            return kitten.name.includes(searchField);
+            })
+            createTable(filteredKittens);
+            console.log(filteredKittens)
+        })
+}
+// hacer las validaciones
