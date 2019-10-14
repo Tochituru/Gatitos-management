@@ -168,7 +168,7 @@ const deleteKitten = () => {
         .then(() => initialize())
     console.log('kitten deleted')
 }
-//hacer el campo de busqueda
+
 // hacer el filter
 const filterKittens = () => {
     const searchField = event.target.value;
@@ -177,12 +177,39 @@ const filterKittens = () => {
         .then(res => res.json())
         .then(kittens => {
             kittenTable.innerHTML = '';
-            // let allKittens = kittens.kittens
-            // let filteredKittens = allKittens.filter(kitten => {
-            // return kitten.name.includes(searchField);
-            // })
             createTable(kittens);
-            // console.log(filteredKittens)
         })
 }
 // hacer las validaciones
+
+const inputs = document.querySelectorAll('input');
+console.log(inputs);
+
+
+const validations = {
+    name: /^[(a-z)\ +(a-z)]{5,30}$/i,
+    adoptionDate: /^[(0-9)]{8}$/i,
+    color: /^[(a-z)\ +(a-z)]{5,30}$/i,
+    favoriteToy: /^[(a-z)\ +(a-z)]{5,30}$/i,
+    email: /^([\w\d\.-]+)@([\w\d-]+)\.(\w{2,8})(\.\w{2,8})?$/,
+}
+
+const validate = (field, regex) => {
+    if (regex.test(field.value)) {
+        console.log('valid')
+    } else { console.log('invalid') };
+}
+
+inputs.forEach(input => input.addEventListener('keyup', e => validate(e.target, validations[e.target.attributes.name.value])));
+
+const dateInput = document.querySelector('.input-element');
+
+console.log(dateInput)
+let cleave = new Cleave(dateInput, {
+    date: true,
+    delimiter: '/',
+    datePattern: ['d', 'm', 'Y']
+});
+
+const dateField = document.querySelector('.adoptionDate');
+//Cleave only works for inputs, so we might benefit from adding something different (?)

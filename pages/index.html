@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Gatites Management</title>
 </head>
-
+<script src="../statics/cleave.js" type="text/javascript"></script>
+<script src="../statics/cleave.min.js" type="text/javascript"></script>
 <body onload="initialize()">
     <header>
         <h1>Gatites Management</h1>
@@ -35,11 +36,11 @@
             </header>
             <main>
                 <form action="#" method='post'>
-                    <input type="text" id="newCatName" placeholder="Nombre del gatito" value="">
-                    <input type="text" id="newCatAdoptionDate" placeholder="¿Cuándo adoptaste al gatito?" value="">
-                    <input type="text" id="newCatColor" placeholder="¿De qué color es?" value="">
-                    <input type="text" id="newCatFavoriteToy" placeholder="¿Cuál es su juguete favorito?" value="">
-                    <input type="text" id="newCatEmail" placeholder="Sabemos que le hiciste un e-mail. Escribilo."
+                    <input type="text" name="name" id="newCatName" placeholder="Nombre del gatito" value="">
+                    <input type="text" name="adoptionDate" class="input-element" id="newCatAdoptionDate" placeholder="¿Cuándo adoptaste al gatito?" value="">
+                    <input type="text" name="color" id="newCatColor" placeholder="¿De qué color es?" value="">
+                    <input type="text" name="favoriteToy" id="newCatFavoriteToy" placeholder="¿Cuál es su juguete favorito?" value="">
+                    <input type="text" name="email" id="newCatEmail" placeholder="Sabemos que le hiciste un e-mail. Escribilo."
                         value="">
                 </form>
             </main>
@@ -58,11 +59,11 @@
             <main>
                 <form action="#" method='post'>
                     <div id="kittenId">id</div>
-                    <input type="text" id="editCatName" placeholder="Nombre del gatito" value="">
-                    <input type="text" id="editCatAdoptionDate" placeholder="¿Cuándo adoptaste al gatito?" value="">
-                    <input type="text" id="editCatColor" placeholder="¿De qué color es?" value="">
-                    <input type="text" id="editCatFavoriteToy" placeholder="¿Cuál es su juguete favorito?" value="">
-                    <input type="text" id="editCatEmail" placeholder="Sabemos que le hiciste un e-mail. Escribilo." value="">
+                    <input type="text" name="name" id="editCatName" placeholder="Nombre del gatito" value="">
+                    <input type="text" name="adoptionDate" id="editCatAdoptionDate" placeholder="¿Cuándo adoptaste al gatito?" value="">
+                    <input type="text" name="color" id="editCatColor" placeholder="¿De qué color es?" value="">
+                    <input type="text" name="favoriteToy" id="editCatFavoriteToy" placeholder="¿Cuál es su juguete favorito?" value="">
+                    <input type="text" name="email" id="editCatEmail" placeholder="Sabemos que le hiciste un e-mail. Escribilo." value="">
                 </form>
             </main>
             <footer>
@@ -86,6 +87,8 @@
 
 
     <script src="../statics/dom.js" type="text/javascript"></script>
+
+
 </body>
 
 </html>
