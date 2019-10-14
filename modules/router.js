@@ -10,12 +10,14 @@ router.get('/', (req, res) => res.sendFile(path.join(__dirname, '../pages/index.
 //métodos con el servidor, cliente y api
 router.get('/api/kittens', kittens.getKittens);
 
-router.get('/api/kittens/:id', kittens.getKittenId);
+router.get('/api/kittens/id/:id', kittens.getKittenId);
+
+router.get('/api/kittens/search/', kittens.getKittenName);
 
 router.post('/api/kittens', kittens.postKitten);
 
-router.patch('/api/kittens/:id', kittens.patchKitten);
+router.patch('/api/kittens/id/:id', kittens.patchKitten);
 
-router.delete('/api/kittens/:id', kittens.deleteKitten);
+router.delete('/api/kittens/id/:id', kittens.deleteKitten);
 
 module.exports = router;

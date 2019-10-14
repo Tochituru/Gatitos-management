@@ -88,7 +88,7 @@ const createKitten = () => {
 const getKittenId = () => {
     let id = event.target.id;
     console.log(id)
-    fetch(`${api}/${id}`)
+    fetch(`${api}/id/${id}`)
         .then(res => res.json())
         .then(eachKitten => {
             let editId = document.querySelector('.editCat');
@@ -131,7 +131,7 @@ const editKitten = () => {
     }
     console.log(editCat);
     console.log('edited kitten');
-    fetch(`${api}/${id}`, {
+    fetch(`${api}/id/${id}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
@@ -161,7 +161,7 @@ const getKittenForDelete = () => {
 const deleteKitten = () => {
     event.preventDefault();
     id = event.target.id
-    fetch(`${api}/${id}`, {
+    fetch(`${api}/id/${id}`, {
         method: 'DELETE',
     })
         .then(res => res.json())
@@ -171,9 +171,9 @@ const deleteKitten = () => {
 //hacer el campo de busqueda
 // hacer el filter
 const filterKittens = () => {
-    const searchField = event.target.value;
+    const reqName = event.target.value;
     console.log(searchField);
-    fetch(api)
+    fetch(`${api}/search/${reqName}`)
         .then(res => res.json())
         .then(kittens => {
             kittenTable.innerHTML = '';

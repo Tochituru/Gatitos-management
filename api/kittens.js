@@ -60,7 +60,7 @@ const patchKitten = (req, res, next) => {
     })
 
     if (resKitten) {
-        let editedKitten = {...resKitten, ...data};
+        let editedKitten = { ...resKitten, ...data };
         kittens.splice(1, index);
         kittens.push(editedKitten);
         res.status(200).json(editedKitten);
@@ -68,7 +68,7 @@ const patchKitten = (req, res, next) => {
         res.status(404).send('Le pifiaste al gatito')
     }
     next();
-    console.log('se trata de hacer un patch con : ', filteredKitten)
+    console.log('se trata de hacer un patch con : ', resKitten)
 }
 
 const deleteKitten = (req, res, next) => {
@@ -81,4 +81,17 @@ const deleteKitten = (req, res, next) => {
     next();
     console.log('delete  : ', kittens)
 }
-module.exports = { getKittens, getKittenId, postKitten, patchKitten, deleteKitten };
+
+const getKittenName = (req, res, next) => {
+    let queryName = req.query.name;
+    console.log(queryName);
+    let resKitten = kittens.filter(kitten => kitten.name.toLowerCase().startsWith(queryName))
+    if (resKitten) {
+        res.status(200).json(resKitten)
+        console.log('llamamos al gatito por el nombre')
+    } else {
+        res.status(404).send('gatito no encontrado')
+    }
+    next()
+};
+module.exports = { getKittens, getKittenId, postKitten, patchKitten, deleteKitten, getKittenName };
