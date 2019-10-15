@@ -202,14 +202,3 @@ const validate = (field, regex) => {
 
 inputs.forEach(input => input.addEventListener('keyup', e => validate(e.target, validations[e.target.attributes.name.value])));
 
-const dateInput = document.querySelector('.input-element');
-
-console.log(dateInput)
-let cleave = new Cleave(dateInput, {
-    date: true,
-    delimiter: '/',
-    datePattern: ['d', 'm', 'Y']
-});
-
-const dateField = document.querySelector('.adoptionDate');
-//Cleave only works for inputs, so we might benefit from adding something different (?)

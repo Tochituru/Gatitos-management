@@ -1,9 +1,11 @@
+const uniqid =  require('uniqid');
+
 let kittens = [
-    { id: '1', name: 'Benja', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
-    { id: '2', name: 'Honsho', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
-    { id: '3', name: 'Bert', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
-    { id: '4', name: 'Isabella', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
-    { id: '5', name: 'Groucho', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' }
+    { id: uniqid(), name: 'Benja', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
+    { id: uniqid(), name: 'Honsho', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
+    { id: uniqid(), name: 'Bert', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
+    { id: uniqid(), name: 'Isabella', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
+    { id: uniqid(), name: 'Groucho', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' }
 ]
 
 const getKittens = (req, res, next) => {
@@ -33,7 +35,7 @@ const postKitten = (req, res, next) => {
     const email = data.email;
 
     let newKitten = {
-        id: kittens.length + 1,
+        id: uniqid(),
         name: name,
         adoptionDate: adoptionDate,
         color: color,
