@@ -61,7 +61,7 @@ const patchKitten = (req, res, next) => {
 
     if (resKitten) {
         let editedKitten = { ...resKitten, ...data };
-        kittens.splice(1, index);
+        kittens.splice(index, 1);
         kittens.push(editedKitten);
         res.status(200).json(editedKitten);
     } else {
