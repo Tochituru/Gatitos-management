@@ -131,6 +131,15 @@ const editKitten = () => {
     let editCatFavoriteToy = document.getElementById('editCatFavoriteToy');
     let editCatEmail = document.getElementById('editCatEmail');
 
+    const result = validateAllFields(
+        editCatName, 
+        editCatAdoptionDate, 
+        editCatColor, 
+        editCatFavoriteToy,
+        editCatEmail)
+    if (result == false) {
+        return
+    }
     let editCat = {
         id: id,
         name: editCatName.value,
