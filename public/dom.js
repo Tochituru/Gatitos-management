@@ -56,6 +56,41 @@ const createKitten = () => {
     let newCatColor = document.getElementById('newCatColor');
     let newCatFavoriteToy = document.getElementById('newCatFavoriteToy');
     let newCatEmail = document.getElementById('newCatEmail');
+//se validó nombre
+if (validate(newCatName, validations.name)) {
+    console.log('el nombre es correcto')
+} else {
+    console.log('el nombre es incorrecto');
+    return 
+}
+//se valido fecha 
+if (validate(newCatAdoptionDate, validations.adoptionDate)) {
+    console.log('la fecha es correcta')
+} else {
+    console.log('la fecha es incorrecto');
+    return 
+}
+// se valido el color 
+if (validate(newCatColor, validations.color)) {
+    console.log('el color es correcto')
+} else {
+    console.log('el color es incorrecto');
+    return 
+}
+//se valido su juguete
+if (validate(newCatFavoriteToy, validations.favoriteToy)) {
+    console.log('el juguete es correcto')
+} else {
+    console.log('el juguete es incorrecto');
+    return 
+}
+//se valida el mail. si, tiene mail 
+if (validate(newCatEmail, validations.email)) {
+    console.log('el mail es correcto')
+} else {
+    console.log('el mail es incorrecto');
+    return 
+}
 
     let newCat = {
         name: newCatName.value,
@@ -196,8 +231,11 @@ const validations = {
 
 const validate = (field, regex) => {
     if (regex.test(field.value)) {
-        console.log('valid')
-    } else { console.log('invalid') };
+        return true
+    } else {
+        return false
+    };
+
 }
 
 inputs.forEach(input => input.addEventListener('keyup', e => validate(e.target, validations[e.target.attributes.name.value])));
