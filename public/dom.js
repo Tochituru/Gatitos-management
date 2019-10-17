@@ -11,9 +11,9 @@ const createCell = (fieldClass, fieldValue) => {
     return newCell
 }
 //crear botones editar borrar
-const createBtn = (idValue, text, todo) => {
+const createBtn = (classValue, idValue, text, todo) => {
     const newBtn = document.createElement('span');
-    newBtn.innerHTML = `<button id="${idValue}" onclick="${todo}">${text}</button>`
+    newBtn.innerHTML = `<button class="${classValue}" id="${idValue}" onclick="${todo}">${text}</button>`
     //    console.log('btn created')
     return newBtn
 }
@@ -25,8 +25,10 @@ const createTable = element => {
         newRow.appendChild(createCell('color', element.color));
         newRow.appendChild(createCell('favoriteToy', element.favoriteToy));
         newRow.appendChild(createCell('email', element.email));
-        newRow.appendChild(createBtn(element.id, 'Editar', 'getKittenId()'));
-        newRow.appendChild(createBtn(element.id, 'Eliminar', 'getKittenForDelete()'))
+        let actionsCell = createCell('actions', '');
+        newRow.appendChild(actionsCell);
+        actionsCell.appendChild(createBtn('editBtn', element.id, 'Editar', 'getKittenId()'));
+        actionsCell.appendChild(createBtn('deleteBtn', element.id, 'Eliminar', 'getKittenForDelete()'))
         //    console.log(newRow);
 
         return kittenTable.appendChild(newRow);

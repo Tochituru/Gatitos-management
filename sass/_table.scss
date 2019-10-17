@@ -1,0 +1,35 @@
+table {
+    border-collapse: collapse;
+    thead {
+        background: $theader;
+    }
+    th,
+    td {
+      text-align: left;
+      vertical-align: middle;
+      padding: 1em;
+    }
+    tbody {
+        tr:hover {
+          background-color: $hover;
+        }
+        tr:nth-child(odd) {
+          background-color: $background;
+        }
+        tr:hover:nth-child(odd) {
+          background-color: $hover;
+        }
+        .actions {
+          display: flex;
+          .editBtn {
+            cursor: pointer;
+            color: $validColor;
+          }
+          .deleteBtn {
+            cursor: pointer;
+            color: $invalidColor;
+          }
+    
+        }
+    }
+}

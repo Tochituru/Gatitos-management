@@ -16,19 +16,25 @@
             </div>
         </button>
     </header>
-    <main class="mainTable">
+    <main class="container">
         <section class="filter">
             <input type=" text" name="" id="" placeholder="Filtrar gatitos..." onkeyup="filterKittens()">
         </section>
 
         <table>
             <thead>
+                <th class="name">Nombre</th>
+                <th class="adoptionDate">Fecha de adopción</th>
+                <th class="color">Colores</th>
+                <th class="favoriteToy">Juguete favorito</th>
+                <th class="email">Email</th>
+                <th class="actions">Acciones</th>
             </thead>
             <tbody id='kittenTable'>
             </tbody>
         </table>
     </main>
-    <aside id="addModalBackground">
+    <aside class="hidden" id="addModalBackground">
         <section>
             <header>
                 <div>¡Otro gato más!</div>
@@ -50,7 +56,7 @@
 
         </section>
     </aside>
-    <aside id="editModalBackground">
+    <aside class="hidden" id="editModalBackground">
         <section>
             <header>
                 <div>Editar gatito</div>
@@ -72,7 +78,7 @@
 
         </section>
     </aside>
-    <aside id="deleteModalBackground">
+    <aside class="hidden" id="deleteModalBackground">
         <section>
             <header>Chau, gatito</header>
             <main>Mi gato ascendió a estado de Dios entre los egipcios. O consiguió una familia nueva.<br />

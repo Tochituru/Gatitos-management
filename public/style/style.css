@@ -35,7 +35,7 @@ input::placeholder {
 }
 
 .button, button {
-  background-color: #4297A0;
+  background-color: #E57F84;
   cursor: pointer;
   display: flex;
   padding: 8px 12px;
@@ -46,18 +46,56 @@ input::placeholder {
 
 body {
   background: #F4EAE6;
-  color: #E57F84;
   font-family: sans-serif;
   padding: 0 20vw;
 }
-body .mainTable {
+body .container {
   height: 100vh;
-  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
 }
-body .mainTable .filter {
+body .container .filter {
   display: flex;
   justify-content: flex-end;
   padding: 2em;
+}
+
+.hidden {
+  display: none;
+}
+
+table {
+  border-collapse: collapse;
+}
+table thead {
+  background: #4297A0;
+}
+table th,
+table td {
+  text-align: left;
+  vertical-align: middle;
+  padding: 1em;
+}
+table tbody tr:hover {
+  background-color: #E57F84;
+}
+table tbody tr:nth-child(odd) {
+  background-color: #F4EAE6;
+}
+table tbody tr:hover:nth-child(odd) {
+  background-color: #E57F84;
+}
+table tbody .actions {
+  display: flex;
+}
+table tbody .actions .editBtn {
+  cursor: pointer;
+  color: #36cc36;
+}
+table tbody .actions .deleteBtn {
+  cursor: pointer;
+  color: #ffa500;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,11 +1,12 @@
 body {
   background: $background;
-  color: $coral;
   font-family: $fontFamily;
   padding: 0 20vw;
-  .mainTable {
+  .container {
     height: 100vh;
-    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
     .filter {
       display: flex;
       justify-content: flex-end;
