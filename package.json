@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "gatitos-api": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass --watch sass/index.scss:public/style/style.css"
   },
   "repository": {
     "type": "git",
