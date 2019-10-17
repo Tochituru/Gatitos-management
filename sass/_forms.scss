@@ -1,22 +1,20 @@
 header {
-  background: #2F5061;
+  background: $headers;
   padding: 1em 2em;
   display: flex;
   justify-content: space-between;
   align-content: center;
   border-radius: 5px 5px 0 0;
+  h1 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #ffffff;
+  }
 }
-header h1 {
-  font-size: 24px;
-  font-weight: 500;
-  color: #ffffff;
-}
-
 main {
   background: #ffffff;
   min-height: 20vh;
 }
-
 input {
   width: 25em;
   border-radius: 4px;
@@ -27,7 +25,6 @@ input {
   padding: 8px;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
-
 input::placeholder {
   padding: 4px;
   font-family: sans-serif;
@@ -35,7 +32,7 @@ input::placeholder {
 }
 
 .button, button {
-  background-color: #4297A0;
+  background-color: $buttons;
   cursor: pointer;
   display: flex;
   padding: 8px 12px;
@@ -43,21 +40,3 @@ input::placeholder {
   vertical-align: middle;
   border-radius: 2px;
 }
-
-body {
-  background: #F4EAE6;
-  color: #E57F84;
-  font-family: sans-serif;
-  padding: 0 20vw;
-}
-body .mainTable {
-  height: 100vh;
-  background: #ffffff;
-}
-body .mainTable .filter {
-  display: flex;
-  justify-content: flex-end;
-  padding: 2em;
-}
-
-/*# sourceMappingURL=style.css.map */

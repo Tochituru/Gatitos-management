@@ -1,0 +1,16 @@
+body {
+  background: $background;
+  color: $coral;
+  font-family: $fontFamily;
+  padding: 0 20vw;
+  .mainTable {
+    height: 100vh;
+    background: #ffffff;
+    .filter {
+      display: flex;
+      justify-content: flex-end;
+      padding: 2em;
+    }
+  }
+}
+
