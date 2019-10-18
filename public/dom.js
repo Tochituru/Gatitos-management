@@ -47,7 +47,9 @@ const initialize = () => {
 };
 
 //hacer modal para el post 
-const openAddModal = () => {
+const addModal = () => {
+    const addModal = document.getElementById('addModalBackground');
+    addModal.classList.toggle('hidden');
     console.log('Modal to add has been opened')
 }
 //hacer el post
@@ -208,7 +210,7 @@ console.log(inputs);
 
 
 const validations = {
-    name: /^[(a-z)\ +(a-z)]{5,30}$/i,
+    name: /^[(a-z)\ +(a-z)]{2,30}$/i,
     adoptionDate: /^[(0-9)]{8}$/i,
     color: /^[(a-z)\ +(a-z)]{5,30}$/i,
     favoriteToy: /^[(a-z)\ +(a-z)]{5,30}$/i,
@@ -237,42 +239,44 @@ const validateAllFields = (name, date, color, toy, email) => {
     //se validó nombre
     conditional(name, validations.name);
     conditional(date, validations.adoptionDate);
-
+    conditional(color, validations.color);
+    conditional(toy, validations.favoriteToy);
+    conditional(email, validations.email);
 //etc
-    if (validate(name, validations.name)) {
-        console.log('el nombre es correcto')
-    } else {
-        console.log('el nombre es incorrecto');
-        return false
-    }
+    // if (validate(name, validations.name)) {
+    //     console.log('el nombre es correcto')
+    // } else {
+    //     console.log('el nombre es incorrecto');
+    //     return false
+    // }
     //se valido fecha 
-    if (validate(date, validations.adoptionDate)) {
-        console.log('la fecha es correcta')
-    } else {
-        console.log('la fecha es incorrecto');
-        return false
-    }
+    // if (validate(date, validations.adoptionDate)) {
+    //     console.log('la fecha es correcta')
+    // } else {
+    //     console.log('la fecha es incorrecto');
+    //     return false
+    // }
     // se valido el color 
-    if (validate(color, validations.color)) {
-        console.log('el color es correcto')
-    } else {
-        console.log('el color es incorrecto');
-        return false
-    }
+    // if (validate(color, validations.color)) {
+    //     console.log('el color es correcto')
+    // } else {
+    //     console.log('el color es incorrecto');
+    //     return false
+    // }
     //se valido su juguete
-    if (validate(toy, validations.favoriteToy)) {
-        console.log('el juguete es correcto')
-    } else {
-        console.log('el juguete es incorrecto');
-        return false
-    }
-    //se valida el mail. si, tiene mail 
-    if (validate(email, validations.email)) {
-        console.log('el mail es correcto')
-    } else {
-        console.log('el mail es incorrecto');
-        return false
-    }
+    // if (validate(toy, validations.favoriteToy)) {
+    //     console.log('el juguete es correcto')
+    // } else {
+    //     console.log('el juguete es incorrecto');
+    //     return false
+    // }
+    // //se valida el mail. si, tiene mail 
+    // if (validate(email, validations.email)) {
+    //     console.log('el mail es correcto')
+    // } else {
+    //     console.log('el mail es incorrecto');
+    //     return false
+    // }
     return true
 }
 

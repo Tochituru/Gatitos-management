@@ -11,7 +11,7 @@
 <body onload="initialize()">
     <header>
         <h1>Gatites Management</h1>
-        <button class="button" id='addBtn' onclick="openAddModal()">
+        <button class="button" id='addBtn' onclick="addModal()">
             <div class="addBtnText">Tengo otro gatito
             </div>
         </button>
@@ -50,7 +50,7 @@
                 </form>
             </main>
             <footer>
-                <button id="addCat" onclick="createKitten()">Agregar gatito</button>
+                <button id="addCat" onclick="createKitten(); addModal()">Agregar gatito</button>
                 <button id="cancel">Cancelar</button>
             </footer>
 
