@@ -15,7 +15,7 @@ agnostizar lo que tenemos
 validacion de cliente 
 x fórmulas de validaciones
 - mensajes de error con tooltips?
-- disable button cuando no es válido: https://www.w3schools.com/jsref/prop_pushbutton_disabled.asp 
+x disable button cuando no es válido: https://www.w3schools.com/jsref/prop_pushbutton_disabled.asp 
 
 validaciones de server
 - absolutamente todo
