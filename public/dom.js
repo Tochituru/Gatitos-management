@@ -60,9 +60,9 @@ const createKitten = () => {
     let newCatEmail = document.getElementById('newCatEmail');
 
     const result = validateAllFields(
-        newCatName, 
-        newCatAdoptionDate, 
-        newCatColor, 
+        newCatName,
+        newCatAdoptionDate,
+        newCatColor,
         newCatFavoriteToy,
         newCatEmail)
     if (result == false) {
@@ -134,9 +134,9 @@ const editKitten = () => {
     let editCatEmail = document.getElementById('editCatEmail');
 
     const result = validateAllFields(
-        editCatName, 
-        editCatAdoptionDate, 
-        editCatColor, 
+        editCatName,
+        editCatAdoptionDate,
+        editCatColor,
         editCatFavoriteToy,
         editCatEmail)
     if (result == false) {
@@ -217,15 +217,28 @@ const validations = {
 
 const validate = (field, regex) => {
     if (regex.test(field.value)) {
+        console.log('valid')
         return true
     } else {
+        console.log('invalid')
         return false
     };
 
 }
 
+const conditional = (field, objectProperty) => {
+    if (validate(field, objectProperty)) {
+        console.log('field valid')
+    } else { console.log('field invalid') };
+
+}
+
 const validateAllFields = (name, date, color, toy, email) => {
     //se validó nombre
+    conditional(name, validations.name);
+    conditional(date, validations.adoptionDate);
+
+//etc
     if (validate(name, validations.name)) {
         console.log('el nombre es correcto')
     } else {
@@ -259,7 +272,7 @@ const validateAllFields = (name, date, color, toy, email) => {
     } else {
         console.log('el mail es incorrecto');
         return false
-    } 
+    }
     return true
 }
 
