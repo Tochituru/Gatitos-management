@@ -27,10 +27,9 @@ const createTable = element => {
         newRow.appendChild(createCell('email', element.email));
         let actionsCell = createCell('actions', '');
         newRow.appendChild(actionsCell);
-        actionsCell.appendChild(createBtn('editBtn', element.id, 'Editar', 'getKittenId(); openModal()'));
-        actionsCell.appendChild(createBtn('deleteBtn', element.id, 'Eliminar', 'getKittenForDelete(); openModal()'))
+        actionsCell.appendChild(createBtn('editBtn', element.id, 'Editar', 'openModal(); getKittenId()'));
+        actionsCell.appendChild(createBtn('deleteBtn', element.id, 'Eliminar', 'openModal(); getKittenForDelete()'))
         //    console.log(newRow);
-
         return kittenTable.appendChild(newRow);
     })
 }
@@ -46,22 +45,25 @@ const initialize = () => {
 };
 
 //hacer el post
+const addCatBtn = document.querySelector('.addCat')
+
+let newCatName = document.getElementById('newCatName');
+let newCatAdoptionDate = document.getElementById(`newCatAdoptionDate`);
+let newCatColor = document.getElementById('newCatColor');
+let newCatFavoriteToy = document.getElementById('newCatFavoriteToy');
+let newCatEmail = document.getElementById('newCatEmail');
+
 const createKitten = () => {
     event.preventDefault();
-    let newCatName = document.getElementById('newCatName');
-    let newCatAdoptionDate = document.getElementById('newCatAdoptionDate');
-    let newCatColor = document.getElementById('newCatColor');
-    let newCatFavoriteToy = document.getElementById('newCatFavoriteToy');
-    let newCatEmail = document.getElementById('newCatEmail');
-
     const result = validateAllFields(
         newCatName,
         newCatAdoptionDate,
         newCatColor,
         newCatFavoriteToy,
         newCatEmail)
+    console.log(result);
     if (result == false) {
-        return
+        return addCatBtn.disabled = true
     }
 
     let newCat = {
@@ -92,6 +94,7 @@ const createKitten = () => {
 }
 
 //hacer el fetch de edit 
+let editCatBtn = document.querySelector('.editCat')
 
 const getKittenId = () => {
     let id = event.target.id;
@@ -100,22 +103,21 @@ const getKittenId = () => {
         .then(res => res.json())
         .then(eachKitten => {
             let editId = document.querySelector('.editCat');
-
             let editCatName = document.getElementById('editCatName');
             let editCatAdoptionDate = document.getElementById('editCatAdoptionDate');
             let editCatColor = document.getElementById('editCatColor');
             let editCatFavoriteToy = document.getElementById('editCatFavoriteToy');
             let editCatEmail = document.getElementById('editCatEmail');
             editId.setAttribute('id', `${eachKitten.id}`);
-            console.log(editId);
+            //            console.log(editId);
 
             editCatName.value = eachKitten.name;
             editCatAdoptionDate.value = eachKitten.adoptionDate;
             editCatColor.value = eachKitten.color;
             editCatFavoriteToy.value = eachKitten.favoriteToy;
             editCatEmail.value = eachKitten.email;
-        }
-        )
+
+        })
 }
 //hacer el patch 
 
@@ -198,82 +200,80 @@ const filterKittens = () => {
 }
 // hacer las validaciones
 
-const inputs = document.querySelectorAll('input');
-console.log(inputs);
+//const inputs = document.querySelectorAll('input');
 
+// const validations = {
+//     name: /^[(a-z)\ +(a-z)]{2,30}$/i,
+//     adoptionDate: /^[(0-9)]{8}$/i,
+//     color: /^[(a-z)\ +(a-z)]{5,30}$/i,
+//     favoriteToy: /^[(a-z)\ +(a-z)]{5,30}$/i,
+//     email: /^([\w\d\.-]+)@([\w\d-]+)\.(\w{2,8})(\.\w{2,8})?$/,
+// }
 
-const validations = {
-    name: /^[(a-z)\ +(a-z)]{2,30}$/i,
-    adoptionDate: /^[(0-9)]{8}$/i,
-    color: /^[(a-z)\ +(a-z)]{5,30}$/i,
-    favoriteToy: /^[(a-z)\ +(a-z)]{5,30}$/i,
-    email: /^([\w\d\.-]+)@([\w\d-]+)\.(\w{2,8})(\.\w{2,8})?$/,
-}
+// const validate = (field, regex) => {
+//     if (regex.test(field.value)) {
+//         console.log('valid')
+//         return true
+//     } else {
+//         console.log('invalid')
+//         return false
+//     };
 
-const validate = (field, regex) => {
-    if (regex.test(field.value)) {
-        console.log('valid')
-        return true
-    } else {
-        console.log('invalid')
-        return false
-    };
+// }
 
-}
+// const conditional = (field, objectProperty) => {
+//     if (validate(field, objectProperty)) {
+//         console.log('field valid')
+//     } else { console.log('field invalid') };
 
-const conditional = (field, objectProperty) => {
-    if (validate(field, objectProperty)) {
-        console.log('field valid')
-    } else { console.log('field invalid') };
+// }
 
-}
+// const validateAllFields = (name, date, color, toy, email) => {
+//     //se validó nombre
+//     conditional(name, validations.name);
+//     conditional(date, validations.adoptionDate);
+//     conditional(color, validations.color);
+//     conditional(toy, validations.favoriteToy);
+//     conditional(email, validations.email);
+//     //etc
+//     // if (validate(name, validations.name)) {
+//     //     console.log('el nombre es correcto')
+//     // } else {
+//     //     console.log('el nombre es incorrecto');
+//     //     return false
+//     // }
+//     //se valido fecha 
+//     // if (validate(date, validations.adoptionDate)) {
+//     //     console.log('la fecha es correcta')
+//     // } else {
+//     //     console.log('la fecha es incorrecto');
+//     //     return false
+//     // }
+//     // se valido el color 
+//     // if (validate(color, validations.color)) {
+//     //     console.log('el color es correcto')
+//     // } else {
+//     //     console.log('el color es incorrecto');
+//     //     return false
+//     // }
+//     //se valido su juguete
+//     // if (validate(toy, validations.favoriteToy)) {
+//     //     console.log('el juguete es correcto')
+//     // } else {
+//     //     console.log('el juguete es incorrecto');
+//     //     return false
+//     // }
+//     // //se valida el mail. si, tiene mail 
+//     // if (validate(email, validations.email)) {
+//     //     console.log('el mail es correcto')
+//     // } else {
+//     //     console.log('el mail es incorrecto');
+//     //     return false
+//     // }
+//     return true
+// }
 
-const validateAllFields = (name, date, color, toy, email) => {
-    //se validó nombre
-    conditional(name, validations.name);
-    conditional(date, validations.adoptionDate);
-    conditional(color, validations.color);
-    conditional(toy, validations.favoriteToy);
-    conditional(email, validations.email);
-//etc
-    // if (validate(name, validations.name)) {
-    //     console.log('el nombre es correcto')
-    // } else {
-    //     console.log('el nombre es incorrecto');
-    //     return false
-    // }
-    //se valido fecha 
-    // if (validate(date, validations.adoptionDate)) {
-    //     console.log('la fecha es correcta')
-    // } else {
-    //     console.log('la fecha es incorrecto');
-    //     return false
-    // }
-    // se valido el color 
-    // if (validate(color, validations.color)) {
-    //     console.log('el color es correcto')
-    // } else {
-    //     console.log('el color es incorrecto');
-    //     return false
-    // }
-    //se valido su juguete
-    // if (validate(toy, validations.favoriteToy)) {
-    //     console.log('el juguete es correcto')
-    // } else {
-    //     console.log('el juguete es incorrecto');
-    //     return false
-    // }
-    // //se valida el mail. si, tiene mail 
-    // if (validate(email, validations.email)) {
-    //     console.log('el mail es correcto')
-    // } else {
-    //     console.log('el mail es incorrecto');
-    //     return false
-    // }
-    return true
-}
-
-inputs.forEach(input => input.addEventListener('keyup', e => validate(e.target, validations[e.target.attributes.name.value])));
+// inputs.forEach(input => input.addEventListener('keyup', e => validate(e.target, validations[e.target.attributes.name.value])));
 
 
 //Modals
@@ -281,18 +281,22 @@ const addModal = document.getElementById('addModalBackground');
 const editModal = document.getElementById('editModalBackground');
 const deleteModal = document.getElementById('deleteModalBackground');
 
-const openModalCondition = (btnName, modal) => {
-    if (event.target.className == btnName) modal.classList.remove('hidden') 
+const openModalCondition = (btnName, modal, modalBtn) => {
+    if (event.target.className == btnName) {
+        modal.classList.remove('hidden');
+        //disabled should be true if all fields are empty
+        if (modalBtn === addCatBtn || modalBtn === editCatBtn) modalBtn.disabled = true
+    }
 }
 
 const openModal = () => {
-    openModalCondition('button', addModal);
-    openModalCondition('editBtn', editModal);
+    openModalCondition('button', addModal, addCatBtn);
+    openModalCondition('editBtn', editModal, editCatBtn);
     openModalCondition('deleteBtn', deleteModal);
 }
 
 const closeModalCondition = (btnName, modal) => {
-    if (event.target.className == btnName) modal.classList.add('hidden') 
+    if (event.target.className == btnName) modal.classList.add('hidden')
 }
 
 const closeModal = () => {
@@ -303,3 +307,37 @@ const closeModal = () => {
     closeModalCondition('cancelEdit', editModal);
     closeModalCondition('cancelDelete', deleteModal);
 }
+
+
+//validations
+const inputs = document.querySelectorAll('input');
+
+const validations = {
+    name: /^[(a-z)\ +(a-z)]{2,30}$/i,
+    adoptionDate: /^[(0-9)]{8}$/i,
+    color: /^[(a-z)\ +(a-z)]{3,30}$/i,
+    favoriteToy: /^[(a-z)\ +(a-z)]{3,30}$/i,
+    email: /^([\w\d\.-]+)@([\w\d-]+)\.(\w{2,8})(\.\w{2,8})?$/,
+}
+
+const validate = (field, regex) => {
+    if (regex.test(field.value)) {
+        console.log(`${field} valid`)
+        addCatBtn.disabled = false;
+        editCatBtn.disabled = false;
+        return true
+    } else {
+        console.log(`${field} invalid`);
+        addCatBtn.disabled = true;
+        editCatBtn.disabled = true;
+        return false
+    };
+}
+//a medida que el usuario escribe
+inputs.forEach(input => {
+    input.addEventListener('keyup', e => { validate(e.target, validations[e.target.attributes.name.value]) }
+    );
+    input.addEventListener('focus', e => { validate(e.target, validations[e.target.attributes.name.value]) }
+    )
+
+});
