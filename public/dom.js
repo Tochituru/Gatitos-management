@@ -27,8 +27,8 @@ const createTable = element => {
         newRow.appendChild(createCell('email', element.email));
         let actionsCell = createCell('actions', '');
         newRow.appendChild(actionsCell);
-        actionsCell.appendChild(createBtn('editBtn', element.id, 'Editar', 'getKittenId()'));
-        actionsCell.appendChild(createBtn('deleteBtn', element.id, 'Eliminar', 'getKittenForDelete()'))
+        actionsCell.appendChild(createBtn('editBtn', element.id, 'Editar', 'getKittenId(); openModal()'));
+        actionsCell.appendChild(createBtn('deleteBtn', element.id, 'Eliminar', 'getKittenForDelete(); openModal()'))
         //    console.log(newRow);
 
         return kittenTable.appendChild(newRow);
@@ -43,15 +43,8 @@ const initialize = () => {
             kittenTable.innerHTML = '';
             createTable(kittens.kittens)
         })
-
 };
 
-//hacer modal para el post 
-const addModal = () => {
-    const addModal = document.getElementById('addModalBackground');
-    addModal.classList.toggle('hidden');
-    console.log('Modal to add has been opened')
-}
 //hacer el post
 const createKitten = () => {
     event.preventDefault();
@@ -99,6 +92,7 @@ const createKitten = () => {
 }
 
 //hacer el fetch de edit 
+
 const getKittenId = () => {
     let id = event.target.id;
     console.log(id)
@@ -122,7 +116,6 @@ const getKittenId = () => {
             editCatEmail.value = eachKitten.email;
         }
         )
-    console.log('open edit modal ')
 }
 //hacer el patch 
 
@@ -173,10 +166,10 @@ const editKitten = () => {
         .catch(error => console.log(`You have an error ${error}`));
 }
 
-//hacer modal de delete
+//hacer el fetch para delete
+
 const getKittenForDelete = () => {
     id = event.target.id;
-    console.log("open modal for delete for ", id);
     let deleteAction = document.querySelector('.deleteCat');
     deleteAction.setAttribute('id', id)
 }
@@ -282,3 +275,31 @@ const validateAllFields = (name, date, color, toy, email) => {
 
 inputs.forEach(input => input.addEventListener('keyup', e => validate(e.target, validations[e.target.attributes.name.value])));
 
+
+//Modals
+const addModal = document.getElementById('addModalBackground');
+const editModal = document.getElementById('editModalBackground');
+const deleteModal = document.getElementById('deleteModalBackground');
+
+const openModalCondition = (btnName, modal) => {
+    if (event.target.className == btnName) modal.classList.remove('hidden') 
+}
+
+const openModal = () => {
+    openModalCondition('button', addModal);
+    openModalCondition('editBtn', editModal);
+    openModalCondition('deleteBtn', deleteModal);
+}
+
+const closeModalCondition = (btnName, modal) => {
+    if (event.target.className == btnName) modal.classList.add('hidden') 
+}
+
+const closeModal = () => {
+    closeModalCondition('addCat', addModal);
+    closeModalCondition('editCat', editModal);
+    closeModalCondition('deleteCat', deleteModal);
+    closeModalCondition('cancelAdd', addModal);
+    closeModalCondition('cancelEdit', editModal);
+    closeModalCondition('cancelDelete', deleteModal);
+}

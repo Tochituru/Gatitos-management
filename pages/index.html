@@ -11,7 +11,7 @@
 <body onload="initialize()">
     <header>
         <h1>Gatites Management</h1>
-        <button class="button" id='addBtn' onclick="addModal()">
+        <button class="button" id='addBtn' onclick="openModal()">
             <div class="addBtnText">Tengo otro gatito
             </div>
         </button>
@@ -50,8 +50,8 @@
                 </form>
             </main>
             <footer>
-                <button id="addCat" onclick="createKitten(); addModal()">Agregar gatito</button>
-                <button id="cancel">Cancelar</button>
+                <button class="addCat" onclick="createKitten(); closeModal()">Agregar gatito</button>
+                <button class="cancelAdd" onclick="closeModal()">Cancelar</button>
             </footer>
 
         </section>
@@ -72,8 +72,8 @@
                 </form>
             </main>
             <footer>
-                <button id="" class="editCat" onclick="editKitten()">Editar gatito</button>
-                <button id="cancel">Cancelar</button>
+                <button id="" class="editCat" onclick="editKitten(); closeModal()">Editar gatito</button>
+                <button class="cancelEdit" onclick="closeModal()">Cancelar</button>
             </footer>
 
         </section>
@@ -84,14 +84,15 @@
             <main>Mi gato ascendió a estado de Dios entre los egipcios. O consiguió una familia nueva.<br />
             Quiero borrarlo.</main>
             <footer>
-                <button id="" class="deleteCat" onclick="deleteKitten()">Borrar gato</button>
-                <button id="cancel">Cancelar</button>
+                <button id="" class="deleteCat" onclick="deleteKitten(); closeModal()">Borrar gato</button>
+                <button class="cancelDelete" onclick="closeModal()">Cancelar</button>
             </footer>
         </section>
     </aside>
 
 
     <script src="../statics/dom.js" type="text/javascript"></script>
+    <script src="../statics/js/test.js"></script>
 
 
 </body>
