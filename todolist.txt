@@ -6,12 +6,27 @@ x get: trae a los gatitos
 x post: publica a un gatito nuevo desde el modal (FUNCIONA)
 x patch: edita al gatito desde un modal 
 x delete: tomamos la decision de matar al gatito(yami nos pega)
-filter: buscar gatitos MAGICAMENTE
-html: maquetar como campeonas ... 
+x filter: buscar gatitos MAGICAMENTE
+  que filter permita buscar por varias propiedades
+
+agnostizar lo que tenemos
+
 
 validacion de cliente 
-validaciones de server
+x fórmulas de validaciones
+- mensajes de error con tooltips?
+- disable button cuando no es válido: https://www.w3schools.com/jsref/prop_pushbutton_disabled.asp 
 
-ordernar por table headings (orden ascendente y descendente)
-formatear fechas (cleave.js) --> ¿adoption date podría ser una fecha?
-mensajes de error con tooltips?
+validaciones de server
+- absolutamente todo
+
+
+
+html: maquetar como campeonas ... 
+- layout
+- icons
+- background pics
+- modals
+- change themes by button
+- ordernar por table headings (orden ascendente y descendente)
+
