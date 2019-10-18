@@ -1,3 +1,62 @@
 .hidden {
     display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    
+    background-color:rgba( 0, 0, 0, 0.5);
+
+    #addModalBackground, #editModalBackground, #deleteModalBackground{
+    background-color: $background;
+    margin: 10% auto;
+    width: 30%;
+    border-radius: 12px;
+    box-shadow: 0px 0px 20px 5px rgba( 0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    flex-direction: column; 
+    };
+
+    .modalHeader{
+        align-self: stretch;
+        color: $background;
+        margin-bottom: 10px;
+    };
+
+input {
+            border: 1px solid gray;
+            border-radius: 2px;
+            width: 80%;
+            padding: 6px;
+            margin: 10px;
+            font-size: 0.9em;
+            align-self: center;
+            outline: none;
+
+        }
+        input:placeholder {
+            font-size: 0.9em;
+        }
+    
+}
+footer {
+    padding: 1em 2em;
+    border-color: grey;
+    #addCat, #editCat{
+        @include buttonColor($validColor);
+    }
+    #addCat:hover, #editCat:hover {
+        @include buttonHover($validColor);
+    }
+    #cancelAdd, #cancelEdit, #cancelDelete{
+        @include buttonColor($invalidColor);
+    }
+    #cancelAdd:hover, #cancelEdit:hover, #cancelDelete:hover {
+        @include buttonHover($invalidColor);
+    }
+   
 }

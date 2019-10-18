@@ -45,7 +45,7 @@ input::placeholder {
 }
 
 body {
-  background: #F4EAE6;
+  background: url("./istockphoto-968532936-1024x1024.jpg");
   font-family: sans-serif;
   padding: 0 20vw;
 }
@@ -63,6 +63,69 @@ body .container .filter {
 
 .hidden {
   display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.hidden #addModalBackground, .hidden #editModalBackground, .hidden #deleteModalBackground {
+  background-color: #F4EAE6;
+  margin: 10% auto;
+  width: 30%;
+  border-radius: 12px;
+  box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.hidden .modalHeader {
+  align-self: stretch;
+  color: #F4EAE6;
+  margin-bottom: 10px;
+}
+.hidden input {
+  border: 1px solid gray;
+  border-radius: 2px;
+  width: 80%;
+  padding: 6px;
+  margin: 10px;
+  font-size: 0.9em;
+  align-self: center;
+  outline: none;
+}
+.hidden input:placeholder {
+  font-size: 0.9em;
+}
+
+footer {
+  padding: 1em 2em;
+  border-color: grey;
+}
+footer #addCat, footer #editCat {
+  color: #36cc36;
+  background-color: transparent;
+  border: 2px solid #36cc36;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+footer #addCat:hover, footer #editCat:hover {
+  color: #fff;
+  background-color: #36cc36;
+}
+footer #cancelAdd, footer #cancelEdit, footer #cancelDelete {
+  color: #ffa500;
+  background-color: transparent;
+  border: 2px solid #ffa500;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+footer #cancelAdd:hover, footer #cancelEdit:hover, footer #cancelDelete:hover {
+  color: #fff;
+  background-color: #ffa500;
 }
 
 table {

@@ -10,3 +10,17 @@ $validColor: #36cc36;
 
 
 //do a box shadow mixin
+//preguntar a Toti 
+@mixin buttonColor($colorChange){
+    color: $colorChange;
+    background-color: transparent;
+    border: 2px solid $colorChange;
+    border-radius: 5px;
+    text-transform: uppercase;
+    
+}
+@mixin buttonHover($colorChange){
+    color: #fff;
+    background-color: $colorChange;
+
+}
