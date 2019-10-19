@@ -45,56 +45,79 @@ const initialize = () => {
 };
 
 //hacer el post
-const addCatBtn = document.querySelector('.addCat')
 
-let newCatName = document.getElementById('newCatName');
-let newCatAdoptionDate = document.getElementById(`newCatAdoptionDate`);
-let newCatColor = document.getElementById('newCatColor');
-let newCatFavoriteToy = document.getElementById('newCatFavoriteToy');
-let newCatEmail = document.getElementById('newCatEmail');
+
+//conseguir elementos desde document.forms para evitar las mil variables
+const dateRegex = /^[0-9]{8}$/i;
+const emailRegex = /^([\w\d\.-]+)@([\w\d-]+)\.(\w{2,8})(\.\w{2,8})?$/i;
+
+const addForm = document.forms['addCatForm'];
+const formElements = Array.from(addForm.elements);
+
+const cleanForm = (formToClean) => formToClean.forEach(inputElement => inputElement.value = '');
+
+const conditional = (field, objectProperty) => {
+    if (validate(field, objectProperty)) {
+        console.log(`${field} is valid in conditional`)
+        return true;
+    } else { return false }
+}
+
+let formObject = {};
+
+const fillObject = (formName) => {
+    formObject = {
+        name: `${formName.elements[0].value}`,
+        adoptionDate: `${addForm.elements[1].value}`,
+        color: `${formName.elements[2].value}`,
+        favoriteToy: `${formName.elements[3].value}`,
+        email: `${formName.elements[4].value}`,
+    }
+    console.log('formObject', formObject)
+}
+
 
 const createKitten = () => {
-    event.preventDefault();
-    const result = validateAllFields(
-        newCatName,
-        newCatAdoptionDate,
-        newCatColor,
-        newCatFavoriteToy,
-        newCatEmail)
-    console.log(result);
-    if (result == false) {
-        return addCatBtn.disabled = true
-    }
 
-    let newCat = {
-        name: newCatName.value,
-        adoptionDate: newCatAdoptionDate.value,
-        color: newCatColor.value,
-        favoriteToy: newCatFavoriteToy.value,
-        email: newCatEmail.value
+event.preventDefault();
+
+fillObject(addForm);
+
+//Regex for date and email not working in the context of validatios
+if (conditional(formObject.name, validations.name) && conditional(formObject.color, validations.color) && conditional(formObject.favoriteToy, validations.favoriteToy)) {
+    if (dateRegex.test(formObject.adoptionDate)) {
+        if (emailRegex.test(formObject.email)) {
+            let catAdd = { ...formObject };
+            console.log('cat', catAdd);
+            
+            fetch(api, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(catAdd)
+            })
+                .then(res => res.json())
+                .then(() => {
+                    cleanForm(formElements);
+                    initialize();
+                    console.log('kitten created')
+                })
+                .catch(error => console.log(`You have an error ${error}`));
+        
+        }
     }
-    console.log('created kitten');
-    fetch(api, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newCat)
-    })
-        .then(res => res.json())
-        .then(() => {
-            newCatName.value = '';
-            newCatAdoptionDate.value = '';
-            newCatColor.value = '';
-            newCatFavoriteToy.value = '';
-            newCatEmail.value = '';
-            initialize();
-        })
-        .catch(error => console.log(`You have an error ${error}`));
+} else {
+    console.log('cat Not added');
+
 }
+}
+
 
 //hacer el fetch de edit 
 let editCatBtn = document.querySelector('.editCat')
+const editForm = document.forms['editCatForm'];
+const editFormElements = Array.from(editForm.elements);
 
 const getKittenId = () => {
     let id = event.target.id;
@@ -110,7 +133,6 @@ const getKittenId = () => {
             let editCatEmail = document.getElementById('editCatEmail');
             editId.setAttribute('id', `${eachKitten.id}`);
             //            console.log(editId);
-
             editCatName.value = eachKitten.name;
             editCatAdoptionDate.value = eachKitten.adoptionDate;
             editCatColor.value = eachKitten.color;
@@ -270,6 +292,8 @@ const filterKittens = () => {
 const addModal = document.getElementById('addModalBackground');
 const editModal = document.getElementById('editModalBackground');
 const deleteModal = document.getElementById('deleteModalBackground');
+const addCatBtn = document.querySelector('.addCat')
+
 
 const openModalCondition = (btnName, modal, modalBtn) => {
     if (event.target.className == btnName) {
@@ -307,7 +331,7 @@ const validations = {
     adoptionDate: /^[0-9]{8}$/i,
     color: /^[(a-z)\ +(a-z)]{3,30}$/i,
     favoriteToy: /^[(a-z)\ +(a-z)]{3,30}$/i,
-    email: /^([\w\d\.-]+)@([\w\d-]+)\.(\w{2,8})(\.\w{2,8})?$/,
+    email: /^([\w\d\.-]+)@([\w\d-]+)\.(\w{2,8})(\.\w{2,8})?$/i,
 }
 
 const validate = (field, regex) => {
