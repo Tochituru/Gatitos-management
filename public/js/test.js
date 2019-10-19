@@ -2,13 +2,18 @@
 
 const addForm = document.forms['addCatForm'];
 const editForm = document.forms['editCatForm'];
+const formElements = addForm.elements;
 
-console.log(addForm, editCatForm);
+//function not working
+//const cleanForm = (formName) => Array.from(formName).forEach(element => element.value = '');
+
+let testToNumber = parseInt(addForm.elements[1].value);
+
 let formObject = {};
 const fillObject = (formName) => {
     formObject = {
         name: `${formName.elements[0].value}`,
-        adoptionDate: `${formName.elements[1].value}`,
+        adoptionDate: testToNumber,
         color: `${formName.elements[2].value}`,
         favoriteToy: `${formName.elements[3].value}`,
         email: `${formName.elements[4].value}`,
@@ -16,36 +21,44 @@ const fillObject = (formName) => {
     console.log(formObject)
 }
 fillObject(addForm);
-fillObject(editCatForm)
 
-if (true) {
-    console.log('life');
-    
+const conditional = (field, objectProperty) => {
+    if (validate(field, objectProperty)) {
+        console.log(`${field} is valid in conditional`);   
+        return true
+    } else { return false };
 }
 
+console.log(conditional(formObject.email, validations.email));
 
+if (conditional(formObject.name, validations.name) && conditional(formObject.color, validations.color) && conditional(formObject.favoriteToy, validations.favoriteToy) && conditional(formObject.adoptionDate, validations.adoptionDate))  {
+    let catAdd = { ...formObject };
+    console.log('cat', catAdd);
+}
 
+//  &&  && conditional(formObject.email, validations.email)
+// 
+//
+//
+
+const validateAllFields = (name, adoptionDate, color, favoriteToy, email) => {
+    //se validó nombre
+    console.log(conditional(name, validations.name), conditional(adoptionDate, validations.adoptionDate), conditional(color, validations.color), conditional(favoriteToy, validations.favoriteToy), conditional(email, validations.email));
+    console.log('All valid in Validate All fields');
+    
+};
+
+validateAllFields(formObject.name, formObject.adoptionDate, formObject.color, formObject.favoriteToy, formObject.email)
 
 
 //Validar que los elementos tengan los valores correctos dentro de addKitten y editKitten
 
-const testVariable = document.querySelector('.testBtn.testClass')
-console.log(testVariable);
-
-
-const conditional = (field, objectProperty) => {
-    if (validate(field, objectProperty)) {
-        console.log('field valid')
-    } else { console.log('field invalid') };
-
-}
-
-const validateAllFields = (name, date, color, toy, email) => {
-    //se validó nombre
-    conditional(name, validations.name);
-    conditional(date, validations.adoptionDate);
-    conditional(color, validations.color);
-    conditional(toy, validations.favoriteToy);
-    conditional(email, validations.email);
-}
+// const validateAllFields = (name, date, color, toy, email) => {
+//     //se validó nombre
+//     conditional(name, validations.name);
+//     conditional(date, validations.adoptionDate);
+//     conditional(color, validations.color);
+//     conditional(toy, validations.favoriteToy);
+//     conditional(email, validations.email);
+// }
 

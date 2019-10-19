@@ -200,16 +200,6 @@ const filterKittens = () => {
 }
 // hacer las validaciones
 
-//const inputs = document.querySelectorAll('input');
-
-// const validations = {
-//     name: /^[(a-z)\ +(a-z)]{2,30}$/i,
-//     adoptionDate: /^[(0-9)]{8}$/i,
-//     color: /^[(a-z)\ +(a-z)]{5,30}$/i,
-//     favoriteToy: /^[(a-z)\ +(a-z)]{5,30}$/i,
-//     email: /^([\w\d\.-]+)@([\w\d-]+)\.(\w{2,8})(\.\w{2,8})?$/,
-// }
-
 // const validate = (field, regex) => {
 //     if (regex.test(field.value)) {
 //         console.log('valid')
@@ -314,7 +304,7 @@ const inputs = document.querySelectorAll('input');
 
 const validations = {
     name: /^[(a-z)\ +(a-z)]{2,30}$/i,
-    adoptionDate: /^[(0-9)]{8}$/i,
+    adoptionDate: /^[0-9]{8}$/i,
     color: /^[(a-z)\ +(a-z)]{3,30}$/i,
     favoriteToy: /^[(a-z)\ +(a-z)]{3,30}$/i,
     email: /^([\w\d\.-]+)@([\w\d-]+)\.(\w{2,8})(\.\w{2,8})?$/,
@@ -322,12 +312,12 @@ const validations = {
 
 const validate = (field, regex) => {
     if (regex.test(field.value)) {
-        console.log(`${field} valid`)
+        console.log(`${field} valid in validate`)
         addCatBtn.disabled = false;
         editCatBtn.disabled = false;
         return true
     } else {
-        console.log(`${field} invalid`);
+        console.log(`${field} invalid in validate`);
         addCatBtn.disabled = true;
         editCatBtn.disabled = true;
         return false
