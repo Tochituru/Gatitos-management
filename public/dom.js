@@ -56,11 +56,6 @@ const formElements = Array.from(addForm.elements);
 
 const cleanForm = (formToClean) => formToClean.forEach(inputElement => inputElement.value = '');
 
-const conditional = (field, objectProperty) => {
-    if (validate(field, objectProperty)) {
-        return true;
-    } else { return false }
-}
 
 let formObject = {};
 
@@ -196,72 +191,7 @@ const filterKittens = () => {
             createTable(kittens);
         })
 }
-// hacer las validaciones
 
-// const validate = (field, regex) => {
-//     if (regex.test(field.value)) {
-//         console.log('valid')
-//         return true
-//     } else {
-//         console.log('invalid')
-//         return false
-//     };
-
-// }
-
-// const conditional = (field, objectProperty) => {
-//     if (validate(field, objectProperty)) {
-//         console.log('field valid')
-//     } else { console.log('field invalid') };
-
-// }
-
-const validateAllFields = (name, date, color, toy, email) => {
-    //se validó nombre
-    conditional(name, validations.name);
-    conditional(date, validations.adoptionDate);
-    conditional(color, validations.color);
-    conditional(toy, validations.favoriteToy);
-    conditional(email, validations.email);
-    //etc
-    // if (validate(name, validations.name)) {
-    //     console.log('el nombre es correcto')
-    // } else {
-    //     console.log('el nombre es incorrecto');
-    //     return false
-    // }
-    //se valido fecha 
-    // if (validate(date, validations.adoptionDate)) {
-    //     console.log('la fecha es correcta')
-    // } else {
-    //     console.log('la fecha es incorrecto');
-    //     return false
-    // }
-    // se valido el color 
-    // if (validate(color, validations.color)) {
-    //     console.log('el color es correcto')
-    // } else {
-    //     console.log('el color es incorrecto');
-    //     return false
-    // }
-    //se valido su juguete
-    // if (validate(toy, validations.favoriteToy)) {
-    //     console.log('el juguete es correcto')
-    // } else {
-    //     console.log('el juguete es incorrecto');
-    //     return false
-    // }
-    // //se valida el mail. si, tiene mail 
-    // if (validate(email, validations.email)) {
-    //     console.log('el mail es correcto')
-    // } else {
-    //     console.log('el mail es incorrecto');
-    //     return false
-    // }
-    return true
-}
-
-// inputs.forEach(input => input.addEventListener('keyup', e => validate(e.target, validations[e.target.attributes.name.value])));
 
 
 //Modals
@@ -321,6 +251,8 @@ const validate = (field, regex) => {
         return false
     };
 }
+
+
 //a medida que el usuario escribe
 inputs.forEach(input => {
     input.addEventListener('keyup', e => { validate(e.target, validations[e.target.attributes.name.value]) }
@@ -329,3 +261,19 @@ inputs.forEach(input => {
     )
 
 });
+
+//Todas las validaciones (?)
+const conditional = (field, objectProperty) => {
+    if (validate(field, objectProperty)) {
+        return true;
+    } else { return false }
+}
+
+const validateAllFields = (name, date, color, toy, email) => {
+    conditional(name, validations.name);
+    conditional(date, validations.adoptionDate);
+    conditional(color, validations.color);
+    conditional(toy, validations.favoriteToy);
+    conditional(email, validations.email);
+    return true
+}

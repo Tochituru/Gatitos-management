@@ -10,12 +10,15 @@ x filter: buscar gatitos MAGICAMENTE
   que filter permita buscar por varias propiedades
 
 agnostizar lo que tenemos
+x addKitten
+x editKitten
+  getKitten by Id
 
 
 validacion de cliente 
 x fórmulas de validaciones
-- mensajes de error con tooltips?
 x disable button cuando no es válido: https://www.w3schools.com/jsref/prop_pushbutton_disabled.asp 
+- mensajes de error con tooltips?
 
 validaciones de server
 - absolutamente todo
