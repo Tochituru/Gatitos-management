@@ -123,27 +123,23 @@ const createKitten = () => {
     event.preventDefault();
     fillObject(addForm);
     //Regex for date and email not working in the context of validatios
-    if (conditional(formObject.name, validations.name) && conditional(formObject.color, validations.color) && conditional(formObject.favoriteToy, validations.favoriteToy)) {
-        if (dateRegex.test(formObject.adoptionDate)) {
-            if (emailRegex.test(formObject.email)) {
-                let catAdd = { ...formObject };
-                console.log('cat', catAdd);
-                fetch(api, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(catAdd)
-                })
-                    .then(res => res.json())
-                    .then(() => {
-                        cleanForm(formElements);
-                        initialize();
-                        console.log('kitten created')
-                    })
-                    .catch(error => console.log(`You have an error ${error}`));
-            }
-        }
+    if (validateAllFields(formObject.name, formObject.color, formObject.favoriteToy, formObject.adoptionDate, formObject.email)) {
+        let catAdd = { ...formObject };
+        console.log('cat', catAdd);
+        fetch(api, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(catAdd)
+        })
+            .then(res => res.json())
+            .then(() => {
+                cleanForm(formElements);
+                initialize();
+                console.log('kitten created')
+            })
+            .catch(error => console.log(`You have an error ${error}`));
     } else {
         console.log('cat Not added');
     }
@@ -184,27 +180,23 @@ const editKitten = () => {
     let id = event.target.id;
     fillObject(editForm);
     //Regex for date and email not working in the context of validatios
-    if (conditional(formObject.name, validations.name) && conditional(formObject.color, validations.color) && conditional(formObject.favoriteToy, validations.favoriteToy)) {
-        if (dateRegex.test(formObject.adoptionDate)) {
-            if (emailRegex.test(formObject.email)) {
-                let catEdit = { ...formObject };
-                console.log('cat', catEdit);
-                fetch(`${api}/id/${id}`, {
-                    method: 'PATCH',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(catEdit)
-                })
-                    .then(res => res.json())
-                    .then(() => {
-                        initialize();
-                        cleanForm(editFormElements);
-                        console.log('kitten edited to', catEdit);
-                    })
-                    .catch(error => console.log(`You have an error ${error}`));
-            }
-        }
+    if (validateAllFields(formObject.name, formObject.color, formObject.favoriteToy, formObject.adoptionDate, formObject.email)) {
+        let catEdit = { ...formObject };
+        console.log('cat', catEdit);
+        fetch(`${api}/id/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(catEdit)
+        })
+            .then(res => res.json())
+            .then(() => {
+                initialize();
+                cleanForm(editFormElements);
+                console.log('kitten edited to', catEdit);
+            })
+            .catch(error => console.log(`You have an error ${error}`));
     } else {
         console.log('Cat Not Edited');
     }
