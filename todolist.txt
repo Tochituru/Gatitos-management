@@ -21,7 +21,7 @@ x disable button cuando no es válido: https://www.w3schools.com/jsref/prop_push
 - mensajes de error con tooltips?
 
 validaciones de server
-- absolutamente todo
+x absolutamente todo
 
 
 

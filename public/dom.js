@@ -44,9 +44,57 @@ const initialize = () => {
         })
 };
 
+
+//validations
+const inputs = document.querySelectorAll('input');
+
+const validations = {
+    name: /^[(a-z)\ +(a-z)]{2,30}$/i,
+    adoptionDate: /^[0-9]{8}$/i,
+    color: /^[(a-z)\ +(a-z)]{3,30}$/i,
+    favoriteToy: /^[(a-z)\ +(a-z)]{3,30}$/i,
+    email: /^([\w\d\.-]+)@([\w\d-]+)\.(\w{2,8})(\.\w{2,8})?$/i,
+}
+
+const validate = (field, regex) => {
+    if (regex.test(field.value)) {
+        addCatBtn.disabled = false;
+        editCatBtn.disabled = false;
+        return true
+    } else {
+        addCatBtn.disabled = true;
+        editCatBtn.disabled = true;
+        return false
+    };
+}
+
+
+//a medida que el usuario escribe
+inputs.forEach(input => {
+    input.addEventListener('keyup', e => { validate(e.target, validations[e.target.attributes.name.value]) }
+    );
+    input.addEventListener('focus', e => { validate(e.target, validations[e.target.attributes.name.value]) }
+    )
+
+});
+
+//Todas las validaciones (?)
+const conditional = (field, objectProperty) => {
+    if (validate(field, objectProperty)) {
+        return true;
+    } else { return false }
+}
+
+const validateAllFields = (name, date, color, toy, email) => {
+    conditional(name, validations.name);
+    conditional(date, validations.adoptionDate);
+    conditional(color, validations.color);
+    conditional(toy, validations.favoriteToy);
+    conditional(email, validations.email);
+    return true
+}
+
 //hacer el post
-
-
 //conseguir elementos desde document.forms para evitar las mil variables
 const dateRegex = /^[0-9]{8}$/;
 const emailRegex = /^([\w\d\.-]+)@([\w\d-]+)\.(\w{2,8})(\.\w{2,8})?$/i;
@@ -188,8 +236,16 @@ const filterKittens = () => {
         .then(res => res.json())
         .then(kittens => {
             kittenTable.innerHTML = '';
-            createTable(kittens);
-        })
+            createTable(kittens)
+            /* if (kittens.length < 0) {
+                fetch(`${api}/search/?color=${searchField}`)
+                    .then(res => res.json())
+                    .then(kittens => {
+                        kittenTable.innerHTML = '';
+                        createTable(kittens);
+                    })
+            }; */
+        });
 }
 
 
@@ -229,51 +285,3 @@ const closeModal = () => {
 }
 
 
-//validations
-const inputs = document.querySelectorAll('input');
-
-const validations = {
-    name: /^[(a-z)\ +(a-z)]{2,30}$/i,
-    adoptionDate: /^[0-9]{8}$/i,
-    color: /^[(a-z)\ +(a-z)]{3,30}$/i,
-    favoriteToy: /^[(a-z)\ +(a-z)]{3,30}$/i,
-    email: /^([\w\d\.-]+)@([\w\d-]+)\.(\w{2,8})(\.\w{2,8})?$/i,
-}
-
-const validate = (field, regex) => {
-    if (regex.test(field.value)) {
-        addCatBtn.disabled = false;
-        editCatBtn.disabled = false;
-        return true
-    } else {
-        addCatBtn.disabled = true;
-        editCatBtn.disabled = true;
-        return false
-    };
-}
-
-
-//a medida que el usuario escribe
-inputs.forEach(input => {
-    input.addEventListener('keyup', e => { validate(e.target, validations[e.target.attributes.name.value]) }
-    );
-    input.addEventListener('focus', e => { validate(e.target, validations[e.target.attributes.name.value]) }
-    )
-
-});
-
-//Todas las validaciones (?)
-const conditional = (field, objectProperty) => {
-    if (validate(field, objectProperty)) {
-        return true;
-    } else { return false }
-}
-
-const validateAllFields = (name, date, color, toy, email) => {
-    conditional(name, validations.name);
-    conditional(date, validations.adoptionDate);
-    conditional(color, validations.color);
-    conditional(toy, validations.favoriteToy);
-    conditional(email, validations.email);
-    return true
-}
