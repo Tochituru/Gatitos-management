@@ -40,6 +40,7 @@
             </header>
             <main>
                 <form id="addCatForm" action="#" method='post'>
+                    <input type="text" class="hidden" value="">
                     <input type="text" name="name" id="newCatName" placeholder="Nombre del gatito" value="">
                     <input type="text" name="adoptionDate" id="newCatAdoptionDate" placeholder="¿Cuándo adoptaste al gatito?" value="">
                     <input type="text" name="color" id="newCatColor" placeholder="¿De qué color es?" value="">
@@ -62,7 +63,7 @@
             </header>
             <main>
                 <form id="editCatForm" action="#" method='post'>
-                    <div id="kittenId">id</div>
+                    <input class="idForm hidden" type=text id="editKittenId" value="">
                     <input type="text" name="name" id="editCatName" placeholder="Nombre del gatito" value="">
                     <input type="text" name="adoptionDate" id="editCatAdoptionDate" placeholder="¿Cuándo adoptaste al gatito?" value="">
                     <input type="text" name="color" id="editCatColor" placeholder="¿De qué color es?" value="">

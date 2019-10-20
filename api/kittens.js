@@ -1,11 +1,11 @@
 const uniqid =  require('uniqid');
 
 let kittens = [
-    { id: uniqid(), name: 'Benja', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
-    { id: uniqid(), name: 'Honsho', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
-    { id: uniqid(), name: 'Bert', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
-    { id: uniqid(), name: 'Isabella', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
-    { id: uniqid(), name: 'Groucho', adoptionDate: '12-10-2004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' }
+    { id: uniqid(), name: 'Benja', adoptionDate: '12102004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
+    { id: uniqid(), name: 'Honsho', adoptionDate: '12102004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
+    { id: uniqid(), name: 'Bert', adoptionDate: '12102004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
+    { id: uniqid(), name: 'Isabella', adoptionDate: '12102004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
+    { id: uniqid(), name: 'Groucho', adoptionDate: '12102004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' }
 ]
 
 const getKittens = (req, res, next) => {

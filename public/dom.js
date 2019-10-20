@@ -48,7 +48,7 @@ const initialize = () => {
 
 
 //conseguir elementos desde document.forms para evitar las mil variables
-const dateRegex = /^[0-9]{8}$/i;
+const dateRegex = /^[0-9]{8}$/;
 const emailRegex = /^([\w\d\.-]+)@([\w\d-]+)\.(\w{2,8})(\.\w{2,8})?$/i;
 
 const addForm = document.forms['addCatForm'];
@@ -58,7 +58,6 @@ const cleanForm = (formToClean) => formToClean.forEach(inputElement => inputElem
 
 const conditional = (field, objectProperty) => {
     if (validate(field, objectProperty)) {
-        console.log(`${field} is valid in conditional`)
         return true;
     } else { return false }
 }
@@ -67,56 +66,50 @@ let formObject = {};
 
 const fillObject = (formName) => {
     formObject = {
-        name: `${formName.elements[0].value}`,
-        adoptionDate: `${addForm.elements[1].value}`,
-        color: `${formName.elements[2].value}`,
-        favoriteToy: `${formName.elements[3].value}`,
-        email: `${formName.elements[4].value}`,
+        id: `${formName.elements[0].value}`,
+        name: `${formName.elements[1].value}`,
+        adoptionDate: `${formName.elements[2].value}`,
+        color: `${formName.elements[3].value}`,
+        favoriteToy: `${formName.elements[4].value}`,
+        email: `${formName.elements[5].value}`,
     }
     console.log('formObject', formObject)
 }
 
-
 const createKitten = () => {
-
-event.preventDefault();
-
-fillObject(addForm);
-
-//Regex for date and email not working in the context of validatios
-if (conditional(formObject.name, validations.name) && conditional(formObject.color, validations.color) && conditional(formObject.favoriteToy, validations.favoriteToy)) {
-    if (dateRegex.test(formObject.adoptionDate)) {
-        if (emailRegex.test(formObject.email)) {
-            let catAdd = { ...formObject };
-            console.log('cat', catAdd);
-            
-            fetch(api, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(catAdd)
-            })
-                .then(res => res.json())
-                .then(() => {
-                    cleanForm(formElements);
-                    initialize();
-                    console.log('kitten created')
+    event.preventDefault();
+    fillObject(addForm);
+    //Regex for date and email not working in the context of validatios
+    if (conditional(formObject.name, validations.name) && conditional(formObject.color, validations.color) && conditional(formObject.favoriteToy, validations.favoriteToy)) {
+        if (dateRegex.test(formObject.adoptionDate)) {
+            if (emailRegex.test(formObject.email)) {
+                let catAdd = { ...formObject };
+                console.log('cat', catAdd);
+                fetch(api, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(catAdd)
                 })
-                .catch(error => console.log(`You have an error ${error}`));
-        
+                    .then(res => res.json())
+                    .then(() => {
+                        cleanForm(formElements);
+                        initialize();
+                        console.log('kitten created')
+                    })
+                    .catch(error => console.log(`You have an error ${error}`));
+            }
         }
+    } else {
+        console.log('cat Not added');
     }
-} else {
-    console.log('cat Not added');
-
-}
 }
 
 
 //hacer el fetch de edit 
-let editCatBtn = document.querySelector('.editCat')
 const editForm = document.forms['editCatForm'];
+let editCatBtn = document.querySelector('.editCat')
 const editFormElements = Array.from(editForm.elements);
 
 const getKittenId = () => {
@@ -125,20 +118,20 @@ const getKittenId = () => {
     fetch(`${api}/id/${id}`)
         .then(res => res.json())
         .then(eachKitten => {
-            let editId = document.querySelector('.editCat');
+            let idForm = document.getElementById('editKittenId')
             let editCatName = document.getElementById('editCatName');
             let editCatAdoptionDate = document.getElementById('editCatAdoptionDate');
             let editCatColor = document.getElementById('editCatColor');
             let editCatFavoriteToy = document.getElementById('editCatFavoriteToy');
             let editCatEmail = document.getElementById('editCatEmail');
-            editId.setAttribute('id', `${eachKitten.id}`);
-            //            console.log(editId);
+
+            editCatBtn.setAttribute('id', `${eachKitten.id}`);
+            idForm.value = eachKitten.id;
             editCatName.value = eachKitten.name;
             editCatAdoptionDate.value = eachKitten.adoptionDate;
             editCatColor.value = eachKitten.color;
             editCatFavoriteToy.value = eachKitten.favoriteToy;
             editCatEmail.value = eachKitten.email;
-
         })
 }
 //hacer el patch 
@@ -146,50 +139,33 @@ const getKittenId = () => {
 const editKitten = () => {
     event.preventDefault();
     let id = event.target.id;
-    let editCatName = document.getElementById('editCatName');
-    let editCatAdoptionDate = document.getElementById('editCatAdoptionDate');
-    let editCatColor = document.getElementById('editCatColor');
-    let editCatFavoriteToy = document.getElementById('editCatFavoriteToy');
-    let editCatEmail = document.getElementById('editCatEmail');
-
-    const result = validateAllFields(
-        editCatName,
-        editCatAdoptionDate,
-        editCatColor,
-        editCatFavoriteToy,
-        editCatEmail)
-    if (result == false) {
-        return
+    fillObject(editForm);
+    //Regex for date and email not working in the context of validatios
+    if (conditional(formObject.name, validations.name) && conditional(formObject.color, validations.color) && conditional(formObject.favoriteToy, validations.favoriteToy)) {
+        if (dateRegex.test(formObject.adoptionDate)) {
+            if (emailRegex.test(formObject.email)) {
+                let catEdit = { ...formObject };
+                console.log('cat', catEdit);
+                fetch(`${api}/id/${id}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(catEdit)
+                })
+                    .then(res => res.json())
+                    .then(() => {
+                        initialize();
+                        cleanForm(editFormElements);
+                        console.log('kitten edited to', catEdit);
+                    })
+                    .catch(error => console.log(`You have an error ${error}`));
+            }
+        }
+    } else {
+        console.log('Cat Not Edited');
     }
-    let editCat = {
-        id: id,
-        name: editCatName.value,
-        adoptionDate: editCatAdoptionDate.value,
-        color: editCatColor.value,
-        favoriteToy: editCatFavoriteToy.value,
-        email: editCatEmail.value
-    }
-    console.log(editCat);
-    console.log('edited kitten');
-    fetch(`${api}/id/${id}`, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(editCat)
-    })
-        .then(res => res.json())
-        .then(() => {
-            editCatName.value = '';
-            editCatAdoptionDate.value = '';
-            editCatColor.value = '';
-            editCatFavoriteToy.value = '';
-            editCatEmail.value = '';
-            initialize();
-        })
-        .catch(error => console.log(`You have an error ${error}`));
 }
-
 //hacer el fetch para delete
 
 const getKittenForDelete = () => {
@@ -336,12 +312,10 @@ const validations = {
 
 const validate = (field, regex) => {
     if (regex.test(field.value)) {
-        console.log(`${field} valid in validate`)
         addCatBtn.disabled = false;
         editCatBtn.disabled = false;
         return true
     } else {
-        console.log(`${field} invalid in validate`);
         addCatBtn.disabled = true;
         editCatBtn.disabled = true;
         return false
