@@ -31,5 +31,10 @@ html: maquetar como campeonas ...
 - background pics
 - modals
 - change themes by button
-- ordernar por table headings (orden ascendente y descendente)
+x ordernar por table headings (orden ascendente y descendente)
 
+Consultas para Mike:
+- openAddModal no siempre funciona
+- validation de email y fecha no funca bien (en objeto, sí por fuera)
+- spread operator y destructuring
+- filter by all properties
