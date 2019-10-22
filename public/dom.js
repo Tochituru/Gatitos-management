@@ -7,6 +7,10 @@ const createCell = (fieldClass, fieldValue) => {
     let newCell = document.createElement('td');
     newCell.innerHTML = fieldValue;
     newCell.classList.add(fieldClass);
+    // if (fieldClass === 'adoptionDate') {
+    //     fieldValue.replace(/(\w{4})/g).replace(/(^\s+|\s+$)/,'')
+    //     console.log(fieldValue);
+    // }
     //    console.log('cell', newCell)
     return newCell
 }
@@ -40,7 +44,8 @@ const initialize = () => {
         .then(res => res.json())
         .then(kittens => {
             kittenTable.innerHTML = '';
-            createTable(kittens.kittens)
+            const dataSorted = kittens.kittens.sort(compareValues('name', 'asc'));
+            createTable(dataSorted);
         })
 };
 
@@ -91,7 +96,12 @@ const validateAllFields = (name, date, color, toy, email) => {
     conditional(color, validations.color);
     conditional(toy, validations.favoriteToy);
     conditional(email, validations.email);
-    return true
+    console.log(conditional(name, validations.name));
+    console.log(conditional(date, validations.adoptionDate));
+    console.log(conditional(color, validations.color));
+    console.log(conditional(toy, validations.favoriteToy));
+    console.log(conditional(email, validations.email));
+
 }
 
 //hacer el post
@@ -275,5 +285,28 @@ const closeModal = () => {
     closeModalCondition('cancelEdit', editModal);
     closeModalCondition('cancelDelete', deleteModal);
 }
+
+//sorting tables
+const compareValues = (key, order = 'asc') => {
+    return (a, b) => {
+        if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) return 0;
+        let comparison = a[key].localeCompare(b[key]);
+        return ((order == 'desc') ? (comparison * -1) : comparison)
+    }
+}
+
+let direction = 'asc';
+const sortColumn = () => {
+    const columnName = event.target.className;
+    fetch(api)
+        .then(res => res.json())
+        .then(kittens => {
+            kittenTable.innerHTML = '';
+            const dataSorted = kittens.kittens.sort(compareValues(columnName, direction));
+            direction = (direction === 'asc') ? direction = 'desc' : direction = 'asc';
+            createTable(dataSorted);
+        })
+}
+
 
 
