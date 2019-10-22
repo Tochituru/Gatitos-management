@@ -1,5 +1,4 @@
 body {
-  background: $background;
   font-family: $fontFamily;
   padding: 0 20vw;
   .container {
@@ -15,3 +14,6 @@ body {
   }
 }
 
+.background-one {
+  background-image: url('../assets/cat-heads-grey.jpg');
+}

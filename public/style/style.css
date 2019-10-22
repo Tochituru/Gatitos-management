@@ -45,7 +45,6 @@ input::placeholder {
 }
 
 body {
-  background: #F4EAE6;
   font-family: sans-serif;
   padding: 0 20vw;
 }
@@ -59,6 +58,10 @@ body .container .filter {
   display: flex;
   justify-content: flex-end;
   padding: 2em;
+}
+
+.background-one {
+  background-image: url("../assets/cat-heads-grey.jpg");
 }
 
 .hidden {
