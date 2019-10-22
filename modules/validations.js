@@ -27,7 +27,6 @@ const validateAllFields = (name, date, color, toy, email) => {
     conditional(color, validations.color);
     conditional(toy, validations.favoriteToy);
     conditional(email, validations.email);
-    return true
 }
 
 module.exports = validateAllFields;
