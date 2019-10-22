@@ -3,10 +3,10 @@ const validateAllFields = require('../modules/validations')
 
 let kittens = [
     { id: uniqid(), name: 'Benja', adoptionDate: '12102004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
-    { id: uniqid(), name: 'Honsho', adoptionDate: '12102004', color: 'verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
-    { id: uniqid(), name: 'Bert', adoptionDate: '12102004', color: 'amarillo', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
-    { id: uniqid(), name: 'Isabella', adoptionDate: '12102004', color: 'rojo', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
-    { id: uniqid(), name: 'Groucho', adoptionDate: '12102004', color: 'naranja y azul', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' }
+    { id: uniqid(), name: 'Honsho', adoptionDate: '20062006', color: 'verde', favoriteToy: 'caja', email: 'gatito@muerdomucho.com' },
+    { id: uniqid(), name: 'Bert', adoptionDate: '03042019', color: 'amarillo', favoriteToy: 'Pelusa', email: 'bert@muerdomucho.com' },
+    { id: uniqid(), name: 'Isabella', adoptionDate: '05072010', color: 'rojo', favoriteToy: 'Catnip', email: 'orejas@muerdomucho.com' },
+    { id: uniqid(), name: 'Groucho', adoptionDate: '20121996', color: 'naranja y azul', favoriteToy: 'láser', email: 'mirame@muerdomucho.com' }
 ]
 
 const getKittens = (req, res, next) => {
