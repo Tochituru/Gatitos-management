@@ -10,8 +10,8 @@
 </head>
 <body onload="initialize()">
     <header>
-        <h1>Gatites Management</h1>
-        <button class="button" id='addBtn' onclick="toggleModal('addModalBackground', '.addCat')">
+        <h1 class="title">Gatites Management</h1>
+        <button class="button" id='addBtn' onclick="toggleModal('addModal', '.addCat')">
             <div class="addBtnText">Tengo otro gatito
             </div>
         </button>
@@ -34,10 +34,10 @@
             </tbody>
         </table>
     </main>
-    <aside class="hidden" id="addModalBackground">
-        <section>
+    <aside class="modalContainer hidden" id="addModal">
+        <section class="modal">
             <header>
-                <div>¡Otro gato más!</div>
+                <div class="title">¡Otro gato más!</div>
             </header>
             <main>
                 <form id="addCatForm" action="#" method='post'>
@@ -51,16 +51,15 @@
                 </form>
             </main>
             <footer>
-                <button class="addCat" onclick="createKitten(); toggleModal('addModalBackground')">Agregar gatito</button>
-                <button class="cancelAdd" onclick="toggleModal('addModalBackground')">Cancelar</button>
+                <button class="addCat" onclick="createKitten(); toggleModal('addModal')">Agregar gatito</button>
+                <button class="cancelAdd" onclick="toggleModal('addModal')">Cancelar</button>
             </footer>
-
         </section>
     </aside>
-    <aside class="hidden" id="editModalBackground">
-        <section>
+    <aside class="modalContainer hidden" id="editModal">
+        <section class="modal">
             <header>
-                <div>Editar gatito</div>
+                <div class="title">Editar gatito</div>
             </header>
             <main>
                 <form id="editCatForm" action="#" method='post'>
@@ -73,20 +72,21 @@
                 </form>
             </main>
             <footer>
-                <button id="" class="editCat" onclick="editKitten(); toggleModal('editModalBackground')">Editar gatito</button>
-                <button class="cancelEdit" onclick="toggleModal('editModalBackground')">Cancelar</button>
+                <button id="" class="editCat" onclick="editKitten(); toggleModal('editModal')">Editar gatito</button>
+                <button class="cancelEdit" onclick="toggleModal('editModal')">Cancelar</button>
             </footer>
-
         </section>
     </aside>
-    <aside class="hidden" id="deleteModalBackground">
-        <section>
-            <header>Chau, gatito</header>
+    <aside class="modalContainer hidden" id="deleteModal">
+        <section class="modal">
+            <header>
+                <div class="title">Chau, gatito</div>
+            </header>
             <main>Mi gato ascendió a estado de Dios entre los egipcios. O consiguió una familia nueva.<br />
             Quiero borrarlo.</main>
             <footer>
-                <button id="" class="deleteCat" onclick="deleteKitten(); toggleModal('deleteModalBackground')">Borrar gato</button>
-                <button class="cancelDelete" onclick="toggleModal('deleteModalBackground')">Cancelar</button>
+                <button id="" class="deleteCat" onclick="deleteKitten(); toggleModal('deleteModal')">Borrar gato</button>
+                <button class="cancelDelete" onclick="toggleModal('deleteModal')">Cancelar</button>
             </footer>
         </section>
     </aside>

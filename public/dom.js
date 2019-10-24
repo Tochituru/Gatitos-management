@@ -43,8 +43,8 @@ const createTable = element => {
         newRow.appendChild(createCell('email', element.email));
         let actionsCell = createCell('actions', '');
         newRow.appendChild(actionsCell);
-        actionsCell.appendChild(createBtn('editBtn', element.id, 'Editar', "toggleModal('editModalBackground', 'editBtn'),  getKittenId()"));
-        actionsCell.appendChild(createBtn('deleteBtn', element.id, 'Eliminar', "toggleModal('deleteModalBackground'); getKittenForDelete()"))
+        actionsCell.appendChild(createBtn('editBtn', element.id, 'Editar', "toggleModal('editModal', 'editBtn'),  getKittenId()"));
+        actionsCell.appendChild(createBtn('deleteBtn', element.id, 'Eliminar', "toggleModal('deleteModal'); getKittenForDelete()"))
         //    console.log(newRow);
         return kittenTable.appendChild(newRow);
     })
