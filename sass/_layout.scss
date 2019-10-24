@@ -13,7 +13,24 @@ body {
     }
   }
 }
-
-.background-one {
-  background-image: url('../assets/cat-heads-grey.jpg');
+.bgDefault {
+  background-color: $background;
+}
+.bgOne {
+  background-image: url("../assets/cat-heads-grey.jpg");
+}
+.bgTwo {
+  background-image: url("../assets/cat-heads-minimal.jpg");
+}
+.bgThree {
+  background-image: url("../assets/full-cat-grey.jpg");
+}
+.bgFour {
+  background-image: url("../assets/full-cat-multi.jpg");
+}
+.bgFive {
+  background-image: url("../assets/full-cat-pink.jpg");
+}
+.bgSix {
+  background-color: $background;
 }

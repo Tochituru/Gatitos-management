@@ -5,7 +5,7 @@ const body = document.querySelector('body');
 //console.log(body);
 
 const backChange = () => {
-    body.classList.add('background-one');
+    body.classList.add('bgOne');
   //  console.log(body);
 }
 
