@@ -9,6 +9,19 @@ let kittens = [
     { id: uniqid(), name: 'Groucho', adoptionDate: '20121996', color: 'naranja y azul', favoriteToy: 'láser', email: 'mirame@muerdomucho.com' }
 ]
 
+let dataObject = {};
+const fillObject = (received) => {
+    dataObject = {
+        id: `${received.id}`,
+        name: `${received.name}`,
+        adoptionDate: `${received.adoptionDate}`,
+        color: `${received.color}`,
+        favoriteToy: `${received.favoriteToy}`,
+        email: `${received.email}`,
+    }
+}
+
+
 const getKittens = (req, res, next) => {
     res.status(200).json({ kittens });
     console.log('se hizo el get kittens')
@@ -26,29 +39,17 @@ const getKittenId = (req, res, next) => {
     next();
 }
 
-
-
 const postKitten = (req, res, next) => {
+    let reqData = req.body;
+    fillObject(reqData);
 
-    let data = req.body;
-    const name = data.name;
-    const adoptionDate = data.adoptionDate;
-    const color = data.color;
-    const favoriteToy = data.favoriteToy;
-    const email = data.email;
-    if (validateAllFields(name, adoptionDate, color, favoriteToy, email)) {
-        let newKitten = {
-            id: uniqid(),
-            name: name,
-            adoptionDate: adoptionDate,
-            color: color,
-            favoriteToy: favoriteToy,
-            email: email,
-        }
+    if (validateAllFields(dataObject)) {
+        let newKitten = { ...dataObject };
+        newKitten.id = uniqid();
         kittens.push(newKitten);
         console.log(newKitten);
         res.status(200).json({ kittens })
-        console.log('adding kitten');
+        console.log('kitten added');
         next();
     } else {
         res.status(404).send('Le pifiaste al gatito')
@@ -57,7 +58,7 @@ const postKitten = (req, res, next) => {
 
 
 const patchKitten = (req, res, next) => {
-    let data = req.body;
+    let reqData = req.body;
     let index = '';
     let resKitten = kittens.find((e, i) => {
         index = i;
@@ -65,22 +66,9 @@ const patchKitten = (req, res, next) => {
     })
 
     if (resKitten) {
-        const id = data.id;
-        const name = data.name;
-        const adoptionDate = data.adoptionDate;
-        const color = data.color;
-        const favoriteToy = data.favoriteToy;
-        const email = data.email;
-        if (validateAllFields(name, adoptionDate, color, favoriteToy, email)) {
-            let editedKitten = {
-                id: id,
-                name: name,
-                adoptionDate: adoptionDate,
-                color: color,
-                favoriteToy: favoriteToy,
-                email: email,
-            };
-            //        let editedKitten = { ...resKitten, ...data };
+        fillObject(reqData);
+        if (validateAllFields(dataObject)) {
+            let editedKitten = { ...dataObject };
             kittens.splice(index, 1);
             kittens.push(editedKitten);
             res.status(200).json(editedKitten);
@@ -105,13 +93,13 @@ const deleteKitten = (req, res, next) => {
 
 const getKittenName = (req, res, next) => {
     let queryName = req.query.name;
-//    let queryColor = req.query.color;
+    //    let queryColor = req.query.color;
     console.log(queryName);
     let resKitten = kittens.filter(kitten => kitten.name.toLowerCase().startsWith(queryName))
-//    let resColor = kittens.filter(kitten => kitten.color.toLowerCase().includes(queryColor))
-//    console.log(queryColor);
+    //    let resColor = kittens.filter(kitten => kitten.color.toLowerCase().includes(queryColor))
+    //    console.log(queryColor);
 
-//        kitten.color.toLowerCase().includes(queryColor);
+    //        kitten.color.toLowerCase().includes(queryColor);
 
     if (resKitten) {
         res.status(200).json(resKitten)
@@ -119,7 +107,7 @@ const getKittenName = (req, res, next) => {
 /*     } else if (resColor) {
         res.status(200).json(resColor)
         console.log('llamamos al gatito por el color')
-    */} else {
+*/    } else {
         res.status(404).send('gatito no encontrado')
     }
     next()

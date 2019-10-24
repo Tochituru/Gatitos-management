@@ -11,7 +11,7 @@
 <body onload="initialize()">
     <header>
         <h1>Gatites Management</h1>
-        <button class="button" id='addBtn' onclick="openModal()">
+        <button class="button" id='addBtn' onclick="toggleModal('addModalBackground', '.addCat')">
             <div class="addBtnText">Tengo otro gatito
             </div>
         </button>
@@ -51,8 +51,8 @@
                 </form>
             </main>
             <footer>
-                <button class="addCat" onclick="createKitten(); closeModal()">Agregar gatito</button>
-                <button class="cancelAdd" onclick="closeModal()">Cancelar</button>
+                <button class="addCat" onclick="createKitten(); toggleModal('addModalBackground')">Agregar gatito</button>
+                <button class="cancelAdd" onclick="toggleModal('addModalBackground')">Cancelar</button>
             </footer>
 
         </section>
@@ -73,8 +73,8 @@
                 </form>
             </main>
             <footer>
-                <button id="" class="editCat" onclick="editKitten(); closeModal()">Editar gatito</button>
-                <button class="cancelEdit" onclick="closeModal()">Cancelar</button>
+                <button id="" class="editCat" onclick="editKitten(); toggleModal('editModalBackground')">Editar gatito</button>
+                <button class="cancelEdit" onclick="toggleModal('editModalBackground')">Cancelar</button>
             </footer>
 
         </section>
@@ -85,8 +85,8 @@
             <main>Mi gato ascendió a estado de Dios entre los egipcios. O consiguió una familia nueva.<br />
             Quiero borrarlo.</main>
             <footer>
-                <button id="" class="deleteCat" onclick="deleteKitten(); closeModal()">Borrar gato</button>
-                <button class="cancelDelete" onclick="closeModal()">Cancelar</button>
+                <button id="" class="deleteCat" onclick="deleteKitten(); toggleModal('deleteModalBackground')">Borrar gato</button>
+                <button class="cancelDelete" onclick="toggleModal('deleteModalBackground')">Cancelar</button>
             </footer>
         </section>
     </aside>

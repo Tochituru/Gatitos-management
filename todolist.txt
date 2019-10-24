@@ -16,12 +16,12 @@ x editKitten
 
 
 validacion de cliente 
-x fórmulas de validaciones
+x fórmulas de validaciones - funcionan todas
 x disable button cuando no es válido: https://www.w3schools.com/jsref/prop_pushbutton_disabled.asp 
 - mensajes de error con tooltips?
 
 validaciones de server
-x absolutamente todo
+x absolutamente todo- funcionan todas
 
 
 
@@ -30,11 +30,9 @@ html: maquetar como campeonas ...
 - icons
 - background pics
 - modals
-- change themes by button
+- change themes by button [working on it]
 x ordernar por table headings (orden ascendente y descendente)
 
 Consultas para Mike:
-- openAddModal no siempre funciona
-- validation de email y fecha no funca bien (en objeto, sí por fuera)
 - spread operator y destructuring
 - filter by all properties

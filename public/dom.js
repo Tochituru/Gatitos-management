@@ -1,17 +1,29 @@
 const api = 'http://localhost:3000/api/kittens';
 let kittenTable = document.getElementById('kittenTable')
+const addCatBtn = document.querySelector('.addCat')
+const inputs = document.querySelectorAll('input');
+
+const addForm = document.forms['addCatForm'];
+const formElements = Array.from(addForm.elements);
+
+let formObject = {};
 
 
 //crear celdas
 const createCell = (fieldClass, fieldValue) => {
     let newCell = document.createElement('td');
-    newCell.innerHTML = fieldValue;
-    newCell.classList.add(fieldClass);
-    // if (fieldClass === 'adoptionDate') {
-    //     fieldValue.replace(/(\w{4})/g).replace(/(^\s+|\s+$)/,'')
-    //     console.log(fieldValue);
-    // }
-    //    console.log('cell', newCell)
+    if (fieldClass === 'adoptionDate') {
+        let newString = `${fieldValue.slice(0, 2)}/${fieldValue.slice(2, 4)}/${fieldValue.slice(4, 8)}`
+        newCell.innerHTML = newString;
+        //console.log(newString);
+
+        newCell.classList.add(fieldClass);
+        ;
+    } else {
+        newCell.innerHTML = fieldValue;
+        newCell.classList.add(fieldClass);
+    }
+    //console.log('cell', newCell)
     return newCell
 }
 //crear botones editar borrar
@@ -31,8 +43,8 @@ const createTable = element => {
         newRow.appendChild(createCell('email', element.email));
         let actionsCell = createCell('actions', '');
         newRow.appendChild(actionsCell);
-        actionsCell.appendChild(createBtn('editBtn', element.id, 'Editar', 'openModal(); getKittenId()'));
-        actionsCell.appendChild(createBtn('deleteBtn', element.id, 'Eliminar', 'openModal(); getKittenForDelete()'))
+        actionsCell.appendChild(createBtn('editBtn', element.id, 'Editar', "toggleModal('editModalBackground', 'editBtn'),  getKittenId()"));
+        actionsCell.appendChild(createBtn('deleteBtn', element.id, 'Eliminar', "toggleModal('deleteModalBackground'); getKittenForDelete()"))
         //    console.log(newRow);
         return kittenTable.appendChild(newRow);
     })
@@ -51,9 +63,8 @@ const initialize = () => {
 
 
 //validations
-const inputs = document.querySelectorAll('input');
-
 const validations = {
+    id: /.*/, //que sirva para todo
     name: /^[(a-z)\ +(a-z)]{2,30}$/i,
     adoptionDate: /^[0-9]{8}$/i,
     color: /^[(a-z)\ +(a-z)]{3,30}$/i,
@@ -73,49 +84,33 @@ const validate = (field, regex) => {
     };
 }
 
-
 //a medida que el usuario escribe
 inputs.forEach(input => {
     input.addEventListener('keyup', e => { validate(e.target, validations[e.target.attributes.name.value]) }
     );
     input.addEventListener('focus', e => { validate(e.target, validations[e.target.attributes.name.value]) }
     )
-
 });
 
 //Todas las validaciones (?)
-const conditional = (field, objectProperty) => {
-    if (validate(field, objectProperty)) {
-        return true;
-    } else { return false }
+const conditional = (field) => {
+    if (validations[field[0]].test(field[1])) return true;
+    else return false;
 }
 
-const validateAllFields = (name, date, color, toy, email) => {
-    conditional(name, validations.name);
-    conditional(date, validations.adoptionDate);
-    conditional(color, validations.color);
-    conditional(toy, validations.favoriteToy);
-    conditional(email, validations.email);
-    console.log(conditional(name, validations.name));
-    console.log(conditional(date, validations.adoptionDate));
-    console.log(conditional(color, validations.color));
-    console.log(conditional(toy, validations.favoriteToy));
-    console.log(conditional(email, validations.email));
+const validateAllFields = (fields) => {
+    let validateResult = Object.entries(fields).map(field => conditional(field));
+    const isTrue = (element) => element === true;
+    return validateResult.every(isTrue);
 
+    //object keys envía una lista de las keys del objeto
+    //Object entries una lista de listas que contiene la propiedad y el valor
 }
 
 //hacer el post
 //conseguir elementos desde document.forms para evitar las mil variables
-const dateRegex = /^[0-9]{8}$/;
-const emailRegex = /^([\w\d\.-]+)@([\w\d-]+)\.(\w{2,8})(\.\w{2,8})?$/i;
-
-const addForm = document.forms['addCatForm'];
-const formElements = Array.from(addForm.elements);
 
 const cleanForm = (formToClean) => formToClean.forEach(inputElement => inputElement.value = '');
-
-
-let formObject = {};
 
 const fillObject = (formName) => {
     formObject = {
@@ -126,16 +121,17 @@ const fillObject = (formName) => {
         favoriteToy: `${formName.elements[4].value}`,
         email: `${formName.elements[5].value}`,
     }
-    console.log('formObject', formObject)
+    //console.table('formObject', formObject);
 }
 
 const createKitten = () => {
     event.preventDefault();
     fillObject(addForm);
-    //Regex for date and email not working in the context of validatios
-    if (validateAllFields(formObject.name, formObject.color, formObject.favoriteToy, formObject.adoptionDate, formObject.email)) {
+    //console.table(formObject);
+
+    if (validateAllFields(formObject)) {
         let catAdd = { ...formObject };
-        console.log('cat', catAdd);
+      //  console.log('cat', catAdd);
         fetch(api, {
             method: 'POST',
             headers: {
@@ -190,7 +186,7 @@ const editKitten = () => {
     let id = event.target.id;
     fillObject(editForm);
     //Regex for date and email not working in the context of validatios
-    if (validateAllFields(formObject.name, formObject.color, formObject.favoriteToy, formObject.adoptionDate, formObject.email)) {
+    if (validateAllFields(formObject)) {
         let catEdit = { ...formObject };
         console.log('cat', catEdit);
         fetch(`${api}/id/${id}`, {
@@ -253,38 +249,16 @@ const filterKittens = () => {
 
 
 //Modals
-const addModal = document.getElementById('addModalBackground');
-const editModal = document.getElementById('editModalBackground');
-const deleteModal = document.getElementById('deleteModalBackground');
-const addCatBtn = document.querySelector('.addCat')
 
+//toggle que reciba el elemento por id directamente;
 
-const openModalCondition = (btnName, modal, modalBtn) => {
-    if (event.target.className == btnName) {
-        modal.classList.remove('hidden');
-        //disabled should be true if all fields are empty
-        if (modalBtn === addCatBtn || modalBtn === editCatBtn) modalBtn.disabled = true
-    }
+const toggleModal = (modal, modalBtn) => {
+    let element = document.getElementById(modal);
+    element.classList.toggle('hidden');
+    let btnToChange = document.querySelector(modalBtn)
+    if (btnToChange === addCatBtn || btnToChange === editCatBtn) btnToChange.disabled = true;
 }
 
-const openModal = () => {
-    openModalCondition('button', addModal, addCatBtn);
-    openModalCondition('editBtn', editModal, editCatBtn);
-    openModalCondition('deleteBtn', deleteModal);
-}
-
-const closeModalCondition = (btnName, modal) => {
-    if (event.target.className == btnName) modal.classList.add('hidden')
-}
-
-const closeModal = () => {
-    closeModalCondition('addCat', addModal);
-    closeModalCondition('editCat', editModal);
-    closeModalCondition('deleteCat', deleteModal);
-    closeModalCondition('cancelAdd', addModal);
-    closeModalCondition('cancelEdit', editModal);
-    closeModalCondition('cancelDelete', deleteModal);
-}
 
 //sorting tables
 const compareValues = (key, order = 'asc') => {
