@@ -278,3 +278,15 @@ const sortColumn = () => {
             createTable(dataSorted);
         })
 }
+
+
+//change background image
+const body = document.querySelector('body');
+
+const bgArray = ['bgDefault', 'bgOne', 'bgTwo', 'bgThree', 'bgFour', 'bgFive'];
+let index = 0;
+
+const bgChange = () => {
+  body.className = bgArray[++index % bgArray.length];
+}
+    
