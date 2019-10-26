@@ -44,10 +44,10 @@ const createBtn = (classValue, idValue, text, todo) => {
 const createTable = element => {
     element.forEach(element => {
         let newRow = document.createElement('tr');
-        newRow.appendChild(createCell('name', element.name)); newRow.appendChild(createCell('adoptionDate', element.adoptionDate));
-        newRow.appendChild(createCell('color', element.color));
-        newRow.appendChild(createCell('favoriteToy', element.favoriteToy));
-        newRow.appendChild(createCell('email', element.email));
+        newRow.appendChild(createCell('name', element.name.toUpperCase())); newRow.appendChild(createCell('adoptionDate', element.adoptionDate));
+        newRow.appendChild(createCell('color', element.color.toUpperCase()));
+        newRow.appendChild(createCell('favoriteToy', element.favoriteToy.toUpperCase()));
+        newRow.appendChild(createCell('email', element.email.toUpperCase()));
         let actionsCell = createCell('actions', '');
         newRow.appendChild(actionsCell);
         actionsCell.appendChild(createBtn('editBtn', element.id, editImg, "toggleModal('editModal', 'editBtn'),  getKittenId()"));
@@ -164,11 +164,11 @@ const getKittenId = () => {
             let editCatEmail = document.getElementById('editCatEmail');
             editModalBtn.setAttribute('id', `${eachKitten.id}`);
             idForm.value = eachKitten.id;
-            editCatName.value = eachKitten.name;
+            editCatName.value = eachKitten.name.toUpperCase();
             editCatAdoptionDate.value = eachKitten.adoptionDate;
-            editCatColor.value = eachKitten.color;
-            editCatFavoriteToy.value = eachKitten.favoriteToy;
-            editCatEmail.value = eachKitten.email;
+            editCatColor.value = eachKitten.color.toUpperCase();
+            editCatFavoriteToy.value = eachKitten.favoriteToy.toUpperCase();
+            editCatEmail.value = eachKitten.email.toUpperCase();
         })
 }
 //hacer el patch 
@@ -289,4 +289,3 @@ let index = 0;
 const bgChange = () => {
   body.className = bgArray[++index % bgArray.length];
 }
-    

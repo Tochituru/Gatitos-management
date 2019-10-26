@@ -18,7 +18,6 @@ x editKitten
 validacion de cliente 
 x fórmulas de validaciones - funcionan todas
 x disable button cuando no es válido: https://www.w3schools.com/jsref/prop_pushbutton_disabled.asp 
-- mensajes de error con tooltips?
 
 validaciones de server
 x absolutamente todo- funcionan todas
@@ -33,6 +32,9 @@ x background pics
 x change themes by button 
 x ordernar por table headings (orden ascendente y descendente)
 - indicar el orden con icono
+- mensajes de error con tooltips?
+
+Issues:
 - sort goes back to full list
 - review var names
 

@@ -1,11 +1,9 @@
 button {
-  display: block;
   border: none;
   margin: 0;
   padding: 5px;
   text-decoration: none;
   background: $hover;
-  font-family: sans-serif;
   cursor: pointer;
   transition: background 250ms ease-in-out, transform 150ms ease;
   // -webkit-appearance: none;
@@ -15,8 +13,9 @@ button {
   border-radius: 50%;
   transition: 0.5s;
   -webkit-transition: 0.5s;
-  height: 40px;
-  width: 40px;
+  height: 
+  45px;
+  width: 45px;
   .icon {
     height: 30px;
     width: 30px;

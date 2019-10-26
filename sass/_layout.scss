@@ -6,11 +6,15 @@ body {
     display: flex;
     flex-direction: column;
     align-content: center;
-    .filter {
+    margin: 0;
+    .internalHeader {
       display: flex;
-      justify-content: flex-end;
-      padding: 2em;
+      justify-content: space-between;
+      .changeBg, .filter {
+        margin: 10px 5px;
+      }
     }
+
   }
 }
 .bgDefault {

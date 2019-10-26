@@ -5,6 +5,7 @@ form {
 }
 input {
   font-family: $fontFamily;
+  font-size: 14px;
   width: 25em;
   border-radius: 5px;
   border: 1px solid #cccccc;
@@ -18,6 +19,7 @@ input {
 input::placeholder {
   padding: 4px;
   font-family: $fontFamily;
+  font-size: 14px;
   color: gray;
 }
 

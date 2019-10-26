@@ -5,9 +5,26 @@ table {
     }
     th,
     td {
-      text-align: left;
+      width: 15%;
       vertical-align: middle;
       padding: 1em;
+      font-size: 14px;
+    }
+    th {
+      text-align: center;
+      .icon {
+        width: 15px;
+        height: 15px;
+      }
+      .afterHover {
+        display: none;
+      }
+      .theading {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
     }
     tbody {
         tr:hover {
