@@ -13,7 +13,7 @@
 <body class="bgDefault" onload="initialize()">
     <header>
         <h1 class="title">GATITES MANAGEMENT</h1>
-        <button id='addBtn' onclick="toggleModal('addModal', '.addCat')">
+        <button id='addBtn' onclick="toggleModal('addModal', '.addModalBtn')">
             <img src="../statics/assets/icons-black/addIconB.png" alt="" class="icon beforeHover">
             <img src="../statics/assets/icons-white/addIconW.png" alt="" class="icon afterHover">
         </button>
@@ -38,12 +38,12 @@
                         </span>
                     </div>
                 </th>
-                <th class="adoptionDate" onclick="sortColumn('adoptionDate')">
+                <th class="date" onclick="sortColumn('date')">
                     <div class="theading">
                         <span>FECHA DE ADOPCIÓN</span>
                         <span>&nbsp;&nbsp;&nbsp;</span>
                         <span class="thIcon">
-                                <img src="../statics/assets/icons-black/sortB.png" alt="" class="icon">
+                            <img src="../statics/assets/icons-black/sortB.png" alt="" class="icon">
                         </span>
                     </div>
                 </th>
@@ -52,17 +52,17 @@
                         <span>COLORES</span>
                         <span>&nbsp;&nbsp;&nbsp;</span>
                         <span class="thIcon">
-                                <img src="../statics/assets/icons-black/sortB.png" alt="" class="icon">
-                            </span>
+                            <img src="../statics/assets/icons-black/sortB.png" alt="" class="icon">
+                        </span>
                     </div>
                 </th>
-                <th class="favoriteToy" onclick="sortColumn('favoriteToy')">
+                <th class="toy" onclick="sortColumn('toy')">
                     <div class="theading">
                         <span>JUGUETE FAVORITO</span>
                         <span>&nbsp;&nbsp;&nbsp;</span>
                         <span class="thIcon">
-                                <img src="../statics/assets/icons-black/sortB.png" alt="" class="icon">
-                            </span>
+                            <img src="../statics/assets/icons-black/sortB.png" alt="" class="icon">
+                        </span>
                     </div>
                 </th>
                 <th class="email" onclick="sortColumn()">
@@ -70,8 +70,8 @@
                         <span>CORREO ELECTRÓNICO</span>
                         <span>&nbsp;&nbsp;&nbsp;</span>
                         <span class="thIcon">
-                                <img src="../statics/assets/icons-black/sortB.png" alt="" class="icon">
-                            </span>
+                            <img src="../statics/assets/icons-black/sortB.png" alt="" class="icon">
+                        </span>
                     </div>
                 </th>
                 <th class="actions">ACCIONES</th>
@@ -86,25 +86,37 @@
                 <div class="title">HOLA, NUEVO GATITO</div>
             </header>
             <main>
-                <form id="addCatForm" action="#" method='post'>
+                <form id="addForm" action="#" method='post'>
                     <input type="text" class="hidden" value="">
-                    <input type="text" name="name" id="newCatName" placeholder="NOMBRE DEL GATITO" value="">
-                    <input type="text" name="adoptionDate" id="newCatAdoptionDate"
-                        placeholder="FECHA EN QUE EL GATITO TE ADOPTÓ" value="">
-                    <input type="text" name="color" id="newCatColor" placeholder="BLANCO, NEGRO, VIOLETA (?)" value="">
-                    <input type="text" name="favoriteToy" id="newCatFavoriteToy"
-                        placeholder="CAJA, CATNIP, SU HUMANO" value="">
-                    <input type="text" name="email" id="newCatEmail"
-                        placeholder="GATO@MUCHO.GATO.COM" value="">
+                    <label for="name" class="invalid">NOMBRE</label>
+                    <input type="text" name="name" id="newCatName" placeholder="NOMBRE DEL GATITO" value=""
+                        class="invalid">
+                    <div class="error">ENTRE DOS Y TREINTA LETRAS</div>
+                    <label for="date" class="invalid">FECHA DE ADOPCIÓN</label>
+                    <input type="text" name="date" id="newCatAdoptionDate"
+                        placeholder="FECHA EN QUE EL GATITO TE ADOPTÓ" value="" class="invalid">
+                    <div class="error">ESCRIBÍ LA FECHA ASÍ: DDMMAAAA</div>
+                    <label for="color" class="invalid">COLOR</label>
+                    <input type="text" name="color" id="newCatColor" placeholder="BLANCO, NEGRO, VIOLETA (?)" value=""
+                        class="invalid">
+                    <div class="error">ENTRE DOS Y TREINTA LETRAS</div>
+                    <label for="toy" class="invalid">JUGUETE FAVORITO</label>
+                    <input type="text" name="toy" id="newCatFavoriteToy" placeholder="CAJA, CATNIP, SU HUMANO"
+                        value="" class="invalid">
+                    <div class="error">ENTRE DOS Y TREINTA LETRAS</div>
+                    <label for="email" class="invalid">CORREO ELECTRÓNICO</label>
+                    <input type="text" name="email" id="newCatEmail" placeholder="GATO@MUCHO.GATO.COM" value=""
+                        class="invalid">
+                    <div class="error">SABEMOS QUE LE HICISTE UN CORREO ELETRÓNICO: test@test.com</div>
                 </form>
             </main>
             <footer>
-                <button class="addCat" onclick="createKitten(); toggleModal('addModal')">
+                <button class="addModalBtn" onclick="createKitten(); toggleModal('addModal')">
                     <img src="../statics/assets/icons-black/addIconB.png" alt="" class="icon beforeHover">
                     <img src="../statics/assets/icons-white/addIconW.png" alt="" class="icon afterHover">
                     <img src="../statics/assets/icons-grey/disBtn.png" alt="" class="icon disabled">
                 </button>
-                <button class="cancelBtn cancelAdd" onclick="toggleModal('addModal')">
+                <button class="cancelBtn" onclick="toggleModal('addModal')">
                     <img src="../statics/assets/icons-black/cancelXB.png" alt="" class="icon beforeHover">
                     <img src="../statics/assets/icons-white/cancelXW.png" alt="" class="icon afterHover">
                 </button>
@@ -119,14 +131,26 @@
             <main>
                 <form id="editCatForm" action="#" method='post'>
                     <input class="idForm hidden" type=text id="editKittenId" value="">
-                    <input type="text" name="name" id="editCatName" placeholder="NOMBRE DEL GATITO" value="">
-                    <input type="text" name="adoptionDate" id="editCatAdoptionDate"
-                        placeholder="FECHA EN QUE EL GATITO TE ADOPTÓ" value="">
-                    <input type="text" name="color" id="editCatColor" placeholder="BLANCO, NEGRO, VIOLETA (?)" value="">
-                    <input type="text" name="favoriteToy" id="editCatFavoriteToy"
-                        placeholder="CAJA, CATNIP, SU HUMANO" value="">
-                    <input type="text" name="email" id="editCatEmail"
-                        placeholder="GATO@MUCHO.GATO.COM" value="">
+                    <label for="name" class="valid">NOMBRE</label>
+                    <input type="text" name="name" id="editCatName" placeholder="NOMBRE DEL GATITO" value=""
+                        class="valid">
+                    <div class="error">ENTRE DOS Y TREINTA LETRAS</div>
+                    <label for="date" class="valid">FECHA DE ADOPCIÓN</label>
+                    <input type="text" name="date" id="editCatAdoptionDate"
+                        placeholder="FECHA EN QUE EL GATITO TE ADOPTÓ" value="" class="valid">
+                    <div class="error">ESCRIBÍ LA FECHA ASÍ: DDMMAAAA</div>
+                    <label for="color" class="valid">COLOR</label>
+                    <input type="text" name="color" id="editCatColor" placeholder="BLANCO, NEGRO, VIOLETA (?)" value=""
+                        class="valid">
+                    <div class="error">ENTRE DOS Y TREINTA LETRAS</div>
+                    <label for="toy" class="valid">JUGUETE FAVORITO</label>
+                    <input type="text" name="toy" id="editCatFavoriteToy" placeholder="CAJA, CATNIP, SU HUMANO"
+                        value="" class="valid">
+                    <div class="error">ENTRE DOS Y TREINTA LETRAS</div>
+                    <label for="email" class="valid">CORREO ELECTRÓNICO</label>
+                    <input type="text" name="email" id="editCatEmail" placeholder="GATO@MUCHO.GATO.COM" value=""
+                        class="valid">
+                    <div class="error">SABEMOS QUE LE HICISTE UN CORREO ELETRÓNICO: test@test.com</div>
                 </form>
             </main>
             <footer>
@@ -135,38 +159,38 @@
                     <img src="../statics/assets/icons-white/editIconW.png" alt="" class="icon afterHover">
                     <img src="../statics/assets/icons-grey/disBtn.png" alt="" class="icon disabled">
                 </button>
-                <button class="cancelBtn cancelEdit" onclick="toggleModal('editModal')">
+                <button class="cancelBtn" onclick="toggleModal('editModal')">
                     <img src="../statics/assets/icons-black/cancelXB.png" alt="" class="icon beforeHover">
                     <img src="../statics/assets/icons-white/cancelXW.png" alt="" class="icon afterHover">
                 </button>
             </footer>
         </section>
     </aside>
-    <aside class="modalContainer hidden" id="deleteModal">
+    <aside class="modalContainer hidden" id="delModal">
         <section class="modal">
             <header>
-                <div class="title">CHAU, GATITO/div>
+                <div class="title">CHAU, GATITO</div>
             </header>
             <main class="delModalMain">
-                    <div class="warning">
-                            MI GATO ASCENDIÓ A ESTADO DE DIOS ENTRE LOS EGIPCIOS...<br/>
-                            <br/>
-                            O CONSIGUIÓ UNA FAMILIA NUEVA.
-                            <br />
-                            <br />
-                            <br />
-                            <br/>
-                            QUIERO BORRARLO.
-                        </div>  
+                <div class="warning">
+                    MI GATO ASCENDIÓ A ESTADO DE DIOS ENTRE LOS EGIPCIOS...<br />
+                    <br />
+                    O CONSIGUIÓ UNA FAMILIA NUEVA.
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    QUIERO BORRARLO.
+                </div>
             </main>
 
             <footer>
-                <button id="" class="deleteCat" onclick="deleteKitten(); toggleModal('deleteModal')">
+                <button id="" class="delModalBtn" onclick="deleteKitten(); toggleModal('delModal')">
                     <img src="../statics/assets/icons-black/deleteIconB.png" alt="" class="icon beforeHover">
                     <img src="../statics/assets/icons-white/deleteIconW.png" alt="" class="icon afterHover">
                     <img src="../statics/assets/icons-grey/disBtn.png" alt="" class="icon disabled">
                 </button>
-                <button class="cancelBtn cancelDelete" onclick="toggleModal('deleteModal')">
+                <button class="cancelBtn" onclick="toggleModal('delModal')">
                     <img src="../statics/assets/icons-black/cancelXB.png" alt="" class="icon beforeHover">
                     <img src="../statics/assets/icons-white/cancelXW.png" alt="" class="icon afterHover">
                 </button>
@@ -174,10 +198,8 @@
         </section>
     </aside>
 
-
     <script src="../statics/js/dom.js" type="text/javascript"></script>
-    <script src="../statics/js/test.js"></script>
-
+    <script src="../statics/js/validations.js" type="text/javascript"></script>
 </body>
 
 </html>

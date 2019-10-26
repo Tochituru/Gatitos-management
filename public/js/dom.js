@@ -1,36 +1,32 @@
 const api = 'http://localhost:3000/api/kittens';
-let kittenTable = document.getElementById('kittenTable')
-const inputs = document.querySelectorAll('input');
-const addForm = document.forms['addCatForm'];
-const formElements = Array.from(addForm.elements);
-let formObject = {};
-const addModalBtn = document.querySelector('.addCat')
-const cancelBtn = Array.from(document.querySelectorAll('.cancelBtn'));
-let editModalBtn = document.querySelector('.editCat')
-const deleteBtn = document.querySelector('.deleteCat');
-const editImg = `<img src="../statics/assets/icons-black/editIconB.png" alt="" class="icon beforeHover">
-<img src="../statics/assets/icons-white/editIconW.png" alt="" class="icon afterHover">`;
+const addForm = document.forms['addForm'];
+const addInputs = Array.from(addForm.elements);
+const addModal = document.getElementById('addModal');
+const addModalBtn = document.querySelector('.addModalBtn')
 const deleteImg = `<img src="../statics/assets/icons-black/deleteIconB.png" alt="" class="icon beforeHover">
 <img src="../statics/assets/icons-white/deleteIconW.png" alt="" class="icon afterHover">`;
-
-const addModal = document.getElementById('addModal');
+const delModal = document.getElementById('delModal')
+const editImg = `<img src="../statics/assets/icons-black/editIconB.png" alt="" class="icon beforeHover">
+<img src="../statics/assets/icons-white/editIconW.png" alt="" class="icon afterHover">`;
 const editModal = document.getElementById('editModal');
-const deleteModal = document.getElementById('deleteModal');
+const editModalBtn = document.querySelector('.editCat')
+
+let formObject = {};
+const inputs = document.querySelectorAll('input');
+const kittenTable = document.getElementById('kittenTable')
 
 //crear celdas
 const createCell = (fieldClass, fieldValue) => {
     let newCell = document.createElement('td');
-    if (fieldClass === 'adoptionDate') {
+    if (fieldClass === 'date') {
         let newString = `${fieldValue.slice(0, 2)}/${fieldValue.slice(2, 4)}/${fieldValue.slice(4, 8)}`
         newCell.innerHTML = newString;
-        //console.log(newString);
         newCell.classList.add(fieldClass);
         ;
     } else {
-        newCell.innerHTML = fieldValue;
+        newCell.innerHTML = fieldValue.toUpperCase();
         newCell.classList.add(fieldClass);
     }
-    //console.log('cell', newCell)
     return newCell
 }
 //crear botones editar borrar
@@ -42,19 +38,19 @@ const createBtn = (classValue, idValue, text, todo) => {
 }
 //crear las filas
 const createTable = element => {
-    element.forEach(element => {
+    element.forEach(({id, name, date, color, toy, email}) => {
         let newRow = document.createElement('tr');
-        newRow.appendChild(createCell('name', element.name.toUpperCase())); newRow.appendChild(createCell('adoptionDate', element.adoptionDate));
-        newRow.appendChild(createCell('color', element.color.toUpperCase()));
-        newRow.appendChild(createCell('favoriteToy', element.favoriteToy.toUpperCase()));
-        newRow.appendChild(createCell('email', element.email.toUpperCase()));
+        newRow.appendChild(createCell('name', name)); newRow.appendChild(createCell('date', date));
+        newRow.appendChild(createCell('color', color));
+        newRow.appendChild(createCell('toy', toy));
+        newRow.appendChild(createCell('email', email));
         let actionsCell = createCell('actions', '');
         newRow.appendChild(actionsCell);
         let innerAction = document.createElement('div');
         innerAction.classList.add('innerAction')
         actionsCell.appendChild(innerAction);
-        innerAction.appendChild(createBtn('editBtn', element.id, editImg, "toggleModal('editModal', 'editBtn'),  getKittenId()"));
-        innerAction.appendChild(createBtn('deleteBtn', element.id, deleteImg, "toggleModal('deleteModal'); getKittenForDelete()"))
+        innerAction.appendChild(createBtn('editBtn', id, editImg, "toggleModal('editModal', 'editBtn'),  getKittenId()"));
+        innerAction.appendChild(createBtn('delBtn', id, deleteImg, "toggleModal('delModal'); getKittenForDelete()"))
         //    console.log(newRow);
         return kittenTable.appendChild(newRow);
     })
@@ -63,39 +59,13 @@ const createTable = element => {
 const initialize = () => {
     fetch(api)
         .then(res => res.json())
-        .then(kittens => {
+        .then(({kittens}) => {
             kittenTable.innerHTML = '';
-            const dataSorted = kittens.kittens.sort(compareValues('name', 'asc'));
+            const dataSorted = kittens.sort(compareValues('name', 'asc'));
             createTable(dataSorted);
         })
 };
-//validations
-const validations = {
-    id: /.*/, //que sirva para todo
-    name: /^[(a-z)\ +(a-z)]{2,30}$/i,
-    adoptionDate: /^[0-9]{8}$/i,
-    color: /^[(a-z)\ +(a-z)]{3,30}$/i,
-    favoriteToy: /^[(a-z)\ +(a-z)]{3,30}$/i,
-    email: /^([\w\d\.-]+)@([\w\d-]+)\.(\w{2,8})(\.\w{2,8})?$/i,
-}
-const validate = (field, regex) => {
-    if (regex.test(field.value)) {
-        addModalBtn.disabled = false;
-        editModalBtn.disabled = false;
-        return true
-    } else {
-        addModalBtn.disabled = true;
-        editModalBtn.disabled = true;
-        return false
-    };
-}
-//a medida que el usuario escribe
-inputs.forEach(input => {
-    input.addEventListener('keyup', e => { validate(e.target, validations[e.target.attributes.name.value]) }
-    );
-    input.addEventListener('focus', e => { validate(e.target, validations[e.target.attributes.name.value]) }
-    )
-});
+
 //Todas las validaciones (?)
 const conditional = (field) => {
     if (validations[field[0]].test(field[1])) return true;
@@ -110,14 +80,20 @@ const validateAllFields = (fields) => {
 }
 //hacer el post
 //conseguir elementos desde document.forms para evitar las mil variables
-const cleanForm = (formToClean) => formToClean.forEach(inputElement => inputElement.value = '');
+const cleanForm = (formToClean) => formToClean.forEach(inputElement => {
+    inputElement.value = '';
+    if (inputElement.previousElementSibling) {
+        inputElement.previousElementSibling.className = 'invalid';
+        inputElement.nextElementSibling.className = 'invalid'
+    }
+});
 const fillObject = (formName) => {
     formObject = {
         id: `${formName.elements[0].value}`,
         name: `${formName.elements[1].value}`,
-        adoptionDate: `${formName.elements[2].value}`,
+        date: `${formName.elements[2].value}`,
         color: `${formName.elements[3].value}`,
-        favoriteToy: `${formName.elements[4].value}`,
+        toy: `${formName.elements[4].value}`,
         email: `${formName.elements[5].value}`,
     }
     //console.table('formObject', formObject);
@@ -139,7 +115,7 @@ const createKitten = () => {
         })
             .then(res => res.json())
             .then(() => {
-                cleanForm(formElements);
+                cleanForm(addInputs);
                 initialize();
                 console.log('kitten created')
             })
@@ -150,7 +126,7 @@ const createKitten = () => {
 }
 //hacer el fetch de edit 
 const editForm = document.forms['editCatForm'];
-const editFormElements = Array.from(editForm.elements);
+const editInputs = Array.from(editForm.elements);
 const getKittenId = () => {
     event.stopPropagation();
     event.preventDefault();
@@ -168,9 +144,9 @@ const getKittenId = () => {
             editModalBtn.setAttribute('id', `${eachKitten.id}`);
             idForm.value = eachKitten.id;
             editCatName.value = eachKitten.name.toUpperCase();
-            editCatAdoptionDate.value = eachKitten.adoptionDate;
+            editCatAdoptionDate.value = eachKitten.date;
             editCatColor.value = eachKitten.color.toUpperCase();
-            editCatFavoriteToy.value = eachKitten.favoriteToy.toUpperCase();
+            editCatFavoriteToy.value = eachKitten.toy.toUpperCase();
             editCatEmail.value = eachKitten.email.toUpperCase();
         })
 }
@@ -194,7 +170,7 @@ const editKitten = () => {
             .then(res => res.json())
             .then(() => {
                 initialize();
-                cleanForm(editFormElements);
+                cleanForm(editInputs);
                 console.log('kitten edited to', catEdit);
             })
             .catch(error => console.log(`You have an error ${error}`));
@@ -207,7 +183,7 @@ const getKittenForDelete = () => {
     event.stopPropagation();
     event.preventDefault();
     id = event.target.id;
-    let deleteAction = document.querySelector('.deleteCat');
+    let deleteAction = document.querySelector('.delModalBtn');
     deleteAction.setAttribute('id', id)
 }
 //hacer delete 
@@ -250,13 +226,14 @@ const toggleModal = (modal, modalBtn) => {
     element.classList.toggle('hidden');
     let btnToChange = document.querySelector(modalBtn)
     if (btnToChange === addModalBtn || btnToChange === editModalBtn) btnToChange.disabled = true;
+    if (modal === 'addModal') cleanForm(addInputs);
 }
 //salir de modal por click afuera
 
 const clickOutsideModal = (event) => {
-    if (event.target === addModal) addModal.classList.toggle('hidden'); 
-    if (event.target === editModal) editModal.classList.toggle('hidden'); 
-    if (event.target === deleteModal) deleteModal.classList.toggle('hidden'); 
+    if (event.target === addModal) addModal.classList.toggle('hidden');
+    if (event.target === editModal) editModal.classList.toggle('hidden');
+    if (event.target === delModal) delModal.classList.toggle('hidden');
 };
 
 window.addEventListener('click', clickOutsideModal)
@@ -291,5 +268,5 @@ const bgArray = ['bgDefault', 'bgOne', 'bgTwo', 'bgThree', 'bgFour', 'bgFive'];
 let index = 0;
 
 const bgChange = () => {
-  body.className = bgArray[++index % bgArray.length];
+    body.className = bgArray[++index % bgArray.length];
 }

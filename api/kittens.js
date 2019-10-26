@@ -2,11 +2,11 @@ const uniqid = require('uniqid');
 const validateAllFields = require('../modules/validations')
 
 let kittens = [
-    { id: uniqid(), name: 'Benja', adoptionDate: '12102004', color: 'gris y verde', favoriteToy: 'Fede', email: 'benja@muerdomucho.com' },
-    { id: uniqid(), name: 'Honsho', adoptionDate: '20062006', color: 'verde', favoriteToy: 'caja', email: 'gatito@muerdomucho.com' },
-    { id: uniqid(), name: 'Bert', adoptionDate: '03042019', color: 'amarillo', favoriteToy: 'Pelusa', email: 'bert@muerdomucho.com' },
-    { id: uniqid(), name: 'Isabella', adoptionDate: '05072010', color: 'rojo', favoriteToy: 'Catnip', email: 'orejas@muerdomucho.com' },
-    { id: uniqid(), name: 'Groucho', adoptionDate: '20121996', color: 'naranja y azul', favoriteToy: 'láser', email: 'mirame@muerdomucho.com' }
+    { id: uniqid(), name: 'Benja', date: '12102004', color: 'gris y verde', toy: 'Fede', email: 'benja@muerdomucho.com' },
+    { id: uniqid(), name: 'Honsho', date: '20062006', color: 'verde', toy: 'caja', email: 'gatito@muerdomucho.com' },
+    { id: uniqid(), name: 'Bert', date: '03042019', color: 'amarillo', toy: 'Pelusa', email: 'bert@muerdomucho.com' },
+    { id: uniqid(), name: 'Isabella', date: '05072010', color: 'rojo', toy: 'Catnip', email: 'orejas@muerdomucho.com' },
+    { id: uniqid(), name: 'Groucho', date: '20121996', color: 'naranja y azul', toy: 'láser', email: 'mirame@muerdomucho.com' }
 ]
 
 let dataObject = {};
@@ -14,9 +14,9 @@ const fillObject = (received) => {
     dataObject = {
         id: `${received.id}`,
         name: `${received.name}`,
-        adoptionDate: `${received.adoptionDate}`,
+        date: `${received.date}`,
         color: `${received.color}`,
-        favoriteToy: `${received.favoriteToy}`,
+        toy: `${received.toy}`,
         email: `${received.email}`,
     }
 }

@@ -32,11 +32,14 @@ x background pics
 x change themes by button 
 x ordernar por table headings (orden ascendente y descendente)
 x indicar el orden con icono
-- mensajes de error con tooltips?
+x mensajes de error con tooltips?
+- subir los modals
+x poner títulos a los inputs
 
 Issues:
 - sort goes back to full list
 - review var names
+- no clean form once you open the modal
 
 Consultas para Mike:
 - spread operator y destructuring
