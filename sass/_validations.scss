@@ -1,0 +1,28 @@
+label.valid {
+    color:$validColor;
+}
+label.invalid {
+    color:$invalidColor;
+    font-weight: bold;
+}
+
+input.valid {
+  border-color: $validColor;
+  color: $validColor;
+  + div {
+    display: none;
+  }
+}   
+
+input.invalid {
+  border-color: $invalidColor;
+  + div {
+    display: block;
+    opacity: 1;
+    height: auto;
+    margin-bottom: 20px;
+    color:$invalidColor;
+    font-weight: bold;
+    text-align: right;
+  }
+}

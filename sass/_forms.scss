@@ -1,7 +1,9 @@
 form {
   display: flex;
-  align-content: stretch;
   flex-direction: column;
+}
+textarea:focus, input:focus{
+  outline: none;
 }
 input {
   font-family: $fontFamily;
@@ -14,7 +16,7 @@ input {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   padding: 8px;
   margin: 10px auto;
-  // transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  color: $invalidColor;
 }
 input::placeholder {
   padding: 4px;

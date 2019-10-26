@@ -60,8 +60,11 @@ button[disabled] .disabled {
 
 form {
   display: flex;
-  align-content: stretch;
   flex-direction: column;
+}
+
+textarea:focus, input:focus {
+  outline: none;
 }
 
 input {
@@ -75,6 +78,7 @@ input {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   padding: 8px;
   margin: 10px auto;
+  color: #ffa500;
 }
 
 input::placeholder {
@@ -100,7 +104,7 @@ input::placeholder {
 }
 .modalContainer .modal {
   background-color: #fff;
-  margin: 10% auto;
+  margin: 5% auto;
   width: 35%;
   border-radius: 10px;
   -webkit-box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.5);
@@ -251,6 +255,36 @@ footer {
   align-content: center;
   padding: 1em 2em;
   border-radius: 0 0 5px 5px;
+}
+
+label.valid {
+  color: #36cc36;
+}
+
+label.invalid {
+  color: #ffa500;
+  font-weight: bold;
+}
+
+input.valid {
+  border-color: #36cc36;
+  color: #36cc36;
+}
+input.valid + div {
+  display: none;
+}
+
+input.invalid {
+  border-color: #ffa500;
+}
+input.invalid + div {
+  display: block;
+  opacity: 1;
+  height: auto;
+  margin-bottom: 20px;
+  color: #ffa500;
+  font-weight: bold;
+  text-align: right;
 }
 
 /*# sourceMappingURL=style.css.map */
