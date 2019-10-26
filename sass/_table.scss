@@ -1,52 +1,55 @@
 table {
-    border-collapse: collapse;
-    thead {
-        background: $theader;
+  border-collapse: collapse;
+  thead {
+    background: $theader;
+  }
+  th,
+  td {
+    width: 15%;
+    vertical-align: middle;
+    padding: 1em 5px;
+    font-size: 14px;
+  }
+  th {
+    text-align: center;
+    .afterHover {
+      display: none;
     }
-    th,
-    td {
-      width: 15%;
-      vertical-align: middle;
-      padding: 1em;
-      font-size: 14px;
+    .theading {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
     }
-    th {
-      text-align: center;
-      .icon {
-        width: 15px;
-        height: 15px;
+    .icon {
+      width: 10px;
+      height: 10px;
+    }
+  }
+  th > * {
+    pointer-events: none;
+  }
+  
+  tbody {
+    tr:hover {
+      background-color: $hover;
+    }
+    tr:nth-child(odd) {
+      background-color: $background;
+    }
+    tr:hover:nth-child(odd) {
+      background-color: $hover;
+    }
+    .innerAction {
+      display: flex;
+      justify-content: space-evenly;
+      .editBtn {
+        cursor: pointer;
+        color: $validColor;
       }
-      .afterHover {
-        display: none;
-      }
-      .theading {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+      .deleteBtn {
+        cursor: pointer;
+        color: $invalidColor;
       }
     }
-    tbody {
-        tr:hover {
-          background-color: $hover;
-        }
-        tr:nth-child(odd) {
-          background-color: $background;
-        }
-        tr:hover:nth-child(odd) {
-          background-color: $hover;
-        }
-        .actions {
-          display: flex;
-          .editBtn {
-            cursor: pointer;
-            color: $validColor;
-          }
-          .deleteBtn {
-            cursor: pointer;
-            color: $invalidColor;
-          }
-    
-        }
-    }
+  }
 }

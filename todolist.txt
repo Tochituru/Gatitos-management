@@ -31,7 +31,7 @@ x eventListener on window
 x background pics
 x change themes by button 
 x ordernar por table headings (orden ascendente y descendente)
-- indicar el orden con icono
+x indicar el orden con icono
 - mensajes de error con tooltips?
 
 Issues:

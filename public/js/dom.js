@@ -50,8 +50,11 @@ const createTable = element => {
         newRow.appendChild(createCell('email', element.email.toUpperCase()));
         let actionsCell = createCell('actions', '');
         newRow.appendChild(actionsCell);
-        actionsCell.appendChild(createBtn('editBtn', element.id, editImg, "toggleModal('editModal', 'editBtn'),  getKittenId()"));
-        actionsCell.appendChild(createBtn('deleteBtn', element.id, deleteImg, "toggleModal('deleteModal'); getKittenForDelete()"))
+        let innerAction = document.createElement('div');
+        innerAction.classList.add('innerAction')
+        actionsCell.appendChild(innerAction);
+        innerAction.appendChild(createBtn('editBtn', element.id, editImg, "toggleModal('editModal', 'editBtn'),  getKittenId()"));
+        innerAction.appendChild(createBtn('deleteBtn', element.id, deleteImg, "toggleModal('deleteModal'); getKittenForDelete()"))
         //    console.log(newRow);
         return kittenTable.appendChild(newRow);
     })
@@ -268,6 +271,7 @@ const compareValues = (key, order = 'asc') => {
 }
 let direction = 'asc';
 const sortColumn = () => {
+    event.stopPropagation();
     const columnName = event.target.className;
     fetch(api)
         .then(res => res.json())

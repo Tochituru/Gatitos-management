@@ -32,46 +32,46 @@
                 <th class="name" onclick="sortColumn()">
                     <div class="theading">
                         <span>NOMBRE</span>
-                        <span>
-                            <img src="../statics/assets/icons-black/sortB.png" alt="" class="icon beforeHover">
-                            <img src="../statics/assets/icons-white/SortW.png" alt="" class="icon afterHover">
+                        <span>&nbsp;&nbsp;&nbsp;</span>
+                        <span class="thIcon">
+                            <img src="../statics/assets/icons-black/sortB.png" alt="" class="icon">
                         </span>
                     </div>
                 </th>
                 <th class="adoptionDate" onclick="sortColumn('adoptionDate')">
                     <div class="theading">
                         <span>FECHA DE ADOPCIÓN</span>
-                        <span>
-                            <img src="../statics/assets/icons-black/sortB.png" alt="" class="icon beforeHover">
-                            <img src="../statics/assets/icons-white/SortW.png" alt="" class="icon afterHover">
+                        <span>&nbsp;&nbsp;&nbsp;</span>
+                        <span class="thIcon">
+                                <img src="../statics/assets/icons-black/sortB.png" alt="" class="icon">
                         </span>
                     </div>
                 </th>
                 <th class="color" onclick="sortColumn()">
                     <div class="theading">
                         <span>COLORES</span>
-                        <span>
-                            <img src="../statics/assets/icons-black/sortB.png" alt="" class="icon beforeHover">
-                            <img src="../statics/assets/icons-white/SortW.png" alt="" class="icon afterHover">
-                        </span>
+                        <span>&nbsp;&nbsp;&nbsp;</span>
+                        <span class="thIcon">
+                                <img src="../statics/assets/icons-black/sortB.png" alt="" class="icon">
+                            </span>
                     </div>
                 </th>
                 <th class="favoriteToy" onclick="sortColumn('favoriteToy')">
                     <div class="theading">
                         <span>JUGUETE FAVORITO</span>
-                        <span>
-                            <img src="../statics/assets/icons-black/sortB.png" alt="" class="icon beforeHover">
-                            <img src="../statics/assets/icons-white/SortW.png" alt="" class="icon afterHover">
-                        </span>
+                        <span>&nbsp;&nbsp;&nbsp;</span>
+                        <span class="thIcon">
+                                <img src="../statics/assets/icons-black/sortB.png" alt="" class="icon">
+                            </span>
                     </div>
                 </th>
                 <th class="email" onclick="sortColumn()">
                     <div class="theading">
                         <span>CORREO ELECTRÓNICO</span>
-                        <span>
-                            <img src="../statics/assets/icons-black/sortB.png" alt="" class="icon beforeHover">
-                            <img src="../statics/assets/icons-white/SortW.png" alt="" class="icon afterHover">
-                        </span>
+                        <span>&nbsp;&nbsp;&nbsp;</span>
+                        <span class="thIcon">
+                                <img src="../statics/assets/icons-black/sortB.png" alt="" class="icon">
+                            </span>
                     </div>
                 </th>
                 <th class="actions">ACCIONES</th>
@@ -83,19 +83,19 @@
     <aside class="modalContainer hidden" id="addModal">
         <section class="modal">
             <header>
-                <div class="title">¡Otro gato más!</div>
+                <div class="title">HOLA, NUEVO GATITO</div>
             </header>
             <main>
                 <form id="addCatForm" action="#" method='post'>
                     <input type="text" class="hidden" value="">
-                    <input type="text" name="name" id="newCatName" placeholder="Nombre del gatito" value="">
+                    <input type="text" name="name" id="newCatName" placeholder="NOMBRE DEL GATITO" value="">
                     <input type="text" name="adoptionDate" id="newCatAdoptionDate"
-                        placeholder="¿Cuándo adoptaste al gatito?" value="">
-                    <input type="text" name="color" id="newCatColor" placeholder="¿De qué color es?" value="">
+                        placeholder="FECHA EN QUE EL GATITO TE ADOPTÓ" value="">
+                    <input type="text" name="color" id="newCatColor" placeholder="BLANCO, NEGRO, VIOLETA (?)" value="">
                     <input type="text" name="favoriteToy" id="newCatFavoriteToy"
-                        placeholder="¿Cuál es su juguete favorito?" value="">
+                        placeholder="CAJA, CATNIP, SU HUMANO" value="">
                     <input type="text" name="email" id="newCatEmail"
-                        placeholder="Sabemos que le hiciste un e-mail. Escribilo." value="">
+                        placeholder="GATO@MUCHO.GATO.COM" value="">
                 </form>
             </main>
             <footer>
@@ -114,19 +114,19 @@
     <aside class="modalContainer hidden" id="editModal">
         <section class="modal">
             <header>
-                <div class="title">Editar gatito</div>
+                <div class="title">EDITAR GATITO</div>
             </header>
             <main>
                 <form id="editCatForm" action="#" method='post'>
                     <input class="idForm hidden" type=text id="editKittenId" value="">
-                    <input type="text" name="name" id="editCatName" placeholder="Nombre del gatito" value="">
+                    <input type="text" name="name" id="editCatName" placeholder="NOMBRE DEL GATITO" value="">
                     <input type="text" name="adoptionDate" id="editCatAdoptionDate"
-                        placeholder="¿Cuándo adoptaste al gatito?" value="">
-                    <input type="text" name="color" id="editCatColor" placeholder="¿De qué color es?" value="">
+                        placeholder="FECHA EN QUE EL GATITO TE ADOPTÓ" value="">
+                    <input type="text" name="color" id="editCatColor" placeholder="BLANCO, NEGRO, VIOLETA (?)" value="">
                     <input type="text" name="favoriteToy" id="editCatFavoriteToy"
-                        placeholder="¿Cuál es su juguete favorito?" value="">
+                        placeholder="CAJA, CATNIP, SU HUMANO" value="">
                     <input type="text" name="email" id="editCatEmail"
-                        placeholder="Sabemos que le hiciste un e-mail. Escribilo." value="">
+                        placeholder="GATO@MUCHO.GATO.COM" value="">
                 </form>
             </main>
             <footer>
@@ -145,14 +145,21 @@
     <aside class="modalContainer hidden" id="deleteModal">
         <section class="modal">
             <header>
-                <div class="title">Chau, gatito</div>
+                <div class="title">CHAU, GATITO/div>
             </header>
-            <main>
-                <div class="warning">
-                    Mi gato ascendió a estado de Dios entre los egipcios. O consiguió una familia nueva.<br />
-                    Quiero borrarlo.
-                </div>
+            <main class="delModalMain">
+                    <div class="warning">
+                            MI GATO ASCENDIÓ A ESTADO DE DIOS ENTRE LOS EGIPCIOS...<br/>
+                            <br/>
+                            O CONSIGUIÓ UNA FAMILIA NUEVA.
+                            <br />
+                            <br />
+                            <br />
+                            <br/>
+                            QUIERO BORRARLO.
+                        </div>  
             </main>
+
             <footer>
                 <button id="" class="deleteCat" onclick="deleteKitten(); toggleModal('deleteModal')">
                     <img src="../statics/assets/icons-black/deleteIconB.png" alt="" class="icon beforeHover">

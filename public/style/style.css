@@ -5,7 +5,7 @@ button {
   text-decoration: none;
   background: #e57f84;
   cursor: pointer;
-  transition: background 250ms ease-in-out, transform 150ms ease;
+  transition: all 2s ease-in-out 0.5s;
   -moz-appearance: none;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -21,6 +21,7 @@ button .icon {
 }
 button .afterHover, button .disabled {
   display: none;
+  transition: all 2s ease-in-out 0.5s;
 }
 
 button:hover,
@@ -49,10 +50,12 @@ button:disabled .beforeHover, button:disabled .afterHover,
 button[disabled] .beforeHover,
 button[disabled] .afterHover {
   display: none;
+  transition: all 2s ease-in-out 0.5s;
 }
 button:disabled .disabled,
 button[disabled] .disabled {
   display: block;
+  transition: all 2s ease-in-out 0.5s;
 }
 
 form {
@@ -110,6 +113,20 @@ input::placeholder {
 .modalContainer .modal header {
   justify-content: space-around;
 }
+.modalContainer .modal .delModalMain {
+  width: auto;
+  height: 400px;
+  margin: 0;
+  background-image: url(../assets/bg-img/dead-cat.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.modalContainer .modal .delModalMain .warning {
+  padding: 4em 10px;
+  font-weight: bolder;
+  font-size: 20px;
+}
 
 table {
   border-collapse: collapse;
@@ -121,15 +138,11 @@ table th,
 table td {
   width: 15%;
   vertical-align: middle;
-  padding: 1em;
+  padding: 1em 5px;
   font-size: 14px;
 }
 table th {
   text-align: center;
-}
-table th .icon {
-  width: 15px;
-  height: 15px;
 }
 table th .afterHover {
   display: none;
@@ -137,8 +150,14 @@ table th .afterHover {
 table th .theading {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
+}
+table th .icon {
+  width: 10px;
+  height: 10px;
+}
+table th > * {
+  pointer-events: none;
 }
 table tbody tr:hover {
   background-color: #e57f84;
@@ -149,14 +168,15 @@ table tbody tr:nth-child(odd) {
 table tbody tr:hover:nth-child(odd) {
   background-color: #e57f84;
 }
-table tbody .actions {
+table tbody .innerAction {
   display: flex;
+  justify-content: space-evenly;
 }
-table tbody .actions .editBtn {
+table tbody .innerAction .editBtn {
   cursor: pointer;
   color: #36cc36;
 }
-table tbody .actions .deleteBtn {
+table tbody .innerAction .deleteBtn {
   cursor: pointer;
   color: #ffa500;
 }
