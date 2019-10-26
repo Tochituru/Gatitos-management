@@ -1,13 +1,21 @@
 const api = 'http://localhost:3000/api/kittens';
 let kittenTable = document.getElementById('kittenTable')
-const addCatBtn = document.querySelector('.addCat')
 const inputs = document.querySelectorAll('input');
-
 const addForm = document.forms['addCatForm'];
 const formElements = Array.from(addForm.elements);
-
 let formObject = {};
+const addModalBtn = document.querySelector('.addCat')
+const cancelBtn = Array.from(document.querySelectorAll('.cancelBtn'));
+let editModalBtn = document.querySelector('.editCat')
+const deleteBtn = document.querySelector('.deleteCat');
+const editImg = `<img src="../statics/assets/icons-black/editIconB.png" alt="" class="icon beforeHover">
+<img src="../statics/assets/icons-white/editIconW.png" alt="" class="icon afterHover">`;
+const deleteImg = `<img src="../statics/assets/icons-black/deleteIconB.png" alt="" class="icon beforeHover">
+<img src="../statics/assets/icons-white/deleteIconW.png" alt="" class="icon afterHover">`;
 
+const addModal = document.getElementById('addModal');
+const editModal = document.getElementById('editModal');
+const deleteModal = document.getElementById('deleteModal');
 
 //crear celdas
 const createCell = (fieldClass, fieldValue) => {
@@ -16,7 +24,6 @@ const createCell = (fieldClass, fieldValue) => {
         let newString = `${fieldValue.slice(0, 2)}/${fieldValue.slice(2, 4)}/${fieldValue.slice(4, 8)}`
         newCell.innerHTML = newString;
         //console.log(newString);
-
         newCell.classList.add(fieldClass);
         ;
     } else {
@@ -43,14 +50,13 @@ const createTable = element => {
         newRow.appendChild(createCell('email', element.email));
         let actionsCell = createCell('actions', '');
         newRow.appendChild(actionsCell);
-        actionsCell.appendChild(createBtn('editBtn', element.id, 'Editar', "toggleModal('editModal', 'editBtn'),  getKittenId()"));
-        actionsCell.appendChild(createBtn('deleteBtn', element.id, 'Eliminar', "toggleModal('deleteModal'); getKittenForDelete()"))
+        actionsCell.appendChild(createBtn('editBtn', element.id, editImg, "toggleModal('editModal', 'editBtn'),  getKittenId()"));
+        actionsCell.appendChild(createBtn('deleteBtn', element.id, deleteImg, "toggleModal('deleteModal'); getKittenForDelete()"))
         //    console.log(newRow);
         return kittenTable.appendChild(newRow);
     })
 }
 //hacer el fetch de get 
-
 const initialize = () => {
     fetch(api)
         .then(res => res.json())
@@ -60,8 +66,6 @@ const initialize = () => {
             createTable(dataSorted);
         })
 };
-
-
 //validations
 const validations = {
     id: /.*/, //que sirva para todo
@@ -71,19 +75,17 @@ const validations = {
     favoriteToy: /^[(a-z)\ +(a-z)]{3,30}$/i,
     email: /^([\w\d\.-]+)@([\w\d-]+)\.(\w{2,8})(\.\w{2,8})?$/i,
 }
-
 const validate = (field, regex) => {
     if (regex.test(field.value)) {
-        addCatBtn.disabled = false;
-        editCatBtn.disabled = false;
+        addModalBtn.disabled = false;
+        editModalBtn.disabled = false;
         return true
     } else {
-        addCatBtn.disabled = true;
-        editCatBtn.disabled = true;
+        addModalBtn.disabled = true;
+        editModalBtn.disabled = true;
         return false
     };
 }
-
 //a medida que el usuario escribe
 inputs.forEach(input => {
     input.addEventListener('keyup', e => { validate(e.target, validations[e.target.attributes.name.value]) }
@@ -91,27 +93,21 @@ inputs.forEach(input => {
     input.addEventListener('focus', e => { validate(e.target, validations[e.target.attributes.name.value]) }
     )
 });
-
 //Todas las validaciones (?)
 const conditional = (field) => {
     if (validations[field[0]].test(field[1])) return true;
     else return false;
 }
-
 const validateAllFields = (fields) => {
     let validateResult = Object.entries(fields).map(field => conditional(field));
     const isTrue = (element) => element === true;
     return validateResult.every(isTrue);
-
     //object keys envía una lista de las keys del objeto
     //Object entries una lista de listas que contiene la propiedad y el valor
 }
-
 //hacer el post
 //conseguir elementos desde document.forms para evitar las mil variables
-
 const cleanForm = (formToClean) => formToClean.forEach(inputElement => inputElement.value = '');
-
 const fillObject = (formName) => {
     formObject = {
         id: `${formName.elements[0].value}`,
@@ -123,15 +119,14 @@ const fillObject = (formName) => {
     }
     //console.table('formObject', formObject);
 }
-
 const createKitten = () => {
+    event.stopPropagation();
     event.preventDefault();
     fillObject(addForm);
     //console.table(formObject);
-
     if (validateAllFields(formObject)) {
         let catAdd = { ...formObject };
-      //  console.log('cat', catAdd);
+        //  console.log('cat', catAdd);
         fetch(api, {
             method: 'POST',
             headers: {
@@ -150,14 +145,12 @@ const createKitten = () => {
         console.log('cat Not added');
     }
 }
-
-
 //hacer el fetch de edit 
 const editForm = document.forms['editCatForm'];
-let editCatBtn = document.querySelector('.editCat')
 const editFormElements = Array.from(editForm.elements);
-
 const getKittenId = () => {
+    event.stopPropagation();
+    event.preventDefault();
     let id = event.target.id;
     console.log(id)
     fetch(`${api}/id/${id}`)
@@ -169,8 +162,7 @@ const getKittenId = () => {
             let editCatColor = document.getElementById('editCatColor');
             let editCatFavoriteToy = document.getElementById('editCatFavoriteToy');
             let editCatEmail = document.getElementById('editCatEmail');
-
-            editCatBtn.setAttribute('id', `${eachKitten.id}`);
+            editModalBtn.setAttribute('id', `${eachKitten.id}`);
             idForm.value = eachKitten.id;
             editCatName.value = eachKitten.name;
             editCatAdoptionDate.value = eachKitten.adoptionDate;
@@ -180,8 +172,8 @@ const getKittenId = () => {
         })
 }
 //hacer el patch 
-
 const editKitten = () => {
+    event.stopPropagation();
     event.preventDefault();
     let id = event.target.id;
     fillObject(editForm);
@@ -208,14 +200,16 @@ const editKitten = () => {
     }
 }
 //hacer el fetch para delete
-
 const getKittenForDelete = () => {
+    event.stopPropagation();
+    event.preventDefault();
     id = event.target.id;
     let deleteAction = document.querySelector('.deleteCat');
     deleteAction.setAttribute('id', id)
 }
 //hacer delete 
 const deleteKitten = () => {
+    event.stopPropagation();
     event.preventDefault();
     id = event.target.id
     fetch(`${api}/id/${id}`, {
@@ -225,7 +219,6 @@ const deleteKitten = () => {
         .then(() => initialize())
     console.log('kitten deleted')
 }
-
 // hacer el filter
 const filterKittens = () => {
     const searchField = event.target.value;
@@ -245,20 +238,25 @@ const filterKittens = () => {
             }; */
         });
 }
-
-
-
 //Modals
-
 //toggle que reciba el elemento por id directamente;
-
 const toggleModal = (modal, modalBtn) => {
+    event.stopPropagation();
+    event.preventDefault();
     let element = document.getElementById(modal);
     element.classList.toggle('hidden');
     let btnToChange = document.querySelector(modalBtn)
-    if (btnToChange === addCatBtn || btnToChange === editCatBtn) btnToChange.disabled = true;
+    if (btnToChange === addModalBtn || btnToChange === editModalBtn) btnToChange.disabled = true;
 }
+//salir de modal por click afuera
 
+const clickOutsideModal = (event) => {
+    if (event.target === addModal) addModal.classList.toggle('hidden'); 
+    if (event.target === editModal) editModal.classList.toggle('hidden'); 
+    if (event.target === deleteModal) deleteModal.classList.toggle('hidden'); 
+};
+
+window.addEventListener('click', clickOutsideModal)
 
 //sorting tables
 const compareValues = (key, order = 'asc') => {
@@ -268,7 +266,6 @@ const compareValues = (key, order = 'asc') => {
         return ((order == 'desc') ? (comparison * -1) : comparison)
     }
 }
-
 let direction = 'asc';
 const sortColumn = () => {
     const columnName = event.target.className;
@@ -281,6 +278,3 @@ const sortColumn = () => {
             createTable(dataSorted);
         })
 }
-
-
-

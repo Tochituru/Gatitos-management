@@ -1,3 +1,62 @@
+button {
+  display: block;
+  border: none;
+  margin: 0;
+  padding: 5px;
+  text-decoration: none;
+  background: #E57F84;
+  font-family: sans-serif;
+  cursor: pointer;
+  transition: background 250ms ease-in-out, transform 150ms ease;
+  -moz-appearance: none;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  height: 40px;
+  width: 40px;
+}
+button .icon {
+  height: 30px;
+  width: 30px;
+}
+button .afterHover, button .disabled {
+  display: none;
+}
+
+button:hover,
+button:focus {
+  background: #4297A0;
+}
+button:hover .beforeHover, button:hover .disabled,
+button:focus .beforeHover,
+button:focus .disabled {
+  display: none;
+}
+button:hover .afterHover,
+button:focus .afterHover {
+  display: block;
+}
+
+button > * {
+  pointer-events: none;
+}
+
+button:disabled,
+button[disabled] {
+  background: #2F5061;
+}
+button:disabled .beforeHover, button:disabled .afterHover,
+button[disabled] .beforeHover,
+button[disabled] .afterHover {
+  display: none;
+}
+button:disabled .disabled,
+button[disabled] .disabled {
+  display: block;
+}
+
 form {
   display: flex;
   align-content: stretch;
@@ -20,16 +79,6 @@ input::placeholder {
   padding: 4px;
   font-family: sans-serif;
   color: gray;
-}
-
-.button, button {
-  background-color: #E57F84;
-  cursor: pointer;
-  display: flex;
-  padding: 8px 12px;
-  font-weight: 400;
-  vertical-align: middle;
-  border-radius: 2px;
 }
 
 .hidden {
@@ -116,23 +165,23 @@ body .container .filter {
 }
 
 .bgOne {
-  background-image: url("../assets/cat-heads-grey.jpg");
+  background-image: url("../assets/bg-img/cat-heads-grey.jpg");
 }
 
 .bgTwo {
-  background-image: url("../assets/cat-heads-minimal.jpg");
+  background-image: url("../assets/bg-img/cat-heads-minimal.jpg");
 }
 
 .bgThree {
-  background-image: url("../assets/full-cat-grey.jpg");
+  background-image: url("../assets/bg-img/full-cat-grey.jpg");
 }
 
 .bgFour {
-  background-image: url("../assets/full-cat-multi.jpg");
+  background-image: url("../assets/bg-img/full-cat-multi.jpg");
 }
 
 .bgFive {
-  background-image: url("../assets/full-cat-pink.jpg");
+  background-image: url("../assets/bg-img/full-cat-pink.jpg");
 }
 
 .bgSix {

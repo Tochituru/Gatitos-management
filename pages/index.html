@@ -8,17 +8,21 @@
     <link rel="stylesheet" href="./statics/style/style.css">
     <title>Gatites Management</title>
 </head>
+
 <body onload="initialize()">
     <header>
         <h1 class="title">Gatites Management</h1>
-        <button class="button" id='addBtn' onclick="toggleModal('addModal', '.addCat')">
-            <div class="addBtnText">Tengo otro gatito
-            </div>
+        <button id='addBtn' onclick="toggleModal('addModal', '.addCat')">
+            <img src="../statics/assets/icons-black/addIconB.png" alt="" class="icon beforeHover">
+            <img src="../statics/assets/icons-white/addIconW.png" alt="" class="icon afterHover">
         </button>
     </header>
     <main class="container">
         <section class="internalHeader">
-                <button class="changeBackground" onclick="backChange()">Change Background</button>
+            <button class="changeBackground" onclick="backChange()">
+                <img src="../statics/assets/icons-black/bgdIconB.png" alt="" class="icon beforeHover">
+                <img src="../statics/assets/icons-white/bgdIconW.png" alt="" class="icon afterHover">
+            </button>
             <input type=" text" name="" id="" placeholder="Filtrar gatitos..." onkeyup="filterKittens()">
         </section>
         <table>
@@ -43,16 +47,25 @@
                 <form id="addCatForm" action="#" method='post'>
                     <input type="text" class="hidden" value="">
                     <input type="text" name="name" id="newCatName" placeholder="Nombre del gatito" value="">
-                    <input type="text" name="adoptionDate" id="newCatAdoptionDate" placeholder="¿Cuándo adoptaste al gatito?" value="">
+                    <input type="text" name="adoptionDate" id="newCatAdoptionDate"
+                        placeholder="¿Cuándo adoptaste al gatito?" value="">
                     <input type="text" name="color" id="newCatColor" placeholder="¿De qué color es?" value="">
-                    <input type="text" name="favoriteToy" id="newCatFavoriteToy" placeholder="¿Cuál es su juguete favorito?" value="">
-                    <input type="text" name="email" id="newCatEmail" placeholder="Sabemos que le hiciste un e-mail. Escribilo."
-                        value="">
+                    <input type="text" name="favoriteToy" id="newCatFavoriteToy"
+                        placeholder="¿Cuál es su juguete favorito?" value="">
+                    <input type="text" name="email" id="newCatEmail"
+                        placeholder="Sabemos que le hiciste un e-mail. Escribilo." value="">
                 </form>
             </main>
             <footer>
-                <button class="addCat" onclick="createKitten(); toggleModal('addModal')">Agregar gatito</button>
-                <button class="cancelAdd" onclick="toggleModal('addModal')">Cancelar</button>
+                <button class="addCat" onclick="createKitten(); toggleModal('addModal')">
+                    <img src="../statics/assets/icons-black/addIconB.png" alt="" class="icon beforeHover">
+                    <img src="../statics/assets/icons-white/addIconW.png" alt="" class="icon afterHover">
+                    <img src="../statics/assets/icons-grey/disBtn.png" alt="" class="icon disabled">
+                </button>
+                <button class="cancelBtn cancelAdd" onclick="toggleModal('addModal')">
+                    <img src="../statics/assets/icons-black/cancelXB.png" alt="" class="icon beforeHover">
+                    <img src="../statics/assets/icons-white/cancelXW.png" alt="" class="icon afterHover">
+                </button>
             </footer>
         </section>
     </aside>
@@ -65,15 +78,25 @@
                 <form id="editCatForm" action="#" method='post'>
                     <input class="idForm hidden" type=text id="editKittenId" value="">
                     <input type="text" name="name" id="editCatName" placeholder="Nombre del gatito" value="">
-                    <input type="text" name="adoptionDate" id="editCatAdoptionDate" placeholder="¿Cuándo adoptaste al gatito?" value="">
+                    <input type="text" name="adoptionDate" id="editCatAdoptionDate"
+                        placeholder="¿Cuándo adoptaste al gatito?" value="">
                     <input type="text" name="color" id="editCatColor" placeholder="¿De qué color es?" value="">
-                    <input type="text" name="favoriteToy" id="editCatFavoriteToy" placeholder="¿Cuál es su juguete favorito?" value="">
-                    <input type="text" name="email" id="editCatEmail" placeholder="Sabemos que le hiciste un e-mail. Escribilo." value="">
+                    <input type="text" name="favoriteToy" id="editCatFavoriteToy"
+                        placeholder="¿Cuál es su juguete favorito?" value="">
+                    <input type="text" name="email" id="editCatEmail"
+                        placeholder="Sabemos que le hiciste un e-mail. Escribilo." value="">
                 </form>
             </main>
             <footer>
-                <button id="" class="editCat" onclick="editKitten(); toggleModal('editModal')">Editar gatito</button>
-                <button class="cancelEdit" onclick="toggleModal('editModal')">Cancelar</button>
+                <button id="" class="editCat" onclick="editKitten(); toggleModal('editModal')">
+                    <img src="../statics/assets/icons-black/editIconB.png" alt="" class="icon beforeHover">
+                    <img src="../statics/assets/icons-white/editIconW.png" alt="" class="icon afterHover">
+                    <img src="../statics/assets/icons-grey/disBtn.png" alt="" class="icon disabled">
+                </button>
+                <button class="cancelBtn cancelEdit" onclick="toggleModal('editModal')">
+                    <img src="../statics/assets/icons-black/cancelXB.png" alt="" class="icon beforeHover">
+                    <img src="../statics/assets/icons-white/cancelXW.png" alt="" class="icon afterHover">
+                </button>
             </footer>
         </section>
     </aside>
@@ -82,19 +105,30 @@
             <header>
                 <div class="title">Chau, gatito</div>
             </header>
-            <main>Mi gato ascendió a estado de Dios entre los egipcios. O consiguió una familia nueva.<br />
-            Quiero borrarlo.</main>
+            <main>
+                <div class="warning">
+                    Mi gato ascendió a estado de Dios entre los egipcios. O consiguió una familia nueva.<br />
+                    Quiero borrarlo.
+                </div>
+            </main>
             <footer>
-                <button id="" class="deleteCat" onclick="deleteKitten(); toggleModal('deleteModal')">Borrar gato</button>
-                <button class="cancelDelete" onclick="toggleModal('deleteModal')">Cancelar</button>
+                <button id="" class="deleteCat" onclick="deleteKitten(); toggleModal('deleteModal')">
+                    <img src="../statics/assets/icons-black/deleteIconB.png" alt="" class="icon beforeHover">
+                    <img src="../statics/assets/icons-white/deleteIconW.png" alt="" class="icon afterHover">
+                    <img src="../statics/assets/icons-grey/disBtn.png" alt="" class="icon disabled">
+                </button>
+                <button class="cancelBtn cancelDelete" onclick="toggleModal('deleteModal')">
+                    <img src="../statics/assets/icons-black/cancelXB.png" alt="" class="icon beforeHover">
+                    <img src="../statics/assets/icons-white/cancelXW.png" alt="" class="icon afterHover">
+                </button>
             </footer>
         </section>
     </aside>
 
 
-    <script src="../statics/dom.js" type="text/javascript"></script>
+    <!-- <script src="../statics/js/icons.js" type="text/javascript"></script> -->
+    <script src="../statics/js/dom.js" type="text/javascript"></script>
     <script src="../statics/js/test.js"></script>
-
 
 </body>
 

@@ -7,12 +7,12 @@ x post: publica a un gatito nuevo desde el modal (FUNCIONA)
 x patch: edita al gatito desde un modal 
 x delete: tomamos la decision de matar al gatito(yami nos pega)
 x filter: buscar gatitos MAGICAMENTE
-  que filter permita buscar por varias propiedades
+- que filter permita buscar por varias propiedades
 
 agnostizar lo que tenemos
 x addKitten
 x editKitten
-  getKitten by Id
+- getKitten by Id
 
 
 validacion de cliente 
@@ -26,12 +26,14 @@ x absolutamente todo- funcionan todas
 
 
 html: maquetar como campeonas ... 
-- layout
-- icons
-- background pics
-- modals
-- change themes by button [working on it]
+x layout
+x icons
+- eventListener on window
 x ordernar por table headings (orden ascendente y descendente)
+- indicar el orden con icono
+- background pics
+- change themes by button [working on it]
+- review var names
 
 Consultas para Mike:
 - spread operator y destructuring

@@ -1,0 +1,55 @@
+button {
+  display: block;
+  border: none;
+  margin: 0;
+  padding: 5px;
+  text-decoration: none;
+  background: $hover;
+  font-family: sans-serif;
+  cursor: pointer;
+  transition: background 250ms ease-in-out, transform 150ms ease;
+  // -webkit-appearance: none;
+  -moz-appearance: none;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  height: 40px;
+  width: 40px;
+  .icon {
+    height: 30px;
+    width: 30px;
+  }
+  .afterHover, .disabled {
+    display: none;
+  }
+}
+
+//remove once all icons are deleted
+
+button:hover,
+button:focus {
+  .beforeHover, .disabled {
+    display: none;
+  }
+  .afterHover {
+    display: block;
+  }
+  background: $theader;
+}
+
+button > * {
+  pointer-events: none;
+}
+
+button:disabled,
+button[disabled]{
+  .beforeHover, .afterHover {
+    display: none;
+  }
+  .disabled {
+    display: block;
+  }
+  background: $headers;
+}
