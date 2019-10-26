@@ -11,7 +11,7 @@ const validations = {
 }
 
 const validate = (field, regex) => {
-    if (field === 'filter') {
+    if (field.name === 'filter') {
         return true
     } else if (regex.test(field.value)) {
         addModalBtn.disabled = false;
@@ -32,7 +32,6 @@ const validate = (field, regex) => {
 //a medida que el usuario escribe
 inputs.forEach(input => {
     input.addEventListener('keyup', e => {
-        console.log(e.target.name);
         validate(e.target, validations[e.target.attributes.name.value])
     }
     );
@@ -42,3 +41,4 @@ inputs.forEach(input => {
     )
 });
 
+//working on validation
