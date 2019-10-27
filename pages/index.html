@@ -14,15 +14,21 @@
     <header>
         <h1 class="title">GATITES MANAGEMENT</h1>
         <button id='addBtn' onclick="toggleModal('addModal', '.addModalBtn')">
-            <img src="../statics/assets/icons-black/addIconB.png" alt="" class="icon beforeHover">
-            <img src="../statics/assets/icons-white/addIconW.png" alt="" class="icon afterHover">
+            <div class="imgContainer">
+                <img src="../statics/assets/icons-black/addIconB.png" alt="" class="icon beforeHover">
+                <img src="../statics/assets/icons-white/addIconW.png" alt="" class="icon afterHover">
+            </div>
+            <span class="tooltiptext">AGREGÁ UN GATITO</span>
         </button>
     </header>
     <main class="container">
         <section class="internalHeader">
             <button class="changeBg" onclick="bgChange()">
-                <img src="../statics/assets/icons-black/bgdIconB.png" alt="" class="icon beforeHover">
-                <img src="../statics/assets/icons-white/bgdIconW.png" alt="" class="icon afterHover">
+                <div class="imgContainer"><img src="../statics/assets/icons-black/bgdIconB.png" alt=""
+                        class="icon beforeHover">
+                    <img src="../statics/assets/icons-white/bgdIconW.png" alt="" class="icon afterHover">
+                </div>
+                <span class="tooltiptext">CAMBIÁ EL COLOR DE FONDO</span>
             </button>
             <input type=" text" class="filter" name="filter" id="" placeholder="FILTRAR GATITOS POR NOMBRE..."
                 onkeyup="filterKittens()">
@@ -95,7 +101,7 @@
                     <label for="date" class="invalid">FECHA DE ADOPCIÓN</label>
                     <input type="text" name="date" id="newCatAdoptionDate"
                         placeholder="FECHA EN QUE EL GATITO TE ADOPTÓ" value="" class="invalid">
-                    <div class="error">ENTRE DOS Y TREINTA LETRAS (SIN Ñ NI TILDES)</div>
+                    <div class="error">ESCRIBÍ LA FECHA ASÍ: DDMMAAAA</div>
                     <label for="color" class="invalid">COLOR</label>
                     <input type="text" name="color" id="newCatColor" placeholder="BLANCO, NEGRO, VIOLETA (?)" value=""
                         class="invalid">
@@ -112,13 +118,19 @@
             </main>
             <footer>
                 <button class="addModalBtn" onclick="createKitten(); toggleModal('addModal')">
-                    <img src="../statics/assets/icons-black/addIconB.png" alt="" class="icon beforeHover">
-                    <img src="../statics/assets/icons-white/addIconW.png" alt="" class="icon afterHover">
-                    <img src="../statics/assets/icons-grey/disBtn.png" alt="" class="icon disabled">
+                    <div class="imgContainer">
+                        <img src="../statics/assets/icons-black/addIconB.png" alt="" class="icon beforeHover">
+                        <img src="../statics/assets/icons-white/addIconW.png" alt="" class="icon afterHover">
+                        <img src="../statics/assets/icons-grey/disBtn.png" alt="" class="icon disabled">
+                    </div>
+                    <span class="tooltiptext">AGREGAR GATITO</span>
                 </button>
                 <button class="cancelBtn" onclick="toggleModal('addModal')">
-                    <img src="../statics/assets/icons-black/cancelXB.png" alt="" class="icon beforeHover">
-                    <img src="../statics/assets/icons-white/cancelXW.png" alt="" class="icon afterHover">
+                    <div class="imgContainer">
+                        <img src="../statics/assets/icons-black/cancelXB.png" alt="" class="icon beforeHover">
+                        <img src="../statics/assets/icons-white/cancelXW.png" alt="" class="icon afterHover">
+                    </div>
+                    <span class="tooltiptext">CANCELAR</span>
                 </button>
             </footer>
         </section>
@@ -155,13 +167,19 @@
             </main>
             <footer>
                 <button id="" class="editCat" onclick="editKitten(); toggleModal('editModal')">
-                    <img src="../statics/assets/icons-black/editIconB.png" alt="" class="icon beforeHover">
-                    <img src="../statics/assets/icons-white/editIconW.png" alt="" class="icon afterHover">
-                    <img src="../statics/assets/icons-grey/disBtn.png" alt="" class="icon disabled">
+                    <div class="imgContainer">
+                        <img src="../statics/assets/icons-black/editIconB.png" alt="" class="icon beforeHover">
+                        <img src="../statics/assets/icons-white/editIconW.png" alt="" class="icon afterHover">
+                        <img src="../statics/assets/icons-grey/disBtn.png" alt="" class="icon disabled">
+                    </div>
+                    <span class="tooltiptext">EDITAR GATITO</span>
                 </button>
                 <button class="cancelBtn" onclick="toggleModal('editModal')">
-                    <img src="../statics/assets/icons-black/cancelXB.png" alt="" class="icon beforeHover">
-                    <img src="../statics/assets/icons-white/cancelXW.png" alt="" class="icon afterHover">
+                    <div class="imgContainer">
+                        <img src="../statics/assets/icons-black/cancelXB.png" alt="" class="icon beforeHover">
+                        <img src="../statics/assets/icons-white/cancelXW.png" alt="" class="icon afterHover">
+                    </div>
+                    <span class="tooltiptext">CANCELAR</span>
                 </button>
             </footer>
         </section>
@@ -186,17 +204,29 @@
 
             <footer>
                 <button id="" class="delModalBtn" onclick="deleteKitten(); toggleModal('delModal')">
-                    <img src="../statics/assets/icons-black/deleteIconB.png" alt="" class="icon beforeHover">
-                    <img src="../statics/assets/icons-white/deleteIconW.png" alt="" class="icon afterHover">
-                    <img src="../statics/assets/icons-grey/disBtn.png" alt="" class="icon disabled">
+                    <div class="imgContainer">
+                        <img src="../statics/assets/icons-black/deleteIconB.png" alt="" class="icon beforeHover">
+                        <img src="../statics/assets/icons-white/deleteIconW.png" alt="" class="icon afterHover">
+                        <img src="../statics/assets/icons-grey/disBtn.png" alt="" class="icon disabled">
+                    </div>
+                    <span class="tooltiptext">BORRAR GATITO</span>
                 </button>
                 <button class="cancelBtn" onclick="toggleModal('delModal')">
-                    <img src="../statics/assets/icons-black/cancelXB.png" alt="" class="icon beforeHover">
-                    <img src="../statics/assets/icons-white/cancelXW.png" alt="" class="icon afterHover">
+                    <div class="imgContainer">
+                        <img src="../statics/assets/icons-black/cancelXB.png" alt="" class="icon beforeHover">
+                        <img src="../statics/assets/icons-white/cancelXW.png" alt="" class="icon afterHover">
+                    </div>
+                    <span class="tooltiptext">CANCELAR</span>
                 </button>
             </footer>
         </section>
     </aside>
+
+    <aside id="msg" class="msg hidden">
+        <div class="textMsg">This is a warning
+        </div>
+    </aside>
+    <script src="../statics/js/test.js" type="text/javascript"></script>
 
     <script src="../statics/js/dom.js" type="text/javascript"></script>
 </body>

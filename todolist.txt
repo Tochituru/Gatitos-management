@@ -35,13 +35,15 @@ x indicar el orden con icono
 x mensajes de error con tooltips?
 x subir los modals
 x poner títulos a los inputs
-- Crear mensaje de error para cuando no hay gatitos
-- Crear mensaje de confirmación cuando el gatito se creó/editó
+x no clean form once you open the modal
+x when editing and reopening modal, labels in orange, inputs in green
+x Crear mensaje de error para cuando no hay gatitos
+x Crear mensaje de confirmación cuando el gatito se creó/editó
 
 Issues:
 - sort goes back to full list
-- no clean form once you open the modal
+- site not yet resposive
 
 Consultas para Mike:
-- spread operator y destructuring
+- Is allgood a callback function?
 - filter by all properties

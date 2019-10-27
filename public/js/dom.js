@@ -5,14 +5,14 @@ const addModal = document.getElementById('addModal');
 const addModalBtn = document.querySelector('.addModalBtn')
 const body = document.querySelector('body');
 const bgArray = ['bgDefault', 'bgOne', 'bgTwo', 'bgThree', 'bgFour', 'bgFive'];
-const deleteImg = `<img src="../statics/assets/icons-black/deleteIconB.png" alt="" class="icon beforeHover">
-<img src="../statics/assets/icons-white/deleteIconW.png" alt="" class="icon afterHover">`;
+const deleteImg = `<div class="imgContainer"><img src="../statics/assets/icons-black/deleteIconB.png" alt="" class="icon beforeHover"><img src="../statics/assets/icons-white/deleteIconW.png" alt="" class="icon afterHover">
+</div><span class="tooltiptext">ELIMINAR GATITO</span>`;
 const delModal = document.getElementById('delModal')
 let direction = 'asc';
 const editForm = document.forms['editCatForm'];
 const editInputs = Array.from(editForm.elements);
-const editImg = `<img src="../statics/assets/icons-black/editIconB.png" alt="" class="icon beforeHover">
-<img src="../statics/assets/icons-white/editIconW.png" alt="" class="icon afterHover">`;
+const editImg = `<div class="imgContainer"><img src="../statics/assets/icons-black/editIconB.png" alt="" class="icon beforeHover"><img src="../statics/assets/icons-white/editIconW.png" alt="" class="icon afterHover">
+</div><span class="tooltiptext">EDITAR GATITO</span>`;
 const editModal = document.getElementById('editModal');
 const editModalBtn = document.querySelector('.editCat')
 let formObject = {};
@@ -121,8 +121,9 @@ const validateAllFields = (fields) => {
 //hacer el post
 const cleanForm = (formToClean) => formToClean.forEach(inputElement => {
     inputElement.value = '';
-    if (inputElement.previousElementSibling) {
+    if (formToClean === addInputs && inputElement.previousElementSibling) {
         inputElement.previousElementSibling.className = 'invalid';
+        inputElement.className = 'invalid';
         inputElement.nextElementSibling.className = 'invalid'
     }
 });
@@ -152,13 +153,10 @@ const createKitten = () => {
             body: JSON.stringify(catAdd)
         })
             .then(res => res.json())
-            .then(() => {
-                cleanForm(addInputs);
-                initialize();
-                console.log('Gatito creado')
-            })
+            .then(() => allGood(addInputs, 'msg didWork', 'GATITO AGREGADO'))
             .catch(error => console.log(`Tienes el siguiente error: ${error}`));
     } else {
+        confirmation('msg didNotWork', 'AY... ALGÚN DATO ESTÁ MAL...');
         console.log('Al menos un campo es inválido');
     }
 }
@@ -198,12 +196,10 @@ const editKitten = () => {
             body: JSON.stringify(catEdit)
         })
             .then(res => res.json())
-            .then(() => {
-                initialize();
-                cleanForm(editInputs);
-            })
+            .then(() => allGood(editInputs, 'msg didWork', 'GATITO EDITADO'))
             .catch(error => console.log(`Hay un error: ${error}`));
     } else {
+        confirmation('msg didNotWork', 'AY... ALGÚN DATO ESTÁ MAL...');
         console.log('Gatito no editado. Hay algo mal en los campos.');
     }
 }
@@ -225,8 +221,8 @@ const deleteKitten = () => {
         method: 'DELETE',
     })
         .then(res => res.json())
-        .then(() => initialize())
-    console.log('Gatito borrado')
+        .then(() => allGood(editInputs, 'msg didWork', 'GATITO BORRADO'))
+        .catch(error => console.log(`Tienes el siguiente error: ${error}`));
 }
 // hacer el filter
 const filterKittens = () => {

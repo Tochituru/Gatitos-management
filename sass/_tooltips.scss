@@ -1,0 +1,19 @@
+.tooltiptext {
+  display: hidden;
+  opacity: 0;
+  width: 120px;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  z-index: 1;
+  background: $validColor;
+  color: white;
+  transition: opacity 0.3s;
+  font-family: $fontFamily;
+  margin-left: -90px;
+}
+
+button:hover .tooltiptext {
+  display: block;
+  opacity: 1;
+}

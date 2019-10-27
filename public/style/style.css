@@ -88,103 +88,6 @@ input::placeholder {
   color: gray;
 }
 
-.hidden {
-  display: none;
-}
-
-.modalContainer {
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.6);
-}
-.modalContainer .modal {
-  background-color: #fff;
-  margin: 5% auto;
-  width: 35%;
-  border-radius: 10px;
-  -webkit-box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: stretch;
-  flex-direction: column;
-}
-.modalContainer .modal header {
-  justify-content: space-around;
-}
-.modalContainer .modal .delModalMain {
-  width: auto;
-  height: 400px;
-  margin: 0;
-  background-image: url(../assets/bg-img/dead-cat.png);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-.modalContainer .modal .delModalMain .warning {
-  padding: 4em 10px;
-  font-weight: bolder;
-  font-size: 20px;
-}
-
-table {
-  border-collapse: collapse;
-}
-table thead {
-  background: #4297a0;
-}
-table th,
-table td {
-  width: 15%;
-  vertical-align: middle;
-  padding: 1em 5px;
-  font-size: 14px;
-}
-table th {
-  text-align: center;
-}
-table th .afterHover {
-  display: none;
-}
-table th .theading {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-table th .icon {
-  width: 10px;
-  height: 10px;
-}
-table th > * {
-  pointer-events: none;
-}
-table tbody tr:hover {
-  background-color: #e57f84;
-}
-table tbody tr:nth-child(odd) {
-  background-color: #f4eae6;
-}
-table tbody tr:hover:nth-child(odd) {
-  background-color: #e57f84;
-}
-table tbody .innerAction {
-  display: flex;
-  justify-content: space-evenly;
-}
-table tbody .innerAction .editBtn {
-  cursor: pointer;
-  color: #36cc36;
-}
-table tbody .innerAction .deleteBtn {
-  cursor: pointer;
-  color: #ffa500;
-}
-
 body {
   font-family: "Pompiere", cursive;
   padding: 0 20vw;
@@ -255,6 +158,162 @@ footer {
   align-content: center;
   padding: 1em 2em;
   border-radius: 0 0 5px 5px;
+}
+
+.hidden {
+  display: none;
+}
+
+.modalContainer {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.modalContainer .modal {
+  background-color: #fff;
+  margin: 5% auto;
+  width: 35%;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+}
+.modalContainer .modal header {
+  justify-content: space-around;
+}
+.modalContainer .modal .delModalMain {
+  width: auto;
+  height: 400px;
+  margin: 0;
+  background-image: url(../assets/bg-img/dead-cat.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.modalContainer .modal .delModalMain .warning {
+  padding: 4em 10px;
+  font-weight: bolder;
+  font-size: 20px;
+}
+
+.msg {
+  opacity: 0;
+  position: absolute;
+  z-index: 1;
+  top: -10%;
+  margin: 10% 5%;
+  padding: 1% 20%;
+  text-align: center;
+  border-radius: 10px;
+  color: white;
+}
+
+.didWork {
+  background: #36cc36;
+  animation: confirmation 2s ease-in-out 1;
+}
+
+.didNotWork {
+  background: #ffa500;
+  animation: confirmation 2s ease-in-out 1;
+}
+
+@keyframes confirmation {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+table {
+  border-collapse: collapse;
+}
+table thead {
+  background: #4297a0;
+}
+table th,
+table td {
+  width: 15%;
+  vertical-align: middle;
+  padding: 1em 5px;
+  font-size: 14px;
+}
+table th {
+  text-align: center;
+}
+table th .afterHover {
+  display: none;
+}
+table th .theading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+table th .icon {
+  width: 10px;
+  height: 10px;
+}
+table th > * {
+  pointer-events: none;
+}
+table tbody tr:hover {
+  background-color: #e57f84;
+}
+table tbody tr:nth-child(odd) {
+  background-color: #f4eae6;
+}
+table tbody tr:hover:nth-child(odd) {
+  background-color: #e57f84;
+}
+table tbody .innerAction {
+  display: flex;
+  justify-content: space-evenly;
+}
+table tbody .innerAction .editBtn {
+  cursor: pointer;
+  color: #36cc36;
+}
+table tbody .innerAction .deleteBtn {
+  cursor: pointer;
+  color: #ffa500;
+}
+
+.tooltiptext {
+  display: hidden;
+  opacity: 0;
+  width: 120px;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  z-index: 1;
+  background: #36cc36;
+  color: white;
+  transition: opacity 0.3s;
+  font-family: "Pompiere", cursive;
+  margin-left: -90px;
+}
+
+button:hover .tooltiptext {
+  display: block;
+  opacity: 1;
 }
 
 label.valid {
