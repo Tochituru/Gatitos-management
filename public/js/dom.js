@@ -18,7 +18,10 @@ const editModalBtn = document.querySelector('.editCat')
 let formObject = {};
 let index = 0;
 const inputs = document.querySelectorAll('input');
-const kittenTable = document.getElementById('kittenTable')
+const kittenTable = document.getElementById('kittenTable');
+const msg = document.getElementById('msg');
+const textMsg = document.querySelector('.textMsg');
+
 
 //crear celdas
 const createCell = (fieldClass, fieldValue) => {
@@ -68,6 +71,18 @@ const initialize = () => {
             createTable(dataSorted);
         })
 };
+
+//grouping api results
+const allGood = (form, newClass, content) => {
+    confirmation(newClass, content);
+    cleanForm(form);
+    initialize();
+//replacing:    
+// cleanForm(addInputs);
+// initialize();
+// confirmation('msg didWork', 'GATITO AGREGADO');
+
+}
 
 //validations
 
@@ -157,7 +172,6 @@ const createKitten = () => {
             .catch(error => console.log(`Tienes el siguiente error: ${error}`));
     } else {
         confirmation('msg didNotWork', 'AY... ALGÚN DATO ESTÁ MAL...');
-        console.log('Al menos un campo es inválido');
     }
 }
 
@@ -187,7 +201,6 @@ const editKitten = () => {
     fillObject(editForm);
     if (validateAllFields(formObject)) {
         let catEdit = { ...formObject };
-        console.log('cat', catEdit);
         fetch(`${api}/id/${id}`, {
             method: 'PATCH',
             headers: {
@@ -200,7 +213,6 @@ const editKitten = () => {
             .catch(error => console.log(`Hay un error: ${error}`));
     } else {
         confirmation('msg didNotWork', 'AY... ALGÚN DATO ESTÁ MAL...');
-        console.log('Gatito no editado. Hay algo mal en los campos.');
     }
 }
 
@@ -222,12 +234,11 @@ const deleteKitten = () => {
     })
         .then(res => res.json())
         .then(() => allGood(editInputs, 'msg didWork', 'GATITO BORRADO'))
-        .catch(error => console.log(`Tienes el siguiente error: ${error}`));
+        .catch(error => console.log(`Hay un error: ${error}`));
 }
 // hacer el filter
 const filterKittens = () => {
     const searchField = event.target.value;
-    console.log(searchField);
     fetch(`${api}/search/?name=${searchField}`)
         .then(res => res.json())
         .then(kittens => {
@@ -282,3 +293,10 @@ const sortColumn = () => {
 const bgChange = () => {
     body.className = bgArray[++index % bgArray.length];
 }
+
+//confirmation messages
+const confirmation = (newClass, content) => {
+    msg.className = newClass;
+    textMsg.innerHTML = content;
+    setTimeout(() => msg.className = 'msg hidden', 2500)
+};
