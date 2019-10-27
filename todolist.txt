@@ -12,7 +12,7 @@ x filter: buscar gatitos MAGICAMENTE
 agnostizar lo que tenemos
 x addKitten
 x editKitten
-- getKitten by Id
+x getKitten by Id
 
 
 validacion de cliente 
@@ -33,12 +33,13 @@ x change themes by button
 x ordernar por table headings (orden ascendente y descendente)
 x indicar el orden con icono
 x mensajes de error con tooltips?
-- subir los modals
+x subir los modals
 x poner títulos a los inputs
+- Crear mensaje de error para cuando no hay gatitos
+- Crear mensaje de confirmación cuando el gatito se creó/editó
 
 Issues:
 - sort goes back to full list
-- review var names
 - no clean form once you open the modal
 
 Consultas para Mike:
