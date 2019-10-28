@@ -7,7 +7,6 @@ x post: publica a un gatito nuevo desde el modal (FUNCIONA)
 x patch: edita al gatito desde un modal 
 x delete: tomamos la decision de matar al gatito(yami nos pega)
 x filter: buscar gatitos MAGICAMENTE
-- que filter permita buscar por varias propiedades
 
 agnostizar lo que tenemos
 x addKitten
@@ -22,8 +21,6 @@ x disable button cuando no es válido: https://www.w3schools.com/jsref/prop_push
 validaciones de server
 x absolutamente todo- funcionan todas
 
-
-
 html: maquetar como campeonas ... 
 x layout
 x icons
@@ -35,15 +32,14 @@ x indicar el orden con icono
 x mensajes de error con tooltips?
 x subir los modals
 x poner títulos a los inputs
-x no clean form once you open the modal
-x when editing and reopening modal, labels in orange, inputs in green
+x formulario limpio al abrir el modal de nuevo
+x al editar y reabrir el modal, etiquetas en naranja, pero los inputs quedan en gris
 x Crear mensaje de error para cuando no hay gatitos
 x Crear mensaje de confirmación cuando el gatito se creó/editó
 
 Issues:
-- sort goes back to full list
-- site not yet resposive
+- sort devuelve lista completa en filter
+- falta el diseño responsive
 
-Consultas para Mike:
-- Is allgood a callback function?
-- filter by all properties
+Consultas futuras:
+- que filter permita buscar por varias propiedades
